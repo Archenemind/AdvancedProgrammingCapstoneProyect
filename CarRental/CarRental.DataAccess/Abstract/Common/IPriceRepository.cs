@@ -26,7 +26,7 @@ namespace CarRental.DataAccess.Abstract.Common
         /// </summary>
         /// <param name="id">Identificador del precio.</param>
         /// <returns>Precio solicitado de existir en BD, de lo contrario <see langword="null"/>.</returns>
-        Price? GetPrice(Guid id);
+        Price? GetPrice(int id);
 
         /// <summary>
         /// Actualiza el valor de un precio en BD.

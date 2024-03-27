@@ -33,7 +33,7 @@ namespace CarRental.Domain.Entities.Circulations
         /// <summary>
         /// Identificador unico de Insurance
         /// </summary>
-        public Guid InsuranceID { get; set; }
+        public int InsuranceID { get; set; }
 
         [NotMapped]
         public Somaton Somaton { get; }
@@ -41,7 +41,7 @@ namespace CarRental.Domain.Entities.Circulations
         /// <summary>
         /// Identificador unico de Somaton
         /// </summary>
-        public Guid SomatonId { get; set; }
+        public int SomatonId { get; set; }
 
         /// <summary>
         /// Fecha de Expiracion de la reservacion

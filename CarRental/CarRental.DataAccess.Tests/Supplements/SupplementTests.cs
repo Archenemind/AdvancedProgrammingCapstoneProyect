@@ -34,7 +34,7 @@ namespace CarRental.DataAccess.Tests.Supplements
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Get_Supplement(Guid id)
+        public void Can_Get_Supplement(int id)
         {
             //Arrange
             _supplementRepository.BeginTransaction();
@@ -48,7 +48,7 @@ namespace CarRental.DataAccess.Tests.Supplements
         }
 
         [TestMethod]
-        public void Can_Update_Supplement(Guid id)
+        public void Can_Update_Supplement(int id)
         {
             //Arrange
             _supplementRepository.BeginTransaction();
@@ -62,7 +62,7 @@ namespace CarRental.DataAccess.Tests.Supplements
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Delete_Supplement(Guid id)
+        public void Can_Delete_Supplement(int id)
         {
             //Arrange
             _supplementRepository.BeginTransaction();

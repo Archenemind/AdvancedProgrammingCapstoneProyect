@@ -26,7 +26,7 @@ namespace CarRental.DataAccess.Repositories
             _context.Add(client); return client;
         }
 
-        public P? GetPerson<P>(Guid id) where P : Person
+        public P? GetPerson<P>(int id) where P : Person
         {
             return _context.Set<P>().Find(id);
         }

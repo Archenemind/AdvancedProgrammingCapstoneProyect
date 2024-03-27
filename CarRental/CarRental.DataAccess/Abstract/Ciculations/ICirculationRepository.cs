@@ -39,7 +39,7 @@ namespace CarRental.DataAccess.Abstract.Circulations
         /// </summary>
         /// <param name="id">Identificador de la circulacion</param>
         /// <returns>Circulacion solicitada de existir en BD, de lo contrario <see langword="null"/>.</returns>
-        Circulation? GetCirculation(Guid id);
+        Circulation? GetCirculation(int id);
 
         /// <summary>
         /// Actualiza una Ciculacion en BD

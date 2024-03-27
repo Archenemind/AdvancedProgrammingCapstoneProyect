@@ -34,7 +34,7 @@
 
 //        [DataRow(1)]
 //        [TestMethod]
-//        public void Can_Get_Vehicle(Guid id)
+//        public void Can_Get_Vehicle(int id)
 //        {
 //            //Arrange
 //            _vehicleRepository.BeginTransaction();
@@ -49,7 +49,7 @@
 //        }
 
 //        [TestMethod]
-//        public void Can_Update_Vehicle(Guid id)
+//        public void Can_Update_Vehicle(int id)
 //        {
 //            //Arrange
 //            _vehicleRepository.BeginTransaction();
@@ -63,7 +63,7 @@
 
 //        [DataRow(1)]
 //        [TestMethod]
-//        public void Can_Delete_Vehicle(Guid id)
+//        public void Can_Delete_Vehicle(int id)
 //        {
 //            //Arrange
 //            _vehicleRepository.BeginTransaction();

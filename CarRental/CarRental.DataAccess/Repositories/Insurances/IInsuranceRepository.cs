@@ -22,7 +22,7 @@ namespace CarRental.DataAccess.Repositories
             _context.Add(insurance); return insurance;
         }
 
-        public Insurance? GetInsurance(Guid id)
+        public Insurance? GetInsurance(int id)
         {
             return _context.Set<Insurance>().Find(id);
         }

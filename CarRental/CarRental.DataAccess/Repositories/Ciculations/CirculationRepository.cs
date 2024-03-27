@@ -25,7 +25,7 @@ namespace CarRental.DataAccess.Repositories
             return circulation;
         }
 
-        public Circulation? GetCirculation(Guid id)
+        public Circulation? GetCirculation(int id)
         {
             return _context.Set<Circulation>().Find(id);
         }

@@ -28,7 +28,7 @@ namespace CarRental.DataAccess.Abstract.Insurances
         /// </summary>
         /// <param name="id">Identificador del seguro</param>
         /// <returns>Seguro de existir en BD, de lo contrario<see langword="null"></returns>
-        Insurance? GetInsurance(Guid id);
+        Insurance? GetInsurance(int id);
 
         /// <summary>
         /// Actualiza un seguro en BD

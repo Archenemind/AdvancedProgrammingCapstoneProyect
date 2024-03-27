@@ -21,7 +21,7 @@ namespace CarRental.DataAccess.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Circulations.Circulation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -37,10 +37,10 @@ namespace CarRental.DataAccess.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("InsuranceID")
+                    b.Property<int>("InsuranceID")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("SomatonId")
+                    b.Property<int>("SomatonId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -50,7 +50,7 @@ namespace CarRental.DataAccess.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Common.Price", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -64,7 +64,7 @@ namespace CarRental.DataAccess.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Insurances.Insurance", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -81,7 +81,7 @@ namespace CarRental.DataAccess.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Person", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -96,7 +96,7 @@ namespace CarRental.DataAccess.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Reservations.Reservation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -110,7 +110,7 @@ namespace CarRental.DataAccess.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("SupplementsId")
+                    b.Property<int>("SupplementsId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -122,7 +122,7 @@ namespace CarRental.DataAccess.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Somatons.Somaton", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -139,7 +139,7 @@ namespace CarRental.DataAccess.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Supplements.Supplement", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
@@ -147,7 +147,7 @@ namespace CarRental.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("PriceId")
+                    b.Property<int>("PriceId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -159,11 +159,11 @@ namespace CarRental.DataAccess.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Vehicles.Vehicle", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("CirculationId")
+                    b.Property<int>("CirculationId")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Color")
@@ -172,7 +172,7 @@ namespace CarRental.DataAccess.Migrations
                     b.Property<int>("Color2")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("PriceId")
+                    b.Property<int>("PriceId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -188,7 +188,7 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.HasBaseType("CarRental.Domain.Entities.Persons.Person");
 
-                    b.Property<Guid>("Reservation")
+                    b.Property<int>("Reservation")
                         .HasColumnType("TEXT");
 
                     b.ToTable("Clients", (string)null);

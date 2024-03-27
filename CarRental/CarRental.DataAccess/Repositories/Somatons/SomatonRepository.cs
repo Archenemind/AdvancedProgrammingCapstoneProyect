@@ -20,7 +20,7 @@ namespace CarRental.DataAccess.Repositories
             _context.Add(somaton); return somaton;
         }
 
-        public Somaton? GetSomaton(Guid id)
+        public Somaton? GetSomaton(int id)
         {
             return _context.Set<Somaton>().Find(id);
         }

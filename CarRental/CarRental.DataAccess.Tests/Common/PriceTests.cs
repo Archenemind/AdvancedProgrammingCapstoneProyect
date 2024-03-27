@@ -38,12 +38,11 @@ namespace CarRental.DataAccess.Tests.Common
             Assert.IsNotNull(loadedPrice);
             Assert.AreEqual(loadedPrice.Currency, moneyType);
             Assert.AreEqual(loadedPrice.Value, value);
-
         }
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Get_Price(Guid id)
+        public void Can_Get_Price(int id)
         {
             //Arrange
             _priceRepository.BeginTransaction();
@@ -58,7 +57,7 @@ namespace CarRental.DataAccess.Tests.Common
 
         [DataRow(1, MoneyType.USD, 6200)]
         [TestMethod]
-        public void Can_Update_Price(Guid id, double value, MoneyType moneyType)
+        public void Can_Update_Price(int id, double value, MoneyType moneyType)
         {
             //Arrange
             _priceRepository.BeginTransaction();
@@ -79,7 +78,7 @@ namespace CarRental.DataAccess.Tests.Common
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Delete_Price(Guid id)
+        public void Can_Delete_Price(int id)
         {
             //Arrange
             _priceRepository.BeginTransaction();

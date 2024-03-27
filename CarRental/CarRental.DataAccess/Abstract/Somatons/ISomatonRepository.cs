@@ -28,7 +28,7 @@ namespace CarRental.DataAccess.Abstract.Somatons
         /// </summary>
         /// <param name="id">Identificador del somaton</param>
         /// <returns>Retorna un somaton si existe en BD, de lo contrario<see langword="null"></returns>
-        Somaton? GetSomaton(Guid id);
+        Somaton? GetSomaton(int id);
 
         /// <summary>
         /// Actualiza un somaton en BD

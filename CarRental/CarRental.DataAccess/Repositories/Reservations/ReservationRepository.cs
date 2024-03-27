@@ -24,7 +24,7 @@ namespace CarRental.DataAccess.Repositories
             _context.Add(reservation); return reservation;
         }
 
-        public Reservation? GetReservation(Guid id)
+        public Reservation? GetReservation(int id)
         {
             return _context.Set<Reservation>().Find(id);
         }

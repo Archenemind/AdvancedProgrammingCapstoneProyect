@@ -17,7 +17,7 @@ namespace CarRental.Domain.Entities.Common
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         #endregion Properties
     }

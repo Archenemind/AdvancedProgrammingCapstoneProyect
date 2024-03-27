@@ -26,7 +26,7 @@ namespace CarRental.DataAccess.Abstract.Supplements
         /// </summary>
         /// <param name="id">Identificador del suplemento</param>
         /// <returns>Retorna un suplemento si existe en BD, en caso contrario <see langword="null"></returns>
-        Supplement? GetSupplement(Guid id);
+        Supplement? GetSupplement(int id);
 
         /// <summary>
         /// Borra un suplemento de base de datos

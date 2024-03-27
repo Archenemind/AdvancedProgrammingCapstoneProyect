@@ -29,7 +29,7 @@ namespace CarRental.Domain.Entities.Reservations
         /// <summary>
         /// Identificador unico del cliente
         /// </summary>
-        private Guid ClientId { get; set; }
+        private int ClientId { get; set; }
 
         /// <summary>
         /// Vehículo a rentar.
@@ -40,7 +40,7 @@ namespace CarRental.Domain.Entities.Reservations
         /// <summary>
         /// Identificador unico del vehiculo
         /// </summary>
-        private Guid VehicleId { get; set; }
+        private int VehicleId { get; set; }
 
         /// <summary>
         /// Fecha de inicio de la renta.
@@ -61,7 +61,7 @@ namespace CarRental.Domain.Entities.Reservations
         /// <summary>
         /// Identificador unico del precio
         /// </summary>
-        private Guid PriceId { get; set; }
+        private int PriceId { get; set; }
 
         /// <summary>
         /// Estado de la reservacion
@@ -74,7 +74,7 @@ namespace CarRental.Domain.Entities.Reservations
         /// <summary>
         /// Identificador unico de suplemento
         /// </summary>
-        private Guid SupplementId { get; set; }
+        private int SupplementId { get; set; }
 
         /// <summary>
         /// Constructor requerido por EntityFrameworkCore para migraciones

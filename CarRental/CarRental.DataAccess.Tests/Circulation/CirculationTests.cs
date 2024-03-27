@@ -25,9 +25,9 @@ namespace CarRental.DataAccess.Tests.Circulation
             _circulationRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("Peugeot","jenfwnfwfoiew","2403295jr9209r2", new Guid("1"), new Guid("1"))]
+        [DataRow("Peugeot", "jenfwnfwfoiew", "2403295jr9209r2", 1, 1)]
         [TestMethod]
-        public void Can_Create_Circulation(string model, string plate, string motorNumber, Guid insuranceId, Guid somatonId)
+        public void Can_Create_Circulation(string model, string plate, string motorNumber, int insuranceId, int somatonId)
         {
             //Arrange
             _circulationRepository.BeginTransaction();
@@ -35,7 +35,6 @@ namespace CarRental.DataAccess.Tests.Circulation
             Assert.IsNotNull(insurance);
             Somaton? somaton = ((ISomatonRepository)_circulationRepository).GetSomaton(somatonId);
             Assert.IsNotNull(somaton);
-
 
             //Execute
             var circulationDB = _circulationRepository.CreateCirculation(model, plate, motorNumber, insurance, somaton);
@@ -54,7 +53,7 @@ namespace CarRental.DataAccess.Tests.Circulation
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Get_Circulation(Guid id)
+        public void Can_Get_Circulation(int id)
         {
             //Arrange
             _circulationRepository.BeginTransaction();
@@ -69,7 +68,7 @@ namespace CarRental.DataAccess.Tests.Circulation
 
         [DataRow(1, "Red", 1, 1, "2024-03-16T12:00:00")]
         [TestMethod]
-        public void Can_Update_Circulation(Guid id, string vin, string expirationDateString)
+        public void Can_Update_Circulation(int id, string vin, string expirationDateString)
         {
             DateTime expirationDate = DateTime.Parse(expirationDateString);
 
@@ -90,7 +89,7 @@ namespace CarRental.DataAccess.Tests.Circulation
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Delete_Circulation(Guid id)
+        public void Can_Delete_Circulation(int id)
         {
             //Arrange
             _circulationRepository.BeginTransaction();

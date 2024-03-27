@@ -63,7 +63,7 @@ namespace CarRental.DataAccess.Abstract.Vehicles
         /// <typeparam name="V">Tipo de vehiculo</typeparam>
         /// <param name="id">Identificador del vehiculo</param>
         /// <returns>Retorna un vehiculo si existe en BD, de lo contrario<see langword="null"></returns>
-        V? GetVehicle<V>(Guid id) where V : Vehicle;
+        V? GetVehicle<V>(int id) where V : Vehicle;
 
         /// <summary>
         /// Obtiene todos los vehiculos en BD

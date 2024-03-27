@@ -29,7 +29,7 @@ namespace CarRental.DataAccess.Repositories
             _context.Add(motorcycle); return motorcycle;
         }
 
-        public V? GetVehicle<V>(Guid id) where V : Vehicle
+        public V? GetVehicle<V>(int id) where V : Vehicle
         {
             return _context.Set<V>().Find(id);
         }

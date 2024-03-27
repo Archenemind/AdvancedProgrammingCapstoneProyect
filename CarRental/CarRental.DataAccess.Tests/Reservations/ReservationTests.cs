@@ -32,7 +32,7 @@ namespace CarRental.DataAccess.Tests.Reservations
         }
         [DataRow(1)]
         [TestMethod]
-        public void Can_Get_Reservation(Guid id)
+        public void Can_Get_Reservation(int id)
         {
             //Arrange
             _reservationRepository.BeginTransaction();
@@ -46,7 +46,7 @@ namespace CarRental.DataAccess.Tests.Reservations
 
         }
         [TestMethod]
-        public void Can_Update_Reservation(Guid id)
+        public void Can_Update_Reservation(int id)
         {
             //Arrange
             _reservationRepository.BeginTransaction();
@@ -60,7 +60,7 @@ namespace CarRental.DataAccess.Tests.Reservations
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Delete_Reservation(Guid id)
+        public void Can_Delete_Reservation(int id)
         {
             //Arrange
             _reservationRepository.BeginTransaction();

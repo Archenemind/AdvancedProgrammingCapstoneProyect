@@ -21,7 +21,7 @@ namespace CarRental.DataAccess.Repositories
             return price;
         }
 
-        public Price? GetPrice(Guid id)
+        public Price? GetPrice(int id)
         {
             return _context.Set<Price>().Find(id);
         }

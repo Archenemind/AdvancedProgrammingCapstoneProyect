@@ -12,10 +12,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NuGet.Frameworks;
 using static CarRental.Domain.Entities.Insurances.Insurance;
 
-namespace CarRental.DataAccess.Tests.NewFolder1
+namespace CarRental.DataAccess.Tests.Insurances
 {
     [TestClass]
-     public class InsuranceTests
+    public class InsuranceTests
     {
         private IInsuranceRepository _insuranceRepository;
 
@@ -46,10 +46,10 @@ namespace CarRental.DataAccess.Tests.NewFolder1
             Assert.AreEqual(loadedInsurance.ExpirationDate, expirationDate);
             Assert.AreEqual(loadedInsurance.ExpeditionDate, expeditionDate);
         }
-        
+
         [DataRow(1)]
         [TestMethod]
-        public void Can_Get_Insurance(Guid id)
+        public void Can_Get_Insurance(int id)
         {
             //Arrange
             _insuranceRepository.BeginTransaction();
@@ -60,15 +60,12 @@ namespace CarRental.DataAccess.Tests.NewFolder1
 
             //Assert
             Assert.IsNotNull(loadedInsurance);
-
         }
 
-
-        [DataRow(1,Statusenum.Enable, "2024-03-16T12:00:00")]
+        [DataRow(1, Statusenum.Enable, "2024-03-16T12:00:00")]
         [TestMethod]
-        public void Can_Update_Insurance(Guid id, Statusenum status, string expirationDateString)
+        public void Can_Update_Insurance(int id, Statusenum status, DateTime expirationDate)
         {
-            DateTime expirationDate = DateTime.Parse(expirationDateString);
             //Arrange
             _insuranceRepository.BeginTransaction();
             var loadedInsurance = _insuranceRepository.GetInsurance(id);
@@ -84,12 +81,11 @@ namespace CarRental.DataAccess.Tests.NewFolder1
             _insuranceRepository.CommitTransaction();
             Assert.AreEqual(modifyedInsurance.Status, status);
             Assert.AreEqual(modifyedInsurance.ExpirationDate, expirationDate);
-
         }
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Delete_Insurance(Guid id)
+        public void Can_Delete_Insurance(int id)
         {
             //Arrange
             _insuranceRepository.BeginTransaction();
@@ -104,8 +100,6 @@ namespace CarRental.DataAccess.Tests.NewFolder1
 
             //Assert
             Assert.IsNull(loadedInsurance);
-
         }
-
     }
 }

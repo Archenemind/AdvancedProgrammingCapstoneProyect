@@ -41,7 +41,7 @@ namespace CarRental.DataAccess.Abstract.Persons
         /// <typeparam name="P">Tipo de persona a obtener</typeparam>
         /// <param name="id">Identificador de la persona</param>
         /// <returns>Persona solicitada de existir en BD, de lo contrario<see langword="null"></returns>
-        P? GetPerson<P>(Guid id) where P : Person;
+        P? GetPerson<P>(int id) where P : Person;
 
         /// <summary>
         /// Obtiene todas las personas de base de datos

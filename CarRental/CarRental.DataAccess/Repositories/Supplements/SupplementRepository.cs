@@ -20,7 +20,7 @@ namespace CarRental.DataAccess.Repositories
             _context.Add(supplement); return supplement;
         }
 
-        public Supplement? GetSupplement(Guid id)
+        public Supplement? GetSupplement(int id)
         {
             return _context.Set<Supplement>().Find(id);
         }

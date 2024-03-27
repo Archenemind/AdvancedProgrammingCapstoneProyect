@@ -35,7 +35,7 @@ namespace CarRental.DataAccess.Abstract.Reservations
         /// </summary>
         /// <param name="id">Identificador de la reservacion</param>
         /// <returns>Obtiene la reservacion en caso de existir en BD, de lo contrario<see langword="null"></returns>
-        Reservation? GetReservation(Guid id);
+        Reservation? GetReservation(int id);
 
         /// <summary>
         /// Actualiza una reservacion

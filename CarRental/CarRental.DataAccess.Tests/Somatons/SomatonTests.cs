@@ -33,7 +33,7 @@ namespace CarRental.DataAccess.Tests.Somatons
         }
         [DataRow(1)]
         [TestMethod]
-        public void Can_Get_Somaton(Guid id)
+        public void Can_Get_Somaton(int id)
         {
             //Arrange
             _somatonRepository.BeginTransaction();
@@ -47,7 +47,7 @@ namespace CarRental.DataAccess.Tests.Somatons
 
         }
         [TestMethod]
-        public void Can_Update_Somaton(Guid id)
+        public void Can_Update_Somaton(int id)
         {
             //Arrange
             _somatonRepository.BeginTransaction();
@@ -61,7 +61,7 @@ namespace CarRental.DataAccess.Tests.Somatons
 
         [DataRow(1)]
         [TestMethod]
-        public void Can_Delete_Somaton(Guid id)
+        public void Can_Delete_Somaton(int id)
         {
             //Arrange
             _somatonRepository.BeginTransaction();

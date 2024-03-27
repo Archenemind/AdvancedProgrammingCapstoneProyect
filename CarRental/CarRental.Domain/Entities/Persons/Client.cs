@@ -23,7 +23,7 @@ namespace CarRental.Domain.Entities.Persons
         /// <summary>
         /// Identificador unico de reservacion
         /// </summary>
-        public Guid Reservation { get; set; }
+        public int Reservation { get; set; }
 
         /// <summary>
         /// Constructor requerido por EntityFrameworkCore para migraciones

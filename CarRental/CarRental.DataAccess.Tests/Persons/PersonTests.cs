@@ -35,7 +35,7 @@
 
 //        [DataRow(1)]
 //        [TestMethod]
-//        public void Can_Get_Person(Guid id)
+//        public void Can_Get_Person(int id)
 //        {
 //            //Arrange
 //            _personRepository.BeginTransaction();
@@ -49,7 +49,7 @@
 //        }
 
 //        [TestMethod]
-//        public void Can_Update_Person(Guid id)
+//        public void Can_Update_Person(int id)
 //        {
 //            //Arrange
 //            _personRepository.BeginTransaction();
@@ -67,7 +67,7 @@
 
 //        [DataRow(1)]
 //        [TestMethod]
-//        public void Can_Delete_Person(Guid id)
+//        public void Can_Delete_Person(int id)
 //        {
 //            //Arrange
 //            _personRepository.BeginTransaction();
