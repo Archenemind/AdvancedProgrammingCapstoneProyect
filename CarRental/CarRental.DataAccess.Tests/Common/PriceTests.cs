@@ -1,6 +1,7 @@
 ﻿using CarRental.DataAccess.Abstract.Common;
 using CarRental.DataAccess.Repositories;
 using CarRental.DataAccess.Tests.Utilities;
+using CarRental.Domain.Entities.Common;
 using CarRental.Domain.Entities.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -21,14 +22,23 @@ namespace CarRental.DataAccess.Tests.Common
             _priceRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
+        [DataRow(MoneyType.MN, 50000)]
+        [DataRow(MoneyType.Euro, 6000)]
         [TestMethod]
-        public void Can_Create_Price()
+        public void Can_Create_Price(MoneyType moneyType, double value)
         {
             //Arrange
             _priceRepository.BeginTransaction();
             //Execute
+            Price newPrice = _priceRepository.CreatePrice(moneyType, value);
+            _priceRepository.PartialCommit();
+            Price? loadedPrice = _priceRepository.GetPrice(newPrice.Id);
             _priceRepository.CommitTransaction();
             //Assert
+            Assert.IsNotNull(loadedPrice);
+            Assert.AreEqual(loadedPrice.Currency, moneyType);
+            Assert.AreEqual(loadedPrice.Value, value);
+
         }
 
         [DataRow(1)]

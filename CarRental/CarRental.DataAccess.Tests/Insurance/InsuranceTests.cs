@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CarRental.DataAccess.Abstract.Insurances;
 using CarRental.DataAccess.Repositories;
 using CarRental.DataAccess.Tests.Utilities;
+using CarRental.Domain.Entities.Insurances;
 using CarRental.Domain.Entities.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NuGet.Frameworks;
@@ -23,20 +24,30 @@ namespace CarRental.DataAccess.Tests.NewFolder1
             _insuranceRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
+        [DataRow(Statusenum.Enable, "POL1234", "2024-03-16T12:00:00", "2043-03-16T12:00:00")]
         [TestMethod]
-        public void Can_Create_Insurance()
+        public void Can_Create_Insurance(Statusenum status, string policyNumber, string expirationDateString, string expeditionDateString)
         {
+            DateTime expirationDate = DateTime.Parse(expirationDateString);
+            DateTime expeditionDate = DateTime.Parse(expeditionDateString);
             //Arrange
             _insuranceRepository.BeginTransaction();
 
-            //Execute
+            //Ejecutar
+            Insurance newInsurance = _insuranceRepository.CreateInsurance(status, policyNumber, expirationDate, expeditionDate);
+            _insuranceRepository.PartialCommit();
+            Insurance? loadedInsurance = _insuranceRepository.GetInsurance(newInsurance.Id);
             _insuranceRepository.CommitTransaction();
 
             //Assert
-
+            Assert.IsNotNull(loadedInsurance);
+            Assert.AreEqual(loadedInsurance.Status, status);
+            Assert.AreEqual(loadedInsurance.PolicyNumber, policyNumber);
+            Assert.AreEqual(loadedInsurance.ExpirationDate, expirationDate);
+            Assert.AreEqual(loadedInsurance.ExpeditionDate, expeditionDate);
         }
+        
         [DataRow(1)]
-       
         [TestMethod]
         public void Can_Get_Insurance(Guid id)
         {
@@ -55,8 +66,9 @@ namespace CarRental.DataAccess.Tests.NewFolder1
 
         [DataRow(1,Statusenum.Enable, "2024-03-16T12:00:00")]
         [TestMethod]
-        public void Can_Update_Insurance(Guid id, Statusenum status, DateTime expirationDate)
+        public void Can_Update_Insurance(Guid id, Statusenum status, string expirationDateString)
         {
+            DateTime expirationDate = DateTime.Parse(expirationDateString);
             //Arrange
             _insuranceRepository.BeginTransaction();
             var loadedInsurance = _insuranceRepository.GetInsurance(id);
