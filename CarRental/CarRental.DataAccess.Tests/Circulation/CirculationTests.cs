@@ -66,7 +66,7 @@ namespace CarRental.DataAccess.Tests.Circulation
             Assert.IsNotNull(loadedCirculation);
         }
 
-        [DataRow(1, "Red", 1, 1, "2024-03-16T12:00:00")]
+        [DataRow(1, "iug98ugf8ti", "2024-03-16T12:00:00")]
         [TestMethod]
         public void Can_Update_Circulation(int id, string vin, string expirationDateString)
         {
@@ -79,12 +79,14 @@ namespace CarRental.DataAccess.Tests.Circulation
 
             //Execute
             loadedCirculation.ExpirationDate = expirationDate;
+            loadedCirculation.VIN = vin;
             _circulationRepository.UpdateCirculation(loadedCirculation);
 
             //Assert
             var modifyedCirculation = _circulationRepository.GetCirculation(id);
             _circulationRepository.CommitTransaction();
             Assert.AreEqual(modifyedCirculation.ExpeditionDate, expirationDate);
+            Assert.AreEqual(modifyedCirculation.VIN, vin);
         }
 
         [DataRow(1)]

@@ -22,7 +22,7 @@ namespace CarRental.Domain.Entities.Somatons
         /// <summary>
         /// Estado del somaton
         /// </summary>
-        public Status Status { get; }
+        public Status Status { get; set; }
 
         /// <summary>
         /// Numero del somaton

@@ -53,7 +53,7 @@ namespace CarRental.Domain.Entities.Circulations
         /// </summary>
         public DateTime ExpeditionDate { get; set; }
 
-        public string VIN { get; }
+        public string VIN { get; set; }
 
         /// <summary>
         /// Constructor requerido por Entity Framework

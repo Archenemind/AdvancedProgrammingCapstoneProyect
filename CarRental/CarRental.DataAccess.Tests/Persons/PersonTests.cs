@@ -1,87 +1,102 @@
-﻿//using CarRental.DataAccess.Abstract.Circulations;
-//using CarRental.DataAccess.Abstract.Persons;
-//using CarRental.DataAccess.Repositories;
-//using CarRental.DataAccess.Tests.Utilities;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CarRental.DataAccess.Abstract.Circulations;
+using CarRental.DataAccess.Abstract.Persons;
+using CarRental.DataAccess.Repositories;
+using CarRental.DataAccess.Tests.Utilities;
+using CarRental.Domain.Entities.Persons;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-//namespace CarRental.DataAccess.Tests.Persons
-//{
-//    [TestClass]
-//    public class PersonTests
-//    {
-//        private IPersonRepository _personRepository;
+namespace CarRental.DataAccess.Tests.Persons
+{
+    [TestClass]
+    public class PersonTests
+    {
+        private IPersonRepository _personRepository;
 
-//        public PersonTests()
-//        {
-//            _personRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString()); ;
-//        }
+        public PersonTests()
+        {
+            _personRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString()); ;
+        }
 
-//        public void Can_Create_Person()
-//        {
-//            //Arrange
-//            _personRepository.BeginTransaction();
+        [DataRow("Loco quejesto","Rodriguez", "jwnnwjncwccnk","Qva")]
+        [TestMethod]
+        public void Can_Create_Person(string name, string lastName, string iD, string countryName)
+        {
+            // Arrange
+            _personRepository.BeginTransaction();
 
-//            //Execute
-//            _personRepository.CommitTransaction();
+            // Execute
+            var personDB = _personRepository.CreateClient(name, lastName, iD, countryName);
+            _personRepository.PartialCommit();
+            var loadedPerson = _personRepository.GetPerson<Client>(personDB.Id);
+            _personRepository.CommitTransaction();
 
-//            //Assert
-//        }
+            // Assert
+            Assert.IsNotNull(loadedPerson);
+            Assert.AreEqual(personDB.Name, loadedPerson.Name);
+            Assert.AreEqual(personDB.LastName, loadedPerson.LastName);
+            Assert.AreEqual(personDB.CI, loadedPerson.CI);
+            Assert.AreEqual(personDB.CountryName, loadedPerson.CountryName);
+        }
 
-//        [DataRow(1)]
-//        [TestMethod]
-//        public void Can_Get_Person(int id)
-//        {
-//            //Arrange
-//            _personRepository.BeginTransaction();
+        [DataRow(1)]
+        [TestMethod]
+        public void Can_Get_Person(int id)
+        {
+            //Arrange
+            _personRepository.BeginTransaction();
 
-//            //Execute
-//            var loadedPerson = _personRepository.GetPerson(id);
-//            _personRepository.CommitTransaction();
+            //Execute
+            var loadedPerson = _personRepository.GetPerson<Client>(id);
+            _personRepository.CommitTransaction();
 
-//            //Assert
-//            Assert.IsNotNull(loadedPerson);
-//        }
+            //Assert
+            Assert.IsNotNull(loadedPerson);
+        }
 
-//        [TestMethod]
-//        public void Can_Update_Person(int id)
-//        {
-//            //Arrange
-//            _personRepository.BeginTransaction();
-//            var loadedPerson = _personRepository.GetPerson(id);
-//            Assert.IsNotNull(loadedPerson);
+        [DataRow(1, "suenha")]
+        [TestMethod]
+        public void Can_Update_Person(int id, string countryName)
+        {
+            // Arrange
+            _personRepository.BeginTransaction();
+            var loadedPerson = _personRepository.GetPerson<Client>(id);
+            Assert.IsNotNull(loadedPerson);
 
-//            //Execute
-//            loadedPerson.
-//                loadedPerson.
-//                loadedPerson.
+            // Execute
+            loadedPerson.CountryName = countryName;
+            _personRepository.UpdatePerson(loadedPerson);
+            _personRepository.PartialCommit();
 
-//            //Assert
-//            _personRepository.CommitTransaction();
-//        }
+            // Assert
+            var modifiedPerson = _personRepository.GetPerson<Client>(id);
+            _personRepository.CommitTransaction();
+            Assert.AreEqual(modifiedPerson.CountryName, countryName);
 
-//        [DataRow(1)]
-//        [TestMethod]
-//        public void Can_Delete_Person(int id)
-//        {
-//            //Arrange
-//            _personRepository.BeginTransaction();
+        }
 
-//            //Execute
-//            var loadedPerson = _personRepository.GetPerson(id);
-//            Assert.IsNotNull(loadedPerson);
-//            _personRepository.DeletePerson(loadedPerson);
-//            _personRepository.PartialCommit();
-//            loadedPerson = _personRepository.GetPerson(id);
-//            _personRepository.CommitTransaction();
+        [DataRow(1)]
+        [TestMethod]
+        public void Can_Delete_Person(int id)
+        {
+            //Arrange
+            _personRepository.BeginTransaction();
 
-//            //Assert
-//            Assert.IsNull(loadedPerson);
-//        }
-//    }
-//}
+            //Execute
+            var loadedPerson = _personRepository.GetPerson<Client>(id);
+            Assert.IsNotNull(loadedPerson);
+            _personRepository.DeletePerson(loadedPerson);
+            _personRepository.PartialCommit();
+            loadedPerson = _personRepository.GetPerson<Client>(id);
+            _personRepository.CommitTransaction();
+
+            //Assert
+            Assert.IsNull(loadedPerson);
+        }
+    }
+}

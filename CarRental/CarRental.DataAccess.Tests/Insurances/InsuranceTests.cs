@@ -41,10 +41,10 @@ namespace CarRental.DataAccess.Tests.Insurances
 
             //Assert
             Assert.IsNotNull(loadedInsurance);
-            Assert.AreEqual(loadedInsurance.Status, status);
-            Assert.AreEqual(loadedInsurance.PolicyNumber, policyNumber);
-            Assert.AreEqual(loadedInsurance.ExpirationDate, expirationDate);
-            Assert.AreEqual(loadedInsurance.ExpeditionDate, expeditionDate);
+            Assert.AreEqual(loadedInsurance.Status, newInsurance.Status);
+            Assert.AreEqual(loadedInsurance.PolicyNumber, newInsurance.PolicyNumber);
+            Assert.AreEqual(loadedInsurance.ExpirationDate, newInsurance.ExpirationDate);
+            Assert.AreEqual(loadedInsurance.ExpeditionDate, newInsurance.ExpeditionDate);
         }
 
         [DataRow(1)]

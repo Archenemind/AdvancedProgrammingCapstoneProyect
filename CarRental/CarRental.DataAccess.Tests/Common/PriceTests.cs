@@ -29,15 +29,17 @@ namespace CarRental.DataAccess.Tests.Common
         {
             //Arrange
             _priceRepository.BeginTransaction();
+
             //Execute
             Price newPrice = _priceRepository.CreatePrice(moneyType, value);
             _priceRepository.PartialCommit();
             Price? loadedPrice = _priceRepository.GetPrice(newPrice.Id);
             _priceRepository.CommitTransaction();
+
             //Assert
             Assert.IsNotNull(loadedPrice);
-            Assert.AreEqual(loadedPrice.Currency, moneyType);
-            Assert.AreEqual(loadedPrice.Value, value);
+            Assert.AreEqual(loadedPrice.Currency, newPrice.Currency);
+            Assert.AreEqual(loadedPrice.Value, newPrice.Value);
         }
 
         [DataRow(1)]

@@ -18,9 +18,9 @@ namespace CarRental.DataAccess.Repositories
     /// </summary>
     public partial class ApplicationRepository : IReservationRepository
     {
-        public Reservation CreateReservation(string countryName, Client client, Vehicle vehicle, DateTime startDate, Price totalPrice, Status status, Supplement reservationSupplement)
+        public Reservation CreateReservation( Client client, Vehicle vehicle, DateTime startDate, Price totalPrice, Status status, Supplement reservationSupplement)
         {
-            Reservation reservation = new Reservation(countryName, client, vehicle, startDate, totalPrice, status, reservationSupplement);
+            Reservation reservation = new Reservation(client, vehicle, startDate, totalPrice, status, reservationSupplement);
             _context.Add(reservation); return reservation;
         }
 
