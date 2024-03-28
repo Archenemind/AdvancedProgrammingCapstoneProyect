@@ -21,7 +21,7 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Color")
                         .HasColumnType("INTEGER");
@@ -36,9 +36,13 @@ namespace CarRental.DataAccess.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("InsuranceID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("SomatonId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("VIN")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -50,7 +54,10 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Currency")
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("Value")
                         .HasColumnType("REAL");
@@ -64,13 +71,16 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ExpeditionDate")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -81,6 +91,10 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Phone")
@@ -96,11 +110,7 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CountryName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
@@ -109,7 +119,7 @@ namespace CarRental.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SupplementsId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -122,13 +132,20 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ExpeditionDate")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -139,14 +156,14 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PriceId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -159,10 +176,10 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("CirculationId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Color")
                         .HasColumnType("INTEGER");
@@ -171,7 +188,7 @@ namespace CarRental.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("PriceId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -187,7 +204,7 @@ namespace CarRental.DataAccess.Migrations
                     b.HasBaseType("CarRental.Domain.Entities.Persons.Person");
 
                     b.Property<int>("Reservation")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.ToTable("Clients", (string)null);
                 });

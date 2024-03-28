@@ -27,10 +27,11 @@ namespace CarRental.DataAccess.Tests.Vehicles
             _vehicleRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("Que suenho", "2024-03-16T12:00:00", 1,1,1,5, 300, true)]
+        [DataRow("Que suenho", "Jan 1, 2009", 1,1,1,5, 300, true)]
         [TestMethod]
-        public void Can_Create_Vehicle(string brandName, DateTime fabricationDate, int insuranceId, int somatonId, int priceId, int numberOfVelocities, int maxVelocity, bool hasAirConditioning)
+        public void Can_Create_Vehicle(string brandName, string fabricationDateString, int insuranceId, int somatonId, int priceId, int numberOfVelocities, int maxVelocity, bool hasAirConditioning)
         {
+            DateTime fabricationDate = DateTime.Parse(fabricationDateString);
             // Arrange
             _vehicleRepository.BeginTransaction();
             Insurance? insurance = ((IInsuranceRepository)_vehicleRepository).GetInsurance(insuranceId);

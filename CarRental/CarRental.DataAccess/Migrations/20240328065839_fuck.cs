@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CarRental.DataAccess.Migrations
 {
-    public partial class Initial : Migration
+    public partial class fuck : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,13 +13,15 @@ namespace CarRental.DataAccess.Migrations
                 name: "Circulations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Color = table.Column<int>(type: "INTEGER", nullable: false),
                     Color2 = table.Column<int>(type: "INTEGER", nullable: false),
-                    InsuranceID = table.Column<int>(type: "TEXT", nullable: false),
-                    SomatonId = table.Column<int>(type: "TEXT", nullable: false),
+                    InsuranceID = table.Column<int>(type: "INTEGER", nullable: false),
+                    SomatonId = table.Column<int>(type: "INTEGER", nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ExpeditionDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    ExpeditionDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    VIN = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,7 +32,9 @@ namespace CarRental.DataAccess.Migrations
                 name: "Insurances",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ExpeditionDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
@@ -43,7 +47,9 @@ namespace CarRental.DataAccess.Migrations
                 name: "Persons",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CountryName = table.Column<string>(type: "TEXT", nullable: false),
                     Phone = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -55,7 +61,9 @@ namespace CarRental.DataAccess.Migrations
                 name: "Prices",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Currency = table.Column<int>(type: "INTEGER", nullable: false),
                     Value = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
@@ -67,9 +75,12 @@ namespace CarRental.DataAccess.Migrations
                 name: "Somatons",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ExpirationDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ExpeditionDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    ExpeditionDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    Number = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,8 +91,9 @@ namespace CarRental.DataAccess.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
-                    Reservation = table.Column<int>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Reservation = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,7 +110,8 @@ namespace CarRental.DataAccess.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Role = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -116,8 +129,9 @@ namespace CarRental.DataAccess.Migrations
                 name: "Supplements",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
-                    PriceId = table.Column<int>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    PriceId = table.Column<int>(type: "INTEGER", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -135,11 +149,12 @@ namespace CarRental.DataAccess.Migrations
                 name: "Vehicles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
-                    CirculationId = table.Column<int>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CirculationId = table.Column<int>(type: "INTEGER", nullable: false),
                     Color = table.Column<int>(type: "INTEGER", nullable: false),
                     Color2 = table.Column<int>(type: "INTEGER", nullable: false),
-                    PriceId = table.Column<int>(type: "TEXT", nullable: false)
+                    PriceId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -162,11 +177,11 @@ namespace CarRental.DataAccess.Migrations
                 name: "Reservations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
-                    CountryName = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Status = table.Column<int>(type: "INTEGER", nullable: false),
-                    SupplementsId = table.Column<int>(type: "TEXT", nullable: false)
+                    SupplementsId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -183,7 +198,8 @@ namespace CarRental.DataAccess.Migrations
                 name: "Cars",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     HasAirConditioning = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -201,7 +217,8 @@ namespace CarRental.DataAccess.Migrations
                 name: "Motorcycles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true)
                 },
                 constraints: table =>
                 {

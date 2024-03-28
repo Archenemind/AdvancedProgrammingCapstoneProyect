@@ -120,6 +120,7 @@ namespace CarRental.DataAccess.Concrete
             modelBuilder.Entity<Insurance>().ToTable("Insurances");
 
             modelBuilder.Entity<Price>().ToTable("Prices");
+            modelBuilder.Entity<Price>().Property(e => e.Currency).HasConversion<int>();
             modelBuilder.Entity<Reservation>().ToTable("Reservations");
             modelBuilder.Entity<Somaton>().ToTable("Somatons");
             modelBuilder.Entity<Supplement>().ToTable("Supplements");
