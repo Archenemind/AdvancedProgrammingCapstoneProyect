@@ -16,12 +16,9 @@ namespace CarRental.DataAccess.Abstract.Insurances
         /// <summary>
         /// Crea un seguro en BD
         /// </summary>
-        /// <param name="status">Estado</param>
         /// <param name="policyNumber">Numero de poliza</param>
-        /// <param name="expirationDate">Fecha de expiracion</param>
-        /// <param name="expeditionDate">Fecha de emision</param>
         /// <returns></returns>
-        Insurance CreateInsurance(Statusenum status, string policyNumber, DateTime expirationDate, DateTime expeditionDate);
+        Insurance CreateInsurance(string policyNumber);
 
         /// <summary>
         /// Obtiene un seguro de BD

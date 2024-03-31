@@ -27,7 +27,7 @@ namespace CarRental.DataAccess.Abstract.Reservations
         /// <param name="status">Estado</param>
         /// <param name="reservationSupplement">Suplementos de la reservacion</param>
         /// <returns></returns>
-        Reservation CreateReservation(Client client, Vehicle vehicle, DateTime startDate, Price totalPrice, Status status, Supplement reservationSupplement);
+        Reservation CreateReservation(Client client, Vehicle vehicle);
 
         /// <summary>
         /// Obtiene una reservacion en BD

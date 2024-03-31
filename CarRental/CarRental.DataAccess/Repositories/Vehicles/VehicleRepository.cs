@@ -19,13 +19,13 @@ namespace CarRental.DataAccess.Repositories
     {
         public Car CreateCar(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, int numberOfVelocities, int maxVelocity, bool hasAirConditioning, Color color, Color color2)
         {
-            Car car = new Car(brandName, fabricationDate, insurance, somaton, price, numberOfVelocities, maxVelocity, hasAirConditioning, color, color2);
+            Car car = new(brandName, fabricationDate, insurance, somaton, +numberOfVelocities, maxVelocity, hasAirConditioning);
             _context.Add(car); return car;
         }
 
         public Motorcycle CreateMotorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, bool hasSideCar, Color color, Color color2)
         {
-            Motorcycle motorcycle = new Motorcycle(brandName, fabricationDate, insurance, somaton, price, hasSideCar, color, color2);
+            Motorcycle motorcycle = new(brandName, fabricationDate, insurance, somaton, hasSideCar);
             _context.Add(motorcycle); return motorcycle;
         }
 

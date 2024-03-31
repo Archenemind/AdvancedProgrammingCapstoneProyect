@@ -15,10 +15,10 @@ namespace CarRental.DataAccess.Repositories
     /// </summary>
     public partial class ApplicationRepository : IInsuranceRepository
     {
-        public Insurance CreateInsurance(Statusenum status, string policyNumber, DateTime expirationDate, DateTime expeditionDate)
+        public Insurance CreateInsurance(string policyNumber)
 
         {
-            Insurance insurance = new Insurance(status, policyNumber, expirationDate, expeditionDate);
+            Insurance insurance = new Insurance(policyNumber);
             _context.Add(insurance); return insurance;
         }
 

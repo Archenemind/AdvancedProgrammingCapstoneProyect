@@ -18,100 +18,100 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        //Creando un contexto para interactuar con la base de datos
-        ApplicationContext appContext = new("Data Source=CarRentalDB.sqlite");
-        //Verificando si la BD no existe
-        if (!appContext.Database.CanConnect())
-        {
-            //Genera BD con las tablas configuradas en su migración
-            appContext.Database.Migrate();
-        }
+        //        //Creando un contexto para interactuar con la base de datos
+        //        ApplicationContext appContext = new("Data Source=CarRentalDB.sqlite");
+        //        //Verificando si la BD no existe
+        //        if (!appContext.Database.CanConnect())
+        //        {
+        //            //Genera BD con las tablas configuradas en su migración
+        //            appContext.Database.Migrate();
+        //        }
 
-        //CRUD con usuarios
+        //        //CRUD con usuarios
 
-        // Crear un usuario
+        //        // Crear un usuario
 
-        Users user = new("Carlos", "Rodríguez", "99062207946", "Cuba", UserRoleType.Guest,"1234");
-        appContext.Set<Users>().Add(user);
-        appContext.SaveChanges();
+        //        Users user = new("Carlos", "Rodríguez", "99062207946", "Cuba", UserRoleType.Guest,"1234");
+        //        appContext.Set<Users>().Add(user);
+        //        appContext.SaveChanges();
 
-        //Lectura del nombre de todos los usuarios
-        var users = appContext.Set<Users>().ToList();
-        foreach (var loadedUser in users)
-        {
-            string User = appContext.Set<string>().Find(loadedUser.Name);
-        }
+        //        //Lectura del nombre de todos los usuarios
+        //        var users = appContext.Set<Users>().ToList();
+        //        foreach (var loadedUser in users)
+        //        {
+        //            string User = appContext.Set<string>().Find(loadedUser.Name);
+        //        }
 
-        // Actualización del nombre del país del usuario creado
-        users = appContext.Set<Users>().ToList();
-        foreach (var loadedUser in users)
-        {
-            string CountryName = appContext.Set<string>().Find(loadedUser.CountryName);
-            loadedUser.CountryName = CountryName;
-        }
+        //        // Actualización del nombre del país del usuario creado
+        //        users = appContext.Set<Users>().ToList();
+        //        foreach (var loadedUser in users)
+        //        {
+        //            string CountryName = appContext.Set<string>().Find(loadedUser.CountryName);
+        //            loadedUser.CountryName = CountryName;
+        //        }
 
-        // Actualización del nombre del país del usuario creado
-        users = appContext.Set<Users>().ToList();
-        foreach (var loadedUser in users)
-        {
-            if (loadedUser.CI == "99062207946")
-            {
-                loadedUser.CountryName = "USA";
-                appContext.Set<Users>().Update(loadedUser);
-            }
-        }
-        appContext.SaveChanges();
+        //        // Actualización del nombre del país del usuario creado
+        //        users = appContext.Set<Users>().ToList();
+        //        foreach (var loadedUser in users)
+        //        {
+        //            if (loadedUser.CI == "99062207946")
+        //            {
+        //                loadedUser.CountryName = "USA";
+        //                appContext.Set<Users>().Update(loadedUser);
+        //            }
+        //        }
+        //        appContext.SaveChanges();
 
-        //Eliminar a todos los usuarios
-        users = appContext.Set<Users>().ToList();
-        foreach (var loadedUser in users)
-        {
-            appContext.Set<Users>().Remove(loadedUser);
-        }
-        appContext.SaveChanges();
+        //        //Eliminar a todos los usuarios
+        //        users = appContext.Set<Users>().ToList();
+        //        foreach (var loadedUser in users)
+        //        {
+        //            appContext.Set<Users>().Remove(loadedUser);
+        //        }
+        //        appContext.SaveChanges();
 
-        //Creando Insurance
-        Insurance carInsurance = new Insurance(0, "4394925832", new DateTime(2029, 3, 12), new DateTime(2023, 5, 12));
-        appContext.Set<Insurance>().Add(carInsurance);
-        appContext.SaveChanges();
+        //        //Creando Insurance
+        //        Insurance carInsurance = new Insurance(0, "4394925832", new DateTime(2029, 3, 12), new DateTime(2023, 5, 12));
+        //        appContext.Set<Insurance>().Add(carInsurance);
+        //        appContext.SaveChanges();
 
-        //leyendo insurance
-        var insurances = appContext.Set<Insurance>().ToList();
+        //        //leyendo insurance
+        //        var insurances = appContext.Set<Insurance>().ToList();
 
-        //actualizando insurance
-        foreach (var insurance in insurances)
-        {
-            insurance.Status = (Insurance.Statusenum)1;
-            appContext.Set<Insurance>().Update(insurance);
-        }
-        appContext.SaveChanges();
+        //        //actualizando insurance
+        //        foreach (var insurance in insurances)
+        //        {
+        //            insurance.Status = (Insurance.Statusenum)1;
+        //            appContext.Set<Insurance>().Update(insurance);
+        //        }
+        //        appContext.SaveChanges();
 
-        //Borrando insurance
-        foreach (var insurance in insurances)
-        {
-            appContext.Set<Insurance>().Remove(insurance);
-        }
-        appContext.SaveChanges();
+        //        //Borrando insurance
+        //        foreach (var insurance in insurances)
+        //        {
+        //            appContext.Set<Insurance>().Remove(insurance);
+        //        }
+        //        appContext.SaveChanges();
 
-        //Creando Somaton
-        Somaton carSomaton = new Somaton(new DateTime(2028, 12, 12), new DateTime(2023, 8, 9), 0, "09310940748658516506");
+        //        //Creando Somaton
+        //        Somaton carSomaton = new Somaton(new DateTime(2028, 12, 12), new DateTime(2023, 8, 9), 0, "09310940748658516506");
 
-        //Leyendo Somaton
-        var somatons = appContext.Set<Somaton>().ToList();
+        //        //Leyendo Somaton
+        //        var somatons = appContext.Set<Somaton>().ToList();
 
-        //Actualizando Somaton
-        foreach (var somaton in somatons)
-        {
-            somaton.Number = "nnhevenvwoi4304u3257";
-            appContext.Set<Somaton>().Update(somaton);
-        }
-        appContext.SaveChanges();
+        //        //Actualizando Somaton
+        //        foreach (var somaton in somatons)
+        //        {
+        //            somaton.Number = "nnhevenvwoi4304u3257";
+        //            appContext.Set<Somaton>().Update(somaton);
+        //        }
+        //        appContext.SaveChanges();
 
-        //Borrando Somaton
-        foreach (var somaton in somatons)
-        {
-            appContext.Set<Somaton>().Remove(somaton);
-        }
-        appContext.SaveChanges();
+        //        //Borrando Somaton
+        //        foreach (var somaton in somatons)
+        //        {
+        //            appContext.Set<Somaton>().Remove(somaton);
+        //        }
+        //        appContext.SaveChanges();
     }
 }

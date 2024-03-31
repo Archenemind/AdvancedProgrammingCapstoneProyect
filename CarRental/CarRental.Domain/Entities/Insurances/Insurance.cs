@@ -9,27 +9,6 @@ namespace CarRental.Domain.Entities.Insurances
     public class Insurance : Entity
     {
         /// <summary>
-        /// Constructor requerido por EntityFrameworkCore para migraciones
-        /// </summary>
-        protected Insurance()
-        { }
-
-        /// <summary>
-        /// Inicializa un seguro
-        /// </summary>
-        /// <param name="status"></param>
-        /// <param name="policyNumber"></param>
-        /// <param name="expirationDate"></param>
-        /// <param name="expeditionDate"></param>
-        public Insurance(Statusenum status, string policyNumber, DateTime expirationDate, DateTime expeditionDate)
-        {
-            Status = status;
-            PolicyNumber = policyNumber;
-            ExpirationDate = expirationDate;
-            ExpeditionDate = expeditionDate;
-        }
-
-        /// <summary>
         /// Posibles estados
         /// </summary>
         public enum Statusenum
@@ -58,5 +37,24 @@ namespace CarRental.Domain.Entities.Insurances
         /// Fecha de creacion de Insurance
         /// </summary>
         public DateTime ExpeditionDate { get; set; }
+
+        /// <summary>
+        /// Constructor requerido por EntityFrameworkCore para migraciones
+        /// </summary>
+        protected Insurance()
+        { }
+
+        /// <summary>
+        /// Inicializa un seguro
+        /// </summary>
+        /// <param name="policyNumber"></param>
+        /// <param name="expirationDate"></param>
+        /// <param name="expeditionDate"></param>
+        public Insurance(string policyNumber)
+        {
+            Status = Statusenum.Enable;
+            PolicyNumber = policyNumber;
+            ExpeditionDate = DateTime.Now;
+        }
     }
 }

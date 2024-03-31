@@ -55,17 +55,12 @@ namespace CarRental.Domain.Entities.Vehicles
         public Price Price { get; set; }
 
         /// <summary>
-        /// Cantidad de ruedas
-        /// </summary>
-        public int WheelAmount { get; }
-
-        /// <summary>
         /// Peso del vehiculo
         /// </summary>
         public int Weight { get; }
 
         /// <summary>
-        /// Constructor requerido por Entity Framework
+        /// Constructor requerido por EntityFrameworkCore
         /// </summary>
         protected Vehicle()
         { }
@@ -73,21 +68,15 @@ namespace CarRental.Domain.Entities.Vehicles
         /// <summary>
         /// Constructor por parametros
         /// </summary>
-        /// <param name="model"></param>
-        /// <param name="passengerCapacity"></param>
-        /// <param name="price"></param>
-        /// <param name="color"></param>
-        /// <param name="wheelAmount"></param>
-        /// <param name="weight"></param>
-        public Vehicle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, Color color, Color color2)
+        public Vehicle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton)
         {
             BrandName = brandName;
             FabricationDate = fabricationDate;
             Insurance = insurance;
             Somaton = somaton;
-            Price = price;
-            Color = color;
-            Color2 = color2;
+            Price = new(MoneyType.MN, 0);
+            Color = Color.Empty;
+            Color2 = Color.Empty;
         }
 
         #endregion Properties
