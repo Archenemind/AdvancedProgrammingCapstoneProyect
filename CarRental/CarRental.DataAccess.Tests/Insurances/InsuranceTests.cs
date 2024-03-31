@@ -34,7 +34,7 @@ namespace CarRental.DataAccess.Tests.Insurances
             _insuranceRepository.BeginTransaction();
 
             //Ejecutar
-            Insurance newInsurance = _insuranceRepository.CreateInsurance(status, policyNumber, expirationDate, expeditionDate);
+            Insurance newInsurance = _insuranceRepository.CreateInsurance(policyNumber);
             _insuranceRepository.PartialCommit();
             Insurance? loadedInsurance = _insuranceRepository.GetInsurance(newInsurance.Id);
             _insuranceRepository.CommitTransaction();

@@ -18,21 +18,14 @@ namespace CarRental.DataAccess.Abstract.Circulations
         /// <summary>
         /// Crea una circulacion en base de datos
         /// </summary>
-        /// <param name="brandName">Nombre de la marca</param>
         /// <param name="model">modelo</param>
-        /// <param name="fabricationDate">Fecha de fabricacion</param>
         /// <param name="plate">Chapa</param>
         /// <param name="motorNumber">Numero del motor</param>
-        /// <param name="color">Color</param>
         /// <param name="insurance">Seguro</param>
-        /// <param name="insuranceID">Identificador del seguro</param>
         /// <param name="somaton">Somaton</param>
-        /// <param name="somatonId">Identificador del somatom</param>
-        /// <param name="expirationDate">Fecha de expiracion</param>
-        /// <param name="expeditionDate">Fecha de emision</param>
         /// <param name="vin"></param>
         /// <returns></returns>
-        Circulation CreateCirculation(string model, string plate, string motorNumber, Insurance insurance, Somaton somaton, string vin);
+        Circulation CreateCirculation(string model, string plate, string motorNumber, Insurance insurance, Somaton somaton);
 
         /// <summary>
         /// Obtiene una circulacion de BD

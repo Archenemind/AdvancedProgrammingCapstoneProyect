@@ -64,28 +64,20 @@ namespace CarRental.Domain.Entities.Circulations
         /// <summary>
         /// Constructor por parametros
         /// </summary>
-        /// <param name="brandName"></param>
         /// <param name="model"></param>
-        /// <param name="fabricationDate"></param>
         /// <param name="plate"></param>
         /// <param name="motorNumber"></param>
-        /// <param name="color"></param>
-        /// <param name="color2"></param>
         /// <param name="insurance"></param>
-        /// <param name="insuranceID"></param>
         /// <param name="somaton"></param>
-        /// <param name="somatonId"></param>
-        /// <param name="expirationDate"></param>
-        /// <param name="expeditionDate"></param>
         /// <param name="vin"></param>
-        public Circulation(string model, string plate, string motorNumber, Insurance insurance, Somaton somaton, string vin)
+        public Circulation(string model, string plate, string motorNumber, Insurance insurance, Somaton somaton)
         {
             Model = model;
             Plate = plate;
             MotorNumber = motorNumber;
             Insurance = insurance;
             Somaton = somaton;
-            VIN = vin;
+            VIN = string.Empty;
         }
     }
 }

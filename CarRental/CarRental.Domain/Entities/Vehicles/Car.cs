@@ -12,11 +12,6 @@ namespace CarRental.Domain.Entities.Vehicles
     public class Car : Vehicle
     {
         /// <summary>
-        /// Cantidad de puertas
-        /// </summary>
-        public int DoorsAmount { get; }
-
-        /// <summary>
         /// Si tiene aire acondicionado
         /// </summary>
         public bool HasAirConditioning { get; set; }
@@ -40,11 +35,10 @@ namespace CarRental.Domain.Entities.Vehicles
         /// <summary>
         /// Inicializa un carro
         /// </summary>
-        /// <param name="doorsAmount"></param>
         /// <param name="numberOfVelocities"></param>
         /// <param name="maxVelocity"></param>
         /// <param name="hasAirConditioning"></param>
-        public Car(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, int numberOfVelocities, int maxVelocity, bool hasAirConditioning, Color color, Color color2) : base(brandName, fabricationDate, insurance, somaton, price, color, color2)
+        public Car(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, int numberOfVelocities, int maxVelocity, bool hasAirConditioning) : base(brandName, fabricationDate, insurance, somaton)
         {
             NumberOfVelocities = numberOfVelocities;
             MaxVelocity = maxVelocity;

@@ -8,6 +8,7 @@ using CarRental.Domain.Entities.Supplements;
 
 using CarRental.Domain.Abstract;
 using System.ComponentModel.DataAnnotations.Schema;
+using CarRental.Domain.Utilities.Converters;
 
 namespace CarRental.Domain.Entities.Reservations
 {
@@ -51,28 +52,35 @@ namespace CarRental.Domain.Entities.Reservations
         public DateTime EndDate { get; set; }
 
         /// <summary>
-        /// Precio total a pagar por la orden.
-        /// </summary>
-        [NotMapped]
-        public Price TotalPrice { get; set; }
-
-        /// <summary>
-        /// Identificador unico del precio
-        /// </summary>
-        private int PriceId { get; set; }
-
-        /// <summary>
         /// Estado de la reservacion
         /// </summary>
         public Status Status { get; set; }
 
-        [NotMapped]
-        public Supplement ReservationSupplement { get; set; }
-
         /// <summary>
-        /// Identificador unico de suplemento
+        /// Suplementos que se le añadiran al auto rentado
         /// </summary>
-        private int SupplementId { get; set; }
+        [NotMapped]
+        public List<Supplement> Supplements { get; set; }
+
+        public void GetPrice()
+        {
+            if (Supplements.Count != 0)
+            {
+                double supplementsValue = 0;
+                MoneyType moneyType = Supplements[0].Price.Currency;
+                foreach (Supplement sup in Supplements)
+                {
+                    supplementsValue += sup.Price.Value;
+                }
+                PriceConverter priceConverter = new PriceConverter();
+                Price vehiclePrice = priceConverter.ConvertTo(moneyType, Vehicle.Price);
+                Console.WriteLine($"The price for the reservation is {supplementsValue + vehiclePrice.Value} {vehiclePrice.Currency}");
+            }
+            else
+            {
+                Console.WriteLine($"The price for the reservation is {Vehicle.Price.Value} {Vehicle.Price.Currency}");
+            }
+        }
 
         /// <summary>
         /// Constructor requerido por EntityFrameworkCore para migraciones
@@ -85,24 +93,13 @@ namespace CarRental.Domain.Entities.Reservations
         /// </summary>
         /// <param name="client"></param>
         /// <param name="vehicle"></param>
-        /// <param name="startDate"></param>
-        /// <param name="totalPrice"></param>
-        /// <param name="status"></param>
-        /// <param name="reservationSupplement"></param>//TODO: startDate suppelemente guacha
-        public Reservation(Client client, Vehicle vehicle, DateTime startDate, Price totalPrice, Status status, Supplement reservationSupplement)
+        public Reservation(Client client, Vehicle vehicle)
         {
             Client = client;
             Vehicle = vehicle;
-            StartDate = startDate;
-            TotalPrice = totalPrice;
-            Status = status;
-            ReservationSupplement = reservationSupplement;
+            Status = Status.Requested;
+            StartDate = DateTime.Now;
         }
-
-        /// <summary>
-        /// Suplementos que se le añadiran al auto rentado
-        /// </summary>
-        public Supplement Supplements { get; set; }
 
         #endregion Properties
     }
