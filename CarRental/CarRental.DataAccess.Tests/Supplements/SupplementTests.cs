@@ -23,7 +23,7 @@ namespace CarRental.DataAccess.Tests.Supplements
             _supplementRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow(1, "Que cuajoooooooooooooo")]
+        [DataRow(2, "Que cuajoooooooooooooo")]
         [TestMethod]
         public void Can_Create_Supplement(int priceid, string description)
         {
@@ -33,10 +33,10 @@ namespace CarRental.DataAccess.Tests.Supplements
             Assert.IsNotNull(price);
 
             //Execute
-            _supplementRepository.CommitTransaction();
             Supplement supplement = _supplementRepository.CreateSupplement(price, description);
             _supplementRepository.PartialCommit();
             Supplement? loadedSupplement = _supplementRepository.GetSupplement(supplement.Id);
+            _supplementRepository.CommitTransaction();
 
             //Assert
             Assert.IsNotNull(loadedSupplement);

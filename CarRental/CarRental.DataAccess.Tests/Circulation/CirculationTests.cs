@@ -25,9 +25,9 @@ namespace CarRental.DataAccess.Tests.Circulation
             _circulationRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("Peugeot", "jenfwnfwfoiew", "2403295jr9209r2", 1, 1)]
+        [DataRow("Peugeot", "jenfwnfwfoiew", "2403295jr9209r2", 1, 1, "Siiiiiiiiiii")]
         [TestMethod]
-        public void Can_Create_Circulation(string model, string plate, string motorNumber, int insuranceId, int somatonId)
+        public void Can_Create_Circulation(string model, string plate, string motorNumber, int insuranceId, int somatonId, string vin)
         {
             //Arrange
             _circulationRepository.BeginTransaction();
@@ -37,7 +37,7 @@ namespace CarRental.DataAccess.Tests.Circulation
             Assert.IsNotNull(somaton);
 
             //Execute
-            var circulationDB = _circulationRepository.CreateCirculation(model, plate, motorNumber, insurance, somaton);
+            var circulationDB = _circulationRepository.CreateCirculation(model, plate, motorNumber, insurance, somaton, vin);
             _circulationRepository.PartialCommit();
             var loadedCirculation = _circulationRepository.GetCirculation(circulationDB.Id);
             _circulationRepository.CommitTransaction();
@@ -85,7 +85,7 @@ namespace CarRental.DataAccess.Tests.Circulation
             //Assert
             var modifyedCirculation = _circulationRepository.GetCirculation(id);
             _circulationRepository.CommitTransaction();
-            Assert.AreEqual(modifyedCirculation.ExpeditionDate, expirationDate);
+            Assert.AreEqual(modifyedCirculation.ExpirationDate, expirationDate);
             Assert.AreEqual(modifyedCirculation.VIN, vin);
         }
 

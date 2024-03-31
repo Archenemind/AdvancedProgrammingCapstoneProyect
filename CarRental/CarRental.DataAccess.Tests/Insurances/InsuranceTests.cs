@@ -64,8 +64,10 @@ namespace CarRental.DataAccess.Tests.Insurances
 
         [DataRow(1, Statusenum.Enable, "2024-03-16T12:00:00")]
         [TestMethod]
-        public void Can_Update_Insurance(int id, Statusenum status, DateTime expirationDate)
+        public void Can_Update_Insurance(int id, Statusenum status, string expirationDateString)
         {
+            DateTime expirationDate = DateTime.Parse(expirationDateString);
+
             //Arrange
             _insuranceRepository.BeginTransaction();
             var loadedInsurance = _insuranceRepository.GetInsurance(id);

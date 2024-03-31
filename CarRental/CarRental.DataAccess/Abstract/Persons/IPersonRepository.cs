@@ -22,7 +22,7 @@ namespace CarRental.DataAccess.Abstract.Persons
         /// <param name="countryName">Nombre del pais</param>
         /// <param name="role">Rol</param>
         /// <returns></returns>
-        Users CreateUser(string name, string lastName, string iD, string countryName, UserRoleType role);
+        Users CreateUser(string name, string lastName, string iD, string countryName, UserRoleType role, string phone);
 
         /// <summary>
         /// Crea un cliente en BD
@@ -33,7 +33,7 @@ namespace CarRental.DataAccess.Abstract.Persons
         /// <param name="countryName">Nombre del pais</param>
         /// <param name="role">Rol</param>
         /// <returns></returns>
-        Client CreateClient(string name, string lastName, string iD, string countryName);
+        Client CreateClient(string name, string lastName, string iD, string countryName, string phone);
 
         /// <summary>
         /// Obtiene una persona de BD

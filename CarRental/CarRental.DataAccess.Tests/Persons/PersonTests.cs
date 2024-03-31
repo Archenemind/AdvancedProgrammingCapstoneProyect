@@ -23,15 +23,15 @@ namespace CarRental.DataAccess.Tests.Persons
             _personRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString()); ;
         }
 
-        [DataRow("Loco quejesto","Rodriguez", "jwnnwjncwccnk","Qva")]
+        [DataRow("Loco quejesto","Rodriguez", "jwnnwjncwccnk","Qva","573277777775")]
         [TestMethod]
-        public void Can_Create_Person(string name, string lastName, string iD, string countryName)
+        public void Can_Create_Person(string name, string lastName, string iD, string countryName, string phone)
         {
             // Arrange
             _personRepository.BeginTransaction();
 
             // Execute
-            var personDB = _personRepository.CreateClient(name, lastName, iD, countryName);
+            var personDB = _personRepository.CreateClient(name, lastName, iD, countryName, phone);
             _personRepository.PartialCommit();
             var loadedPerson = _personRepository.GetPerson<Client>(personDB.Id);
             _personRepository.CommitTransaction();

@@ -78,14 +78,14 @@ namespace CarRental.Domain.Entities.Circulations
         /// <param name="expirationDate"></param>
         /// <param name="expeditionDate"></param>
         /// <param name="vin"></param>
-        public Circulation(string model, string plate, string motorNumber, Insurance insurance, Somaton somaton)
+        public Circulation(string model, string plate, string motorNumber, Insurance insurance, Somaton somaton, string vin)
         {
             Model = model;
             Plate = plate;
             MotorNumber = motorNumber;
             Insurance = insurance;
             Somaton = somaton;
-
+            VIN = vin;
         }
     }
 }

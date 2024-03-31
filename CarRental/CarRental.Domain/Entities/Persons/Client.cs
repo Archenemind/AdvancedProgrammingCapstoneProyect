@@ -38,7 +38,7 @@ namespace CarRental.Domain.Entities.Persons
         /// <param name="lastName"></param>
         /// <param name="iD"></param>
         /// <param name="countryName"></param>
-        public Client(string name, string lastName, string iD, string countryName) : base(name, lastName, iD, countryName)
+        public Client(string name, string lastName, string iD, string countryName, string phone) : base(name, lastName, iD, countryName, phone)
         {
         }
     }

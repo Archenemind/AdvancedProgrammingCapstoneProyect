@@ -31,7 +31,7 @@ internal class Program
 
         // Crear un usuario
 
-        Users user = new("Carlos", "Rodríguez", "99062207946", "Cuba", UserRoleType.Guest);
+        Users user = new("Carlos", "Rodríguez", "99062207946", "Cuba", UserRoleType.Guest,"1234");
         appContext.Set<Users>().Add(user);
         appContext.SaveChanges();
 

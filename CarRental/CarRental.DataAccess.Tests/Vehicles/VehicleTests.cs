@@ -11,6 +11,7 @@ using CarRental.Domain.Entities.Vehicles;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,10 +28,12 @@ namespace CarRental.DataAccess.Tests.Vehicles
             _vehicleRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("Que suenho", "Jan 1, 2009", 1,1,1,5, 300, true)]
+        [DataRow("Que suenho", "Jan 1, 2009", 1,1,2,5, 300, true, "green", "red")]
         [TestMethod]
-        public void Can_Create_Vehicle(string brandName, string fabricationDateString, int insuranceId, int somatonId, int priceId, int numberOfVelocities, int maxVelocity, bool hasAirConditioning)
+        public void Can_Create_Vehicle(string brandName, string fabricationDateString, int insuranceId, int somatonId, int priceId, int numberOfVelocities, int maxVelocity, bool hasAirConditioning, string colorString, string color2String)
         {
+            var color = Color.FromName(colorString);
+            var color2 = Color.FromName(color2String);
             DateTime fabricationDate = DateTime.Parse(fabricationDateString);
             // Arrange
             _vehicleRepository.BeginTransaction();
@@ -42,7 +45,7 @@ namespace CarRental.DataAccess.Tests.Vehicles
             Assert.IsNotNull(price);
 
             // Execute
-            var vehicleDB = _vehicleRepository.CreateCar(brandName, fabricationDate, insurance, somaton, price, numberOfVelocities, maxVelocity, hasAirConditioning);
+            var vehicleDB = _vehicleRepository.CreateCar(brandName, fabricationDate, insurance, somaton, price, numberOfVelocities, maxVelocity, hasAirConditioning, color, color2);
             _vehicleRepository.PartialCommit();
             var loadedVehicle = _vehicleRepository.GetVehicle<Car>(vehicleDB.Id);
             _vehicleRepository.CommitTransaction();

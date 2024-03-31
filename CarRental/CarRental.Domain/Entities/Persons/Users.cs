@@ -29,7 +29,7 @@ namespace CarRental.Domain.Entities.Persons
         /// <param name="iD">Identificador</param>
         /// <param name="countryName">Nombre del pais</param>
         /// <param name="role">Rol</param>
-        public Users(string name, string lastName, string iD, string countryName, UserRoleType role) : base(name, lastName, iD, countryName)
+        public Users(string name, string lastName, string iD, string countryName, UserRoleType role, string phone) : base(name, lastName, iD, countryName, phone)
         {
             Role = role;
         }

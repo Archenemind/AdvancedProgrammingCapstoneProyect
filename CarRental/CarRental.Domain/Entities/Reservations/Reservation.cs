@@ -88,7 +88,7 @@ namespace CarRental.Domain.Entities.Reservations
         /// <param name="startDate"></param>
         /// <param name="totalPrice"></param>
         /// <param name="status"></param>
-        /// <param name="reservationSupplement"></param>
+        /// <param name="reservationSupplement"></param>//TODO: startDate suppelemente guacha
         public Reservation(Client client, Vehicle vehicle, DateTime startDate, Price totalPrice, Status status, Supplement reservationSupplement)
         {
             Client = client;

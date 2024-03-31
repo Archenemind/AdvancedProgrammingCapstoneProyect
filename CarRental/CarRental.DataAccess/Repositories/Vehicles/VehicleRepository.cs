@@ -17,15 +17,15 @@ namespace CarRental.DataAccess.Repositories
     /// </summary>
     public partial class ApplicationRepository : IVehicleRepository
     {
-        public Car CreateCar(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, int numberOfVelocities, int maxVelocity, bool hasAirConditioning)
+        public Car CreateCar(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, int numberOfVelocities, int maxVelocity, bool hasAirConditioning, Color color, Color color2)
         {
-            Car car = new Car(brandName, fabricationDate, insurance, somaton, price, numberOfVelocities, maxVelocity, hasAirConditioning);
+            Car car = new Car(brandName, fabricationDate, insurance, somaton, price, numberOfVelocities, maxVelocity, hasAirConditioning, color, color2);
             _context.Add(car); return car;
         }
 
-        public Motorcycle CreateMotorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, bool hasSideCar)
+        public Motorcycle CreateMotorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, bool hasSideCar, Color color, Color color2)
         {
-            Motorcycle motorcycle = new Motorcycle(brandName, fabricationDate, insurance, somaton, price, hasSideCar);
+            Motorcycle motorcycle = new Motorcycle(brandName, fabricationDate, insurance, somaton, price, hasSideCar, color, color2);
             _context.Add(motorcycle); return motorcycle;
         }
 

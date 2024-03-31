@@ -41,7 +41,7 @@ namespace CarRental.DataAccess.Tests.Somatons
             //Assert
             Assert.IsNotNull(loadedSomaton);
             Assert.AreEqual(loadedSomaton.ExpirationDate, expirationDate);
-            Assert.AreEqual(loadedSomaton.ExpirationDate, expeditionDate);
+            Assert.AreEqual(loadedSomaton.ExpeditionDate, expeditionDate);
             Assert.AreEqual(loadedSomaton.Status, status);
             Assert.AreEqual(loadedSomaton.Number, number);
 

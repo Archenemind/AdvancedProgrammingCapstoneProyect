@@ -43,7 +43,7 @@ namespace CarRental.Domain.Entities.Vehicles
         /// <param name="price"></param>
         /// <param name="wheelAmount"></param>
         /// <param name="weight"></param>
-        public Motorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, bool hasSideCar) : base(brandName, fabricationDate, insurance, somaton, price)
+        public Motorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, bool hasSideCar, Color color, Color color2) : base(brandName, fabricationDate, insurance, somaton, price, color, color2)
         {
             HasSideCar = hasSideCar;
         }
