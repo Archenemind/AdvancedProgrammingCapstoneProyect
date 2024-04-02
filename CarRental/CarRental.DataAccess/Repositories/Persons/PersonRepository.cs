@@ -14,15 +14,15 @@ namespace CarRental.DataAccess.Repositories
     /// </summary>
     public partial class ApplicationRepository : IPersonRepository
     {
-        public Users CreateUser(string name, string lastName, string iD, string countryName, UserRoleType role, string phone)
+        public Users CreateUser(string name, string lastName, string iD, UserRoleType role)
         {
-            Users user = new Users(name, lastName, iD, countryName, role, phone);
+            Users user = new(name, lastName, iD, role);
             _context.Add(user); return user;
         }
 
-        public Client CreateClient(string name, string lastName, string iD, string countryName, string phone)
+        public Client CreateClient(string name, string lastName, string iD)
         {
-            Client client = new Client(name, lastName, iD, countryName, phone);
+            Client client = new(name, lastName, iD);
             _context.Add(client); return client;
         }
 

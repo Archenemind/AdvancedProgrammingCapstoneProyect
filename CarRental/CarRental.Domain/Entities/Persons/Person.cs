@@ -53,13 +53,11 @@ namespace CarRental.Domain.Entities.Persons
         /// <param name="name"></param>
         /// <param name="lastName"></param>
         /// <param name="iD"></param>
-        public Person(string name, string lastName, string iD, string countryName, string phone)
+        public Person(string name, string lastName, string iD)
         {
             Name = name;
             LastName = lastName;
             CI = iD;
-            CountryName = countryName;
-            Phone = phone;
         }
     }
 }

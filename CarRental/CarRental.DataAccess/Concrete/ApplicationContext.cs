@@ -139,6 +139,9 @@ namespace CarRental.DataAccess.Concrete
 
             #endregion Base classes mapping
 
+            modelBuilder.Entity<Supplement>().HasOne(s => s.Reservation).WithMany(r => r.Supplements);
+            modelBuilder.Entity<Reservation>().HasOne(r => r.Client).WithMany(c => c.Reservations);
+
             modelBuilder.ApplyConfiguration(new ClientFluentConfiguration());
             modelBuilder.ApplyConfiguration(new UserFluentConfiguration());
             modelBuilder.ApplyConfiguration(new MotorcycleFluentConfiguration());

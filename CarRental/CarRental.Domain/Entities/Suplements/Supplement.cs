@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using CarRental.Domain.Entities.Common;
+using CarRental.Domain.Entities.Reservations;
 
 namespace CarRental.Domain.Entities.Supplements
 {
@@ -12,6 +14,17 @@ namespace CarRental.Domain.Entities.Supplements
         /// Precio del suplemento
         /// </summary>
         public Price Price { get; set; }
+
+        /// <summary>
+        /// Reservacion del suplemento
+        /// </summary>
+        [NotMapped]
+        public Reservation Reservation { get; set; }
+
+        /// <summary>
+        /// Identificador de la reservacion
+        /// </summary>
+        public int ReservationId { get; set; }
 
         /// <summary>
         ///Descripcion del suplemento

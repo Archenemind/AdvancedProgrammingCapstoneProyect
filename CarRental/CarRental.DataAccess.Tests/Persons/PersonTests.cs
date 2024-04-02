@@ -23,7 +23,7 @@ namespace CarRental.DataAccess.Tests.Persons
             _personRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString()); ;
         }
 
-        [DataRow("Loco quejesto","Rodriguez", "jwnnwjncwccnk","Qva","573277777775")]
+        [DataRow("Loco quejesto", "Rodriguez", "jwnnwjncwccnk", "Qva", "573277777775")]
         [TestMethod]
         public void Can_Create_Person(string name, string lastName, string iD, string countryName, string phone)
         {
@@ -31,7 +31,7 @@ namespace CarRental.DataAccess.Tests.Persons
             _personRepository.BeginTransaction();
 
             // Execute
-            var personDB = _personRepository.CreateClient(name, lastName, iD, countryName, phone);
+            var personDB = _personRepository.CreateClient(name, lastName, iD);
             _personRepository.PartialCommit();
             var loadedPerson = _personRepository.GetPerson<Client>(personDB.Id);
             _personRepository.CommitTransaction();
@@ -77,7 +77,6 @@ namespace CarRental.DataAccess.Tests.Persons
             var modifiedPerson = _personRepository.GetPerson<Client>(id);
             _personRepository.CommitTransaction();
             Assert.AreEqual(modifiedPerson.CountryName, countryName);
-
         }
 
         [DataRow(1)]

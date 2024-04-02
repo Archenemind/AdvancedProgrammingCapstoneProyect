@@ -60,19 +60,23 @@ namespace CarRental.Domain.Entities.Reservations
         /// Suplementos que se le añadiran al auto rentado
         /// </summary>
         [NotMapped]
-        public List<Supplement> Supplements { get; set; }
+        public ICollection<Supplement> Supplements { get; set; }
 
         public void GetPrice()
         {
+            PriceConverter priceConverter = new();
             if (Supplements.Count != 0)
             {
                 double supplementsValue = 0;
-                MoneyType moneyType = Supplements[0].Price.Currency;
+                Supplement firstSupplement = Supplements.OfType<Supplement>().FirstOrDefault();
+                MoneyType moneyType = firstSupplement.Price.Currency;
                 foreach (Supplement sup in Supplements)
                 {
-                    supplementsValue += sup.Price.Value;
+                    Price supPrice = priceConverter.ConvertTo(moneyType, sup.Price);
+
+                    supplementsValue += supPrice.Value;
                 }
-                PriceConverter priceConverter = new PriceConverter();
+
                 Price vehiclePrice = priceConverter.ConvertTo(moneyType, Vehicle.Price);
                 Console.WriteLine($"The price for the reservation is {supplementsValue + vehiclePrice.Value} {vehiclePrice.Currency}");
             }

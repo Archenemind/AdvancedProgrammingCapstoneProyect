@@ -18,7 +18,7 @@ namespace CarRental.Domain.Entities.Persons
         /// Lista de las reservaciones del cliente.
         /// </summary>
         [NotMapped]
-        public List<Reservation> Reservations { get; set; }
+        public ICollection<Reservation> Reservations { get; set; }
 
         /// <summary>
         /// Identificador unico de reservacion
@@ -37,8 +37,7 @@ namespace CarRental.Domain.Entities.Persons
         /// <param name="name"></param>
         /// <param name="lastName"></param>
         /// <param name="iD"></param>
-        /// <param name="countryName"></param>
-        public Client(string name, string lastName, string iD, string countryName, string phone) : base(name, lastName, iD, countryName, phone)
+        public Client(string name, string lastName, string iD) : base(name, lastName, iD)
         {
         }
     }
