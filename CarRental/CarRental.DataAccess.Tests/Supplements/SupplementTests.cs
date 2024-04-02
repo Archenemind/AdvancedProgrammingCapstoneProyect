@@ -23,17 +23,19 @@ namespace CarRental.DataAccess.Tests.Supplements
             _supplementRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow(2, "Que cuajoooooooooooooo")]
+        [DataRow(2, "Que cuajoooooooooooooo", 1)]
+        [Priority(4)]
         [TestMethod]
-        public void Can_Create_Supplement(int priceid, string description)
+        public void Can_Create_Supplement(int priceId, string description, int reservationId)
         {
             //Arrange
             _supplementRepository.BeginTransaction();
-            Price? price = ((IPriceRepository)_supplementRepository).GetPrice(priceid);
+            Price? price = ((IPriceRepository)_supplementRepository).GetPrice(priceId);
             Assert.IsNotNull(price);
 
             //Execute
             Supplement supplement = _supplementRepository.CreateSupplement(price, description);
+            supplement.ReservationId = reservationId;
             _supplementRepository.PartialCommit();
             Supplement? loadedSupplement = _supplementRepository.GetSupplement(supplement.Id);
             _supplementRepository.CommitTransaction();
@@ -45,6 +47,7 @@ namespace CarRental.DataAccess.Tests.Supplements
         }
 
         [DataRow(1)]
+        [Priority(5)]
         [TestMethod]
         public void Can_Get_Supplement(int id)
         {
@@ -59,27 +62,28 @@ namespace CarRental.DataAccess.Tests.Supplements
             Assert.IsNotNull(loadedSupplement);
         }
 
-        //[DataRow(1,"FUCKKKKKK son las 2 AM")]
-        //[TestMethod]
-        //public void Can_Update_Supplement(int id, string description)
-        //{
-        //    //Arrange
-        //    _supplementRepository.BeginTransaction();
-        //    var loadedSupplement = _supplementRepository.GetSupplement(id);
-        //    Assert.IsNotNull(loadedSupplement);
+        [DataRow(1, "FUCKKKKKK son las 2 AM")]
+        [Priority(5)]
+        [TestMethod]
+        public void Can_Update_Supplement(int id, string description)
+        {
+            //Arrange
+            _supplementRepository.BeginTransaction();
+            var loadedSupplement = _supplementRepository.GetSupplement(id);
+            Assert.IsNotNull(loadedSupplement);
 
-        //    //Execute
-        //    loadedSupplement.Description = description;
-        //    _supplementRepository.UpdateSupplement(loadedSupplement);
+            //Execute
+            loadedSupplement.Description = description;
+            _supplementRepository.UpdateSupplement(loadedSupplement);
 
-        //    //Assert
-        //    var modifyedSupplement = _supplementRepository.GetSupplement(loadedSupplement.Id);
-        //    _supplementRepository.CommitTransaction();
-        //    Assert.AreEqual(modifyedSupplement.Description, description);
-
-        //}
+            //Assert
+            var modifyedSupplement = _supplementRepository.GetSupplement(loadedSupplement.Id);
+            _supplementRepository.CommitTransaction();
+            Assert.AreEqual(modifyedSupplement.Description, description);
+        }
 
         [DataRow(1)]
+        [Priority(30)]
         [TestMethod]
         public void Can_Delete_Supplement(int id)
         {
@@ -96,8 +100,6 @@ namespace CarRental.DataAccess.Tests.Supplements
 
             //Assert
             Assert.IsNull(loadedSupplement);
-
         }
-
     }
 }

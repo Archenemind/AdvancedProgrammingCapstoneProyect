@@ -62,7 +62,10 @@ namespace CarRental.Domain.Entities.Reservations
         [NotMapped]
         public ICollection<Supplement> Supplements { get; set; }
 
-        public void GetPrice()
+        [NotMapped]
+        private Price ReservationPrice { get => GetPrice(); }
+
+        protected Price GetPrice()
         {
             PriceConverter priceConverter = new();
             if (Supplements.Count != 0)
@@ -78,11 +81,12 @@ namespace CarRental.Domain.Entities.Reservations
                 }
 
                 Price vehiclePrice = priceConverter.ConvertTo(moneyType, Vehicle.Price);
-                Console.WriteLine($"The price for the reservation is {supplementsValue + vehiclePrice.Value} {vehiclePrice.Currency}");
+                Price reservationPrice = new(moneyType, (vehiclePrice.Value + supplementsValue));
+                return reservationPrice;
             }
             else
             {
-                Console.WriteLine($"The price for the reservation is {Vehicle.Price.Value} {Vehicle.Price.Currency}");
+                return Vehicle.Price;
             }
         }
 

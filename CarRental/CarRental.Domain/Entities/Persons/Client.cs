@@ -34,9 +34,9 @@ namespace CarRental.Domain.Entities.Persons
         /// <summary>
         /// Inicializa un cliente
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="lastName"></param>
-        /// <param name="iD"></param>
+        /// <param name="name">Nombre</param>
+        /// <param name="lastName">Apellido</param>
+        /// <param name="iD">Carnet de identidad</param>
         public Client(string name, string lastName, string iD) : base(name, lastName, iD)
         {
         }

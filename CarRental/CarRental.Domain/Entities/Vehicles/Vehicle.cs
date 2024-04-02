@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarRental.Domain.Entities.Vehicles
 {
@@ -24,8 +25,11 @@ namespace CarRental.Domain.Entities.Vehicles
         /// <summary>
         /// Circulacion del vehiculo
         /// </summary>
+        ///
+        [NotMapped]
         public Circulation Circulation { get; set; }
 
+        public int CirculationId { get; set; }
         public string BrandName { get; }
 
         public DateTime FabricationDate { get; }
@@ -38,10 +42,15 @@ namespace CarRental.Domain.Entities.Vehicles
 
         public Color Color2 { get; set; }
 
+        [NotMapped]
         public Insurance Insurance { get; }
 
+        public int InsuranceId { get; set; }
+
+        [NotMapped]
         public Somaton Somaton { get; }
 
+        public int SomatonId { get; set; }
         public string Model { get; }
 
         /// <summary>
@@ -68,6 +77,10 @@ namespace CarRental.Domain.Entities.Vehicles
         /// <summary>
         /// Constructor por parametros
         /// </summary>
+        /// <param name="brandName">Nombre de la marca</param>
+        /// <param name="fabricationDate">Fecha de fabricacion</param>
+        /// <param name="insurance">Seguro</param>
+        /// <param name="somaton">Somaton</param>
         public Vehicle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton)
         {
             BrandName = brandName;

@@ -1,5 +1,7 @@
 ﻿using CarRental.Domain.Entities.Common;
+using CarRental.Domain.Entities.Vehicles;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarRental.Domain.Entities.Insurances
 {
@@ -37,6 +39,12 @@ namespace CarRental.Domain.Entities.Insurances
         /// Fecha de creacion de Insurance
         /// </summary>
         public DateTime ExpeditionDate { get; set; }
+
+        /// <summary>
+        /// Vehiculo del seguro
+        /// </summary>
+        [NotMapped]
+        public Vehicle Vehicle { get; set; }
 
         /// <summary>
         /// Constructor requerido por EntityFrameworkCore para migraciones

@@ -32,6 +32,8 @@ namespace CarRental.DataAccess.Tests.Persons
 
             // Execute
             var personDB = _personRepository.CreateClient(name, lastName, iD);
+            personDB.CountryName = countryName;
+            personDB.Phone = phone;
             _personRepository.PartialCommit();
             var loadedPerson = _personRepository.GetPerson<Client>(personDB.Id);
             _personRepository.CommitTransaction();
@@ -45,6 +47,7 @@ namespace CarRental.DataAccess.Tests.Persons
         }
 
         [DataRow(1)]
+        [Priority(1)]
         [TestMethod]
         public void Can_Get_Person(int id)
         {
@@ -60,6 +63,7 @@ namespace CarRental.DataAccess.Tests.Persons
         }
 
         [DataRow(1, "suenha")]
+        [Priority(1)]
         [TestMethod]
         public void Can_Update_Person(int id, string countryName)
         {
@@ -80,6 +84,7 @@ namespace CarRental.DataAccess.Tests.Persons
         }
 
         [DataRow(1)]
+        [Priority(30)]
         [TestMethod]
         public void Can_Delete_Person(int id)
         {

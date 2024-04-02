@@ -133,6 +133,9 @@ namespace CarRental.DataAccess.Concrete
                 .HasConversion(
                 c => c.ToArgb(),
                 c => Color.FromArgb(c));
+            modelBuilder.Entity<Vehicle>().HasOne(r => r.Insurance).WithOne(i => i.Vehicle);
+            modelBuilder.Entity<Vehicle>().HasOne(r => r.Somaton).WithOne();
+            modelBuilder.Entity<Vehicle>().HasOne(r => r.Circulation).WithOne();
             modelBuilder.Entity<Motorcycle>().ToTable("Motorcycles");
 
             modelBuilder.Entity<Car>().ToTable("Cars");

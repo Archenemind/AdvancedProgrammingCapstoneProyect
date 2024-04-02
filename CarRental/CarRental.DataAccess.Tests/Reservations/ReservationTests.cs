@@ -32,11 +32,11 @@ namespace CarRental.DataAccess.Tests.Reservations
             _reservationRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow(1, 1, "2024-03-16T12:00:00", 1, Status.Cancelled, 1)]
+        [DataRow(1, 1, 1, Status.Cancelled, 1)]
+        [Priority(3)]
         [TestMethod]
-        public void Can_Create_Reservation(int clientId, int vehicleId, string startDateString, int priceId, Status status, int supplementId)
+        public void Can_Create_Reservation(int clientId, int vehicleId, int priceId, Status status, int supplementId)
         {
-            DateTime startDate = DateTime.Parse(startDateString);
             //Arrange
             _reservationRepository.BeginTransaction();
             Client? client = ((IPersonRepository)_reservationRepository).GetPerson<Client>(clientId);
@@ -63,6 +63,7 @@ namespace CarRental.DataAccess.Tests.Reservations
         }
 
         [DataRow(1)]
+        [Priority(4)]
         [TestMethod]
         public void Can_Get_Reservation(int id)
         {
@@ -78,6 +79,7 @@ namespace CarRental.DataAccess.Tests.Reservations
         }
 
         [DataRow(1, Status.Approved)]
+        [Priority(4)]
         [TestMethod]
         public void Can_Update_Reservation(int id, Status status, string startDateString)
         {
@@ -100,6 +102,7 @@ namespace CarRental.DataAccess.Tests.Reservations
         }
 
         [DataRow(1)]
+        [Priority(30)]
         [TestMethod]
         public void Can_Delete_Reservation(int id)
         {

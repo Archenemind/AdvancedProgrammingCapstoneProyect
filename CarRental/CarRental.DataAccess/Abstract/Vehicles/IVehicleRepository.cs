@@ -21,30 +21,20 @@ namespace CarRental.DataAccess.Abstract.Vehicles
         /// </summary>
         /// <param name="brandName">Nombre de la marca</param>
         /// <param name="fabricationDate">Fecha de fabricacion</param>
-        /// <param name="plate">Chapa</param>
-        /// <param name="motorNumber">Numero del motor</param>
-        /// <param name="color">color</param>
         /// <param name="insurance">Seguro</param>
         /// <param name="somaton">Somaton</param>
-        /// <param name="model">modelo</param>
-        /// <param name="passengerCapacity">Capacidad de pasajeros</param>
         /// <param name="price">precio</param>
-        /// <param name="wheelAmount">numero de ruedas</param>
-        /// <param name="weight">peso</param>
-        /// <param name="doorsAmount">Cantidad de puertas</param>
         /// <param name="numberOfVelocities">\Numero de velocidades</param>
         /// <param name="maxVelocity">Maxima velocidad</param>
         /// <param name="hasAirConditioning">Aire acondicianado</param>
         /// <returns></returns>
-        Car CreateCar(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, int numberOfVelocities, int maxVelocity, bool hasAirConditioning, Color color, Color color2);
+        Car CreateCar(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton);
 
         /// <summary>
         /// Crea una motocicleta en BD
         /// </summary>
         /// <param name="brandName">Nombre de la marca</param>
         /// <param name="fabricationDate">Fecha de fabricacion</param>
-        /// <param name="plate">Chapa</param>
-        /// <param name="motorNumber">Numero del motor</param>
         /// <param name="color">color</param>
         /// <param name="insurance">Seguro</param>
         /// <param name="somaton">Somaton</param>
@@ -55,7 +45,7 @@ namespace CarRental.DataAccess.Abstract.Vehicles
         /// <param name="weight">peso</param>
         /// <param name="hasSideCar">Tiene carrito</param>
         /// <returns></returns>
-        Motorcycle CreateMotorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, Price price, bool hasSideCar, Color color, Color color2);
+        Motorcycle CreateMotorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton);
 
         /// <summary>
         /// Obtiene un vehiculo de BD

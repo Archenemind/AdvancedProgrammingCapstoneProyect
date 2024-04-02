@@ -34,9 +34,9 @@ namespace CarRental.Domain.Entities.Vehicles
         /// <param name="fabricationDate"></param>
         /// <param name="insurance"></param>
         /// <param name="somaton"></param>
-        public Motorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton, bool hasSideCar) : base(brandName, fabricationDate, insurance, somaton)
+        public Motorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton) : base(brandName, fabricationDate, insurance, somaton)
         {
-            HasSideCar = hasSideCar;
+            HasSideCar = false;
         }
     }
 }

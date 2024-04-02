@@ -44,10 +44,10 @@ namespace CarRental.DataAccess.Tests.Somatons
             Assert.AreEqual(loadedSomaton.ExpeditionDate, expeditionDate);
             Assert.AreEqual(loadedSomaton.Status, status);
             Assert.AreEqual(loadedSomaton.Number, number);
-
         }
 
         [DataRow(1)]
+        [Priority(1)]
         [TestMethod]
         public void Can_Get_Somaton(int id)
         {
@@ -60,10 +60,10 @@ namespace CarRental.DataAccess.Tests.Somatons
 
             //Assert
             Assert.IsNotNull(loadedSomaton);
-
         }
 
-        [DataRow(1,Status.Consumed)]
+        [DataRow(1, Status.Consumed)]
+        [Priority(1)]
         [TestMethod]
         public void Can_Update_Somaton(int id, Status status)
         {
@@ -75,16 +75,15 @@ namespace CarRental.DataAccess.Tests.Somatons
             //Execute
             loadedSomaton.Status = status;
             _somatonRepository.UpdateSomaton(loadedSomaton);
-            
 
             //Assert
             Somaton modifyedSomaton = _somatonRepository.GetSomaton(id);
             _somatonRepository.CommitTransaction();
             Assert.AreEqual(modifyedSomaton.Status, status);
-
         }
 
         [DataRow(1)]
+        [Priority(30)]
         [TestMethod]
         public void Can_Delete_Somaton(int id)
         {
@@ -102,6 +101,5 @@ namespace CarRental.DataAccess.Tests.Somatons
             //Assert
             Assert.IsNull(loadedSomaton);
         }
-
     }
 }

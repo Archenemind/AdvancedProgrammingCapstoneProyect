@@ -28,9 +28,10 @@ namespace CarRental.DataAccess.Tests.Vehicles
             _vehicleRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("Que suenho", "Jan 1, 2009", 1,1,2,5, 300, true, "green", "red")]
+        [DataRow("Que suenho", "Jan 1, 2009", 1, 1, 1, 2, 5, 300, true, "green", "red")]
+        [Priority(2)]
         [TestMethod]
-        public void Can_Create_Vehicle(string brandName, string fabricationDateString, int insuranceId, int somatonId, int priceId, int numberOfVelocities, int maxVelocity, bool hasAirConditioning, string colorString, string color2String)
+        public void Can_Create_Vehicle(string brandName, string fabricationDateString, int insuranceId, int somatonId, int circulationId, int priceId, int numberOfVelocities, int maxVelocity, bool hasAirConditioning, string colorString, string color2String)
         {
             var color = Color.FromName(colorString);
             var color2 = Color.FromName(color2String);
@@ -45,8 +46,14 @@ namespace CarRental.DataAccess.Tests.Vehicles
             Assert.IsNotNull(price);
 
             // Execute
-            var vehicleDB = _vehicleRepository.CreateCar(brandName, fabricationDate, insurance, somaton, price, numberOfVelocities, maxVelocity, hasAirConditioning, color, color2);
+            var vehicleDB = _vehicleRepository.CreateCar(brandName, fabricationDate, insurance, somaton);
+            vehicleDB.Color = color;
+            vehicleDB.Color2 = color2;
+            vehicleDB.SomatonId = somatonId;
+            vehicleDB.InsuranceId = insuranceId;
+            vehicleDB.CirculationId = circulationId;
             _vehicleRepository.PartialCommit();
+
             var loadedVehicle = _vehicleRepository.GetVehicle<Car>(vehicleDB.Id);
             _vehicleRepository.CommitTransaction();
 
@@ -57,10 +64,10 @@ namespace CarRental.DataAccess.Tests.Vehicles
             Assert.AreEqual(vehicleDB.NumberOfVelocities, loadedVehicle.NumberOfVelocities);
             Assert.AreEqual(vehicleDB.MaxVelocity, loadedVehicle.MaxVelocity);
             Assert.AreEqual(vehicleDB.HasAirConditioning, loadedVehicle.HasAirConditioning);
-
         }
 
         [DataRow(1)]
+        [Priority(3)]
         [TestMethod]
         public void Can_Get_Vehicle(int id)
         {
@@ -73,10 +80,10 @@ namespace CarRental.DataAccess.Tests.Vehicles
 
             //Assert
             Assert.IsNotNull(loadedVehicle);
-
         }
 
         [DataRow(1, false)]
+        [Priority(3)]
         [TestMethod]
         public void Can_Update_Vehicle(int id, bool hasAirConditioning)
         {
@@ -94,10 +101,10 @@ namespace CarRental.DataAccess.Tests.Vehicles
             var modifiedVehicle = _vehicleRepository.GetVehicle<Car>(id);
             _vehicleRepository.CommitTransaction();
             Assert.AreEqual(modifiedVehicle.HasAirConditioning, hasAirConditioning);
-
         }
 
         [DataRow(1)]
+        [Priority(30)]
         [TestMethod]
         public void Can_Delete_Vehicle(int id)
         {
@@ -114,8 +121,6 @@ namespace CarRental.DataAccess.Tests.Vehicles
 
             //Assert
             Assert.IsNull(loadedVehicle);
-
         }
-
     }
 }

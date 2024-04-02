@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240328065839_fuck")]
-    partial class fuck
+    [Migration("20240402154355_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -114,18 +114,18 @@ namespace CarRental.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ClientId1")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SupplementsId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("SupplementsId");
+                    b.HasIndex("ClientId1");
 
                     b.ToTable("Reservations", (string)null);
                 });
@@ -167,9 +167,14 @@ namespace CarRental.DataAccess.Migrations
                     b.Property<int>("PriceId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ReservationId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PriceId");
+
+                    b.HasIndex("ReservationId");
 
                     b.ToTable("Supplements", (string)null);
                 });
@@ -189,14 +194,27 @@ namespace CarRental.DataAccess.Migrations
                     b.Property<int>("Color2")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("InsuranceId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("PriceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SomatonId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CirculationId");
+                    b.HasIndex("CirculationId")
+                        .IsUnique();
+
+                    b.HasIndex("InsuranceId")
+                        .IsUnique();
 
                     b.HasIndex("PriceId");
+
+                    b.HasIndex("SomatonId")
+                        .IsUnique();
 
                     b.ToTable("Vehicles", (string)null);
                 });
@@ -240,13 +258,13 @@ namespace CarRental.DataAccess.Migrations
 
             modelBuilder.Entity("CarRental.Domain.Entities.Reservations.Reservation", b =>
                 {
-                    b.HasOne("CarRental.Domain.Entities.Supplements.Supplement", "Supplements")
-                        .WithMany()
-                        .HasForeignKey("SupplementsId")
+                    b.HasOne("CarRental.Domain.Entities.Persons.Client", "Client")
+                        .WithMany("Reservations")
+                        .HasForeignKey("ClientId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Supplements");
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Supplements.Supplement", b =>
@@ -257,14 +275,28 @@ namespace CarRental.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarRental.Domain.Entities.Reservations.Reservation", "Reservation")
+                        .WithMany("Supplements")
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Price");
+
+                    b.Navigation("Reservation");
                 });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Vehicles.Vehicle", b =>
                 {
                     b.HasOne("CarRental.Domain.Entities.Circulations.Circulation", "Circulation")
-                        .WithMany()
-                        .HasForeignKey("CirculationId")
+                        .WithOne()
+                        .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "CirculationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarRental.Domain.Entities.Insurances.Insurance", "Insurance")
+                        .WithOne("Vehicle")
+                        .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "InsuranceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -274,9 +306,19 @@ namespace CarRental.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarRental.Domain.Entities.Somatons.Somaton", "Somaton")
+                        .WithOne()
+                        .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "SomatonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Circulation");
 
+                    b.Navigation("Insurance");
+
                     b.Navigation("Price");
+
+                    b.Navigation("Somaton");
                 });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Client", b =>
@@ -313,6 +355,22 @@ namespace CarRental.DataAccess.Migrations
                         .HasForeignKey("CarRental.Domain.Entities.Vehicles.Motorcycle", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Insurances.Insurance", b =>
+                {
+                    b.Navigation("Vehicle")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Reservations.Reservation", b =>
+                {
+                    b.Navigation("Supplements");
+                });
+
+            modelBuilder.Entity("CarRental.Domain.Entities.Persons.Client", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CarRental.Domain.Entities.Common;
 using CarRental.Domain.Entities.Supplements;
 using CarRental.DataAccess.Abstract.Supplements;
+using CarRental.Domain.Entities.Circulations;
 
 namespace CarRental.DataAccess.Repositories
 {
@@ -23,6 +24,12 @@ namespace CarRental.DataAccess.Repositories
         public Supplement? GetSupplement(int id)
         {
             return _context.Set<Supplement>().Find(id);
+        }
+
+        public void UpdateSupplement(Supplement supplement
+            )
+        {
+            _context.Set<Supplement>().Update(supplement);
         }
 
         public void DeleteSupplement(Supplement supplement)

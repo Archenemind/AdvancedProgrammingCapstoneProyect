@@ -28,6 +28,8 @@ namespace CarRental.DataAccess.Abstract.Supplements
         /// <returns>Retorna un suplemento si existe en BD, en caso contrario <see langword="null"></returns>
         Supplement? GetSupplement(int id);
 
+        void UpdateSupplement(Supplement supplement);
+
         /// <summary>
         /// Borra un suplemento de base de datos
         /// </summary>
