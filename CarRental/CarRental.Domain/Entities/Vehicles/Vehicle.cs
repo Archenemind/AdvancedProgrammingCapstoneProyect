@@ -29,7 +29,11 @@ namespace CarRental.Domain.Entities.Vehicles
         [NotMapped]
         public Circulation Circulation { get; set; }
 
+        /// <summary>
+        /// Identificador unico de circulacion
+        /// </summary>
         public int CirculationId { get; set; }
+
         public string BrandName { get; }
 
         public DateTime FabricationDate { get; }
@@ -45,12 +49,19 @@ namespace CarRental.Domain.Entities.Vehicles
         [NotMapped]
         public Insurance Insurance { get; }
 
+        /// <summary>
+        /// Identificador unico de insurance
+        /// </summary>
         public int InsuranceId { get; set; }
 
         [NotMapped]
         public Somaton Somaton { get; }
 
+        /// <summary>
+        /// Identificador unico de somaton
+        /// </summary>
         public int SomatonId { get; set; }
+
         public string Model { get; }
 
         /// <summary>
@@ -58,10 +69,13 @@ namespace CarRental.Domain.Entities.Vehicles
         /// </summary>
         public int PassengerCapacity { get; }
 
-        /// <summary>
-        /// Precio del vehículo.
-        /// </summary>
+        [NotMapped]
         public Price Price { get; set; }
+
+        /// <summary>
+        /// Identificador unico del precio
+        /// </summary>
+        public int PriceId { get; set; }
 
         /// <summary>
         /// Peso del vehiculo

@@ -42,9 +42,8 @@ namespace CarRental.Domain.Entities.Somatons
         /// <param name="expeditionDate"></param>
         /// <param name="status"></param>
         /// <param name="number"></param>
-        public Somaton(DateTime expirationDate, DateTime expeditionDate, Status status, string number)
+        public Somaton(DateTime expeditionDate, Status status, string number)
         {
-            ExpirationDate = expirationDate;
             ExpeditionDate = expeditionDate;
             Status = status;
             Number = number;

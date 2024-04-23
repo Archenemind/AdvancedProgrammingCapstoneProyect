@@ -21,7 +21,7 @@ namespace CarRental.DataAccess.Abstract.Somatons
         /// <param name="status">Estado</param>
         /// <param name="number">Numero de somaton</param>
         /// <returns></returns>
-        Somaton CreateSomaton(DateTime expirationDate, DateTime expeditionDate, Status status, string number);
+        Somaton CreateSomaton(DateTime expeditionDate, Status status, string number);
 
         /// <summary>
         /// Obtiene un somaton de BD

@@ -32,10 +32,10 @@ namespace CarRental.DataAccess.Tests.Reservations
             _reservationRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow(1, 1, 1, Status.Cancelled, 1)]
-        [Priority(11)]
+        [DataRow(1, 1, 1, Status.Cancelled)]
+        [Priority(3)]
         [TestMethod]
-        public void Can_Create_Reservation(int clientId, int vehicleId, int priceId, Status status, int supplementId)
+        public void Can_Create_Reservation(int clientId, int vehicleId, int priceId, Status status)
         {
             //Arrange
             _reservationRepository.BeginTransaction();
@@ -45,8 +45,6 @@ namespace CarRental.DataAccess.Tests.Reservations
             Assert.IsNotNull(vehicle);
             Price? totalPrice = ((IPriceRepository)_reservationRepository).GetPrice(priceId);
             Assert.IsNotNull(totalPrice);
-            Supplement? reservationSupplement = ((ISupplementRepository)_reservationRepository).GetSupplement(supplementId);
-            Assert.IsNotNull(reservationSupplement);
 
             //Execute
             var reservationDB = _reservationRepository.CreateReservation(client, vehicle);
@@ -58,7 +56,6 @@ namespace CarRental.DataAccess.Tests.Reservations
             Assert.IsNotNull(reservationDB);
             Assert.AreEqual(reservationDB.Client, loadedReservation.Client);
             Assert.AreEqual(reservationDB.Vehicle, loadedReservation.Vehicle);
-            Assert.AreEqual(reservationDB.Supplements.Count, loadedReservation.Supplements.Count);
             Assert.AreEqual(reservationDB.Status, loadedReservation.Status);
         }
 
@@ -78,12 +75,12 @@ namespace CarRental.DataAccess.Tests.Reservations
             Assert.IsNotNull(loadedReservation);
         }
 
-        [DataRow(1, Status.Approved)]
+        [DataRow(1, Status.Approved, "2024-03-16T12:00:00")]
         [Priority(4)]
         [TestMethod]
-        public void Can_Update_Reservation(int id, Status status, string startDateString)
+        public void Can_Update_Reservation(int id, Status status, string endDateString)
         {
-            DateTime startDate = DateTime.Parse(startDateString);
+            DateTime endDate = DateTime.Parse(endDateString);
 
             //Arrange
             _reservationRepository.BeginTransaction();
@@ -92,13 +89,14 @@ namespace CarRental.DataAccess.Tests.Reservations
 
             //Execute
             loadedReservation.Status = status;
+            loadedReservation.EndDate = endDate;
             _reservationRepository.UpdateReservation(loadedReservation);
 
             //Assert
             Reservation? modifyedReservation = _reservationRepository.GetReservation(id);
             _reservationRepository.CommitTransaction();
             Assert.AreEqual(modifyedReservation.Status, status);
-            Assert.AreEqual(modifyedReservation.StartDate, startDate);
+            Assert.AreEqual(modifyedReservation.EndDate, endDate);
         }
 
         [DataRow(1)]

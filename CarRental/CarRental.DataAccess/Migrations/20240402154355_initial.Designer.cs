@@ -3,6 +3,7 @@ using System;
 using CarRental.DataAccess.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20240402154355_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.27");
@@ -209,6 +211,8 @@ namespace CarRental.DataAccess.Migrations
                     b.HasIndex("InsuranceId")
                         .IsUnique();
 
+                    b.HasIndex("PriceId");
+
                     b.HasIndex("SomatonId")
                         .IsUnique();
 
@@ -218,6 +222,9 @@ namespace CarRental.DataAccess.Migrations
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Client", b =>
                 {
                     b.HasBaseType("CarRental.Domain.Entities.Persons.Person");
+
+                    b.Property<int>("Reservation")
+                        .HasColumnType("INTEGER");
 
                     b.ToTable("Clients", (string)null);
                 });
@@ -293,6 +300,12 @@ namespace CarRental.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarRental.Domain.Entities.Common.Price", "Price")
+                        .WithMany()
+                        .HasForeignKey("PriceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CarRental.Domain.Entities.Somatons.Somaton", "Somaton")
                         .WithOne()
                         .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "SomatonId")
@@ -302,6 +315,8 @@ namespace CarRental.DataAccess.Migrations
                     b.Navigation("Circulation");
 
                     b.Navigation("Insurance");
+
+                    b.Navigation("Price");
 
                     b.Navigation("Somaton");
                 });
