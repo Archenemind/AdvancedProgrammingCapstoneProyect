@@ -1,10 +1,10 @@
 ﻿{
   "profiles": {
-    "CarRental.Services": {
+    "CarDealer.Services": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
-      "applicationUrl": "http://localhost:5038;https://localhost:7260",
+      "applicationUrl": "http://localhost:5051;https://localhost:7051",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

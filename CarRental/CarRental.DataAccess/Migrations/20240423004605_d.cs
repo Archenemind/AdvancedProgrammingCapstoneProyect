@@ -5,11 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CarRental.DataAccess.Migrations
 {
-<<<<<<<< HEAD:CarRental/CarRental.DataAccess/Migrations/20240404014857_TestPriority.cs
-    public partial class TestPriority : Migration
-========
     public partial class d : Migration
->>>>>>>> b3de8de628c252faafa4e6811452dd242972ab60:CarRental/CarRental.DataAccess/Migrations/20240423004605_d.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

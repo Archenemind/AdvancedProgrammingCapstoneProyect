@@ -11,13 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-<<<<<<<< HEAD:CarRental/CarRental.DataAccess/Migrations/20240404014857_TestPriority.Designer.cs
-    [Migration("20240404014857_TestPriority")]
-    partial class TestPriority
-========
     [Migration("20240423004605_d")]
     partial class d
->>>>>>>> b3de8de628c252faafa4e6811452dd242972ab60:CarRental/CarRental.DataAccess/Migrations/20240423004605_d.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,345 +20,345 @@ namespace CarRental.DataAccess.Migrations
             modelBuilder.HasAnnotation("ProductVersion", "6.0.27");
 
             modelBuilder.Entity("CarRental.Domain.Entities.Circulations.Circulation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("Color")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("Color")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("Color2")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("Color2")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("ExpeditionDate")
-                        .HasColumnType("TEXT");
+                b.Property<DateTime>("ExpeditionDate")
+                    .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("TEXT");
+                b.Property<DateTime>("ExpirationDate")
+                    .HasColumnType("TEXT");
 
-                    b.Property<int>("InsuranceID")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("InsuranceID")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("SomatonId")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("SomatonId")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<string>("VIN")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                b.Property<string>("VIN")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Circulations", (string)null);
-                });
+                b.ToTable("Circulations", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Common.Price", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("Currency")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("Currency")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<double>("Value")
-                        .HasColumnType("REAL");
+                b.Property<double>("Value")
+                    .HasColumnType("REAL");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Prices", (string)null);
-                });
+                b.ToTable("Prices", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Insurances.Insurance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("ExpeditionDate")
-                        .HasColumnType("TEXT");
+                b.Property<DateTime>("ExpeditionDate")
+                    .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("TEXT");
+                b.Property<DateTime>("ExpirationDate")
+                    .HasColumnType("TEXT");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("Status")
+                    .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Insurances", (string)null);
-                });
+                b.ToTable("Insurances", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Person", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
 
-                    b.Property<string>("CountryName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                b.Property<string>("CountryName")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
 
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                b.Property<string>("Phone")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Persons", (string)null);
-                });
+                b.ToTable("Persons", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Reservations.Reservation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("ClientId1")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("ClientId1")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("TEXT");
+                b.Property<DateTime>("EndDate")
+                    .HasColumnType("TEXT");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("Status")
+                    .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ClientId1");
+                b.HasIndex("ClientId1");
 
-                    b.ToTable("Reservations", (string)null);
-                });
+                b.ToTable("Reservations", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Somatons.Somaton", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("ExpeditionDate")
-                        .HasColumnType("TEXT");
+                b.Property<DateTime>("ExpeditionDate")
+                    .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("TEXT");
+                b.Property<DateTime>("ExpirationDate")
+                    .HasColumnType("TEXT");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                b.Property<string>("Number")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("Status")
+                    .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Somatons", (string)null);
-                });
+                b.ToTable("Somatons", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Supplements.Supplement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
 
-                    b.Property<int>("PriceId")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("PriceId")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("ReservationId")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("ReservationId")
+                    .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("PriceId");
+                b.HasIndex("PriceId");
 
-                    b.HasIndex("ReservationId");
+                b.HasIndex("ReservationId");
 
-                    b.ToTable("Supplements", (string)null);
-                });
+                b.ToTable("Supplements", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Vehicles.Vehicle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("CirculationId")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("CirculationId")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("Color")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("Color")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("Color2")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("Color2")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("InsuranceId")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("InsuranceId")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("PriceId")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("PriceId")
+                    .HasColumnType("INTEGER");
 
-                    b.Property<int>("SomatonId")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("SomatonId")
+                    .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CirculationId")
-                        .IsUnique();
+                b.HasIndex("CirculationId")
+                    .IsUnique();
 
-                    b.HasIndex("InsuranceId")
-                        .IsUnique();
+                b.HasIndex("InsuranceId")
+                    .IsUnique();
 
-                    b.HasIndex("SomatonId")
-                        .IsUnique();
+                b.HasIndex("SomatonId")
+                    .IsUnique();
 
-                    b.ToTable("Vehicles", (string)null);
-                });
+                b.ToTable("Vehicles", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Client", b =>
-                {
-                    b.HasBaseType("CarRental.Domain.Entities.Persons.Person");
+            {
+                b.HasBaseType("CarRental.Domain.Entities.Persons.Person");
 
-                    b.ToTable("Clients", (string)null);
-                });
+                b.ToTable("Clients", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Users", b =>
-                {
-                    b.HasBaseType("CarRental.Domain.Entities.Persons.Person");
+            {
+                b.HasBaseType("CarRental.Domain.Entities.Persons.Person");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("INTEGER");
+                b.Property<int>("Role")
+                    .HasColumnType("INTEGER");
 
-                    b.ToTable("Users", (string)null);
-                });
+                b.ToTable("Users", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Vehicles.Car", b =>
-                {
-                    b.HasBaseType("CarRental.Domain.Entities.Vehicles.Vehicle");
+            {
+                b.HasBaseType("CarRental.Domain.Entities.Vehicles.Vehicle");
 
-                    b.Property<bool>("HasAirConditioning")
-                        .HasColumnType("INTEGER");
+                b.Property<bool>("HasAirConditioning")
+                    .HasColumnType("INTEGER");
 
-                    b.ToTable("Cars", (string)null);
-                });
+                b.ToTable("Cars", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Vehicles.Motorcycle", b =>
-                {
-                    b.HasBaseType("CarRental.Domain.Entities.Vehicles.Vehicle");
+            {
+                b.HasBaseType("CarRental.Domain.Entities.Vehicles.Vehicle");
 
-                    b.ToTable("Motorcycles", (string)null);
-                });
+                b.ToTable("Motorcycles", (string)null);
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Reservations.Reservation", b =>
-                {
-                    b.HasOne("CarRental.Domain.Entities.Persons.Client", "Client")
-                        .WithMany("Reservations")
-                        .HasForeignKey("ClientId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("CarRental.Domain.Entities.Persons.Client", "Client")
+                    .WithMany("Reservations")
+                    .HasForeignKey("ClientId1")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Client");
-                });
+                b.Navigation("Client");
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Supplements.Supplement", b =>
-                {
-                    b.HasOne("CarRental.Domain.Entities.Common.Price", "Price")
-                        .WithMany()
-                        .HasForeignKey("PriceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("CarRental.Domain.Entities.Common.Price", "Price")
+                    .WithMany()
+                    .HasForeignKey("PriceId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("CarRental.Domain.Entities.Reservations.Reservation", "Reservation")
-                        .WithMany("Supplements")
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("CarRental.Domain.Entities.Reservations.Reservation", "Reservation")
+                    .WithMany("Supplements")
+                    .HasForeignKey("ReservationId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Price");
+                b.Navigation("Price");
 
-                    b.Navigation("Reservation");
-                });
+                b.Navigation("Reservation");
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Vehicles.Vehicle", b =>
-                {
-                    b.HasOne("CarRental.Domain.Entities.Circulations.Circulation", "Circulation")
-                        .WithOne()
-                        .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "CirculationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            {
+                b.HasOne("CarRental.Domain.Entities.Circulations.Circulation", "Circulation")
+                    .WithOne()
+                    .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "CirculationId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("CarRental.Domain.Entities.Insurances.Insurance", "Insurance")
-                        .WithOne("Vehicle")
-                        .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "InsuranceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("CarRental.Domain.Entities.Insurances.Insurance", "Insurance")
+                    .WithOne("Vehicle")
+                    .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "InsuranceId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("CarRental.Domain.Entities.Somatons.Somaton", "Somaton")
-                        .WithOne()
-                        .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "SomatonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("CarRental.Domain.Entities.Somatons.Somaton", "Somaton")
+                    .WithOne()
+                    .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "SomatonId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Circulation");
+                b.Navigation("Circulation");
 
-                    b.Navigation("Insurance");
+                b.Navigation("Insurance");
 
-                    b.Navigation("Somaton");
-                });
+                b.Navigation("Somaton");
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Client", b =>
-                {
-                    b.HasOne("CarRental.Domain.Entities.Persons.Person", null)
-                        .WithOne()
-                        .HasForeignKey("CarRental.Domain.Entities.Persons.Client", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+            {
+                b.HasOne("CarRental.Domain.Entities.Persons.Person", null)
+                    .WithOne()
+                    .HasForeignKey("CarRental.Domain.Entities.Persons.Client", "Id")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Users", b =>
-                {
-                    b.HasOne("CarRental.Domain.Entities.Persons.Person", null)
-                        .WithOne()
-                        .HasForeignKey("CarRental.Domain.Entities.Persons.Users", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+            {
+                b.HasOne("CarRental.Domain.Entities.Persons.Person", null)
+                    .WithOne()
+                    .HasForeignKey("CarRental.Domain.Entities.Persons.Users", "Id")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Vehicles.Car", b =>
-                {
-                    b.HasOne("CarRental.Domain.Entities.Vehicles.Vehicle", null)
-                        .WithOne()
-                        .HasForeignKey("CarRental.Domain.Entities.Vehicles.Car", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+            {
+                b.HasOne("CarRental.Domain.Entities.Vehicles.Vehicle", null)
+                    .WithOne()
+                    .HasForeignKey("CarRental.Domain.Entities.Vehicles.Car", "Id")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Vehicles.Motorcycle", b =>
-                {
-                    b.HasOne("CarRental.Domain.Entities.Vehicles.Vehicle", null)
-                        .WithOne()
-                        .HasForeignKey("CarRental.Domain.Entities.Vehicles.Motorcycle", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+            {
+                b.HasOne("CarRental.Domain.Entities.Vehicles.Vehicle", null)
+                    .WithOne()
+                    .HasForeignKey("CarRental.Domain.Entities.Vehicles.Motorcycle", "Id")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Insurances.Insurance", b =>
-                {
-                    b.Navigation("Vehicle")
-                        .IsRequired();
-                });
+            {
+                b.Navigation("Vehicle")
+                    .IsRequired();
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Reservations.Reservation", b =>
-                {
-                    b.Navigation("Supplements");
-                });
+            {
+                b.Navigation("Supplements");
+            });
 
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Client", b =>
-                {
-                    b.Navigation("Reservations");
-                });
+            {
+                b.Navigation("Reservations");
+            });
 #pragma warning restore 612, 618
         }
     }

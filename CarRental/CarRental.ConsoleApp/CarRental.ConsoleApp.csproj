@@ -24,6 +24,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\CarRental.DataAccess\CarRental.DataAccess.csproj" />
+		<ProjectReference Include="..\CarRental.grpc\CarRental.grpc.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
