@@ -209,8 +209,6 @@ namespace CarRental.DataAccess.Migrations
                     b.HasIndex("InsuranceId")
                         .IsUnique();
 
-                    b.HasIndex("PriceId");
-
                     b.HasIndex("SomatonId")
                         .IsUnique();
 
@@ -220,9 +218,6 @@ namespace CarRental.DataAccess.Migrations
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Client", b =>
                 {
                     b.HasBaseType("CarRental.Domain.Entities.Persons.Person");
-
-                    b.Property<int>("Reservation")
-                        .HasColumnType("INTEGER");
 
                     b.ToTable("Clients", (string)null);
                 });
@@ -298,12 +293,6 @@ namespace CarRental.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CarRental.Domain.Entities.Common.Price", "Price")
-                        .WithMany()
-                        .HasForeignKey("PriceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CarRental.Domain.Entities.Somatons.Somaton", "Somaton")
                         .WithOne()
                         .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "SomatonId")
@@ -313,8 +302,6 @@ namespace CarRental.DataAccess.Migrations
                     b.Navigation("Circulation");
 
                     b.Navigation("Insurance");
-
-                    b.Navigation("Price");
 
                     b.Navigation("Somaton");
                 });

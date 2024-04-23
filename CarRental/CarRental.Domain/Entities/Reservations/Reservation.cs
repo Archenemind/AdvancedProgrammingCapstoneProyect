@@ -62,9 +62,16 @@ namespace CarRental.Domain.Entities.Reservations
         [NotMapped]
         public ICollection<Supplement> Supplements { get; set; }
 
+        /// <summary>
+        /// Precio de la reservation el cual es la suma del precio del vehiculo + el precio de los suplementos
+        /// </summary>
         [NotMapped]
         private Price ReservationPrice { get => GetPrice(); }
 
+        /// <summary>
+        /// Suma el precio del vehiculo y el precio de los suplementos
+        /// </summary>
+        /// <returns>precio de la reservacion</returns>
         protected Price GetPrice()
         {
             PriceConverter priceConverter = new();

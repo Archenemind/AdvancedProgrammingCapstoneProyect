@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CarRental.DataAccess.Migrations
 {
-    public partial class initial : Migration
+    public partial class d : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -92,8 +92,7 @@ namespace CarRental.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Reservation = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true)
                 },
                 constraints: table =>
                 {
@@ -151,12 +150,6 @@ namespace CarRental.DataAccess.Migrations
                         name: "FK_Vehicles_Insurances_InsuranceId",
                         column: x => x.InsuranceId,
                         principalTable: "Insurances",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Vehicles_Prices_PriceId",
-                        column: x => x.PriceId,
-                        principalTable: "Prices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -280,11 +273,6 @@ namespace CarRental.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vehicles_PriceId",
-                table: "Vehicles",
-                column: "PriceId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Vehicles_SomatonId",
                 table: "Vehicles",
                 column: "SomatonId",
@@ -309,6 +297,9 @@ namespace CarRental.DataAccess.Migrations
                 name: "Vehicles");
 
             migrationBuilder.DropTable(
+                name: "Prices");
+
+            migrationBuilder.DropTable(
                 name: "Reservations");
 
             migrationBuilder.DropTable(
@@ -316,9 +307,6 @@ namespace CarRental.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Insurances");
-
-            migrationBuilder.DropTable(
-                name: "Prices");
 
             migrationBuilder.DropTable(
                 name: "Somatons");

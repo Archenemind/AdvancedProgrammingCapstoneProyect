@@ -21,11 +21,6 @@ namespace CarRental.Domain.Entities.Persons
         public ICollection<Reservation> Reservations { get; set; }
 
         /// <summary>
-        /// Identificador unico de reservacion
-        /// </summary>
-        public int Reservation { get; set; }
-
-        /// <summary>
         /// Constructor requerido por EntityFrameworkCore para migraciones
         /// </summary>
         protected Client()

@@ -22,25 +22,23 @@ namespace CarRental.DataAccess.Tests.Somatons
             _somatonRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("2024-03-16T12:00:00", "2020-03-16T12:00:00", Status.Cancelled, "bfuebfebfqfjq")]
+        [DataRow("2020-03-16T12:00:00", Status.Cancelled, "bfuebfebfqfjq")]
         [TestMethod]
-        public void Can_Create_Somaton(string expirationDateString, string expeditionDateString, Status status, string number)
+        public void Can_Create_Somaton(string expeditionDateString, Status status, string number)
         {
-            DateTime expirationDate = DateTime.Parse(expirationDateString);
             DateTime expeditionDate = DateTime.Parse(expeditionDateString);
 
             //Arrange
             _somatonRepository.BeginTransaction();
 
             //Execute
-            var somatonDB = _somatonRepository.CreateSomaton(expirationDate, expeditionDate, status, number);
+            var somatonDB = _somatonRepository.CreateSomaton(expeditionDate, status, number);
             _somatonRepository.PartialCommit();
             var loadedSomaton = _somatonRepository.GetSomaton(somatonDB.Id);
             _somatonRepository.CommitTransaction();
 
             //Assert
             Assert.IsNotNull(loadedSomaton);
-            Assert.AreEqual(loadedSomaton.ExpirationDate, expirationDate);
             Assert.AreEqual(loadedSomaton.ExpeditionDate, expeditionDate);
             Assert.AreEqual(loadedSomaton.Status, status);
             Assert.AreEqual(loadedSomaton.Number, number);

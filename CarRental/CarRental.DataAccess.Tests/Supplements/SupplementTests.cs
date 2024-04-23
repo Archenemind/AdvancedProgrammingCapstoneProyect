@@ -23,7 +23,7 @@ namespace CarRental.DataAccess.Tests.Supplements
             _supplementRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow(2, "Que cuajoooooooooooooo", 1)]
+        [DataRow(1, "Baby sit", 1)]
         [Priority(4)]
         [TestMethod]
         public void Can_Create_Supplement(int priceId, string description, int reservationId)
@@ -62,7 +62,7 @@ namespace CarRental.DataAccess.Tests.Supplements
             Assert.IsNotNull(loadedSupplement);
         }
 
-        [DataRow(1, "FUCKKKKKK son las 2 AM")]
+        [DataRow(1, "Gasoline Can")]
         [Priority(5)]
         [TestMethod]
         public void Can_Update_Supplement(int id, string description)

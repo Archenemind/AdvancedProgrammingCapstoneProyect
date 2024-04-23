@@ -25,7 +25,7 @@ namespace CarRental.DataAccess.Tests.Circulation
             _circulationRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("Peugeot", "jenfwnfwfoiew", "2403295jr9209r2", 1, 1)]
+        [DataRow("Peugeot", "B234523", "2403295jr9209r2", 1, 1)]
         [Priority(1)]
         [TestMethod]
         public void Can_Create_Circulation(string model, string plate, string motorNumber, int insuranceId, int somatonId)

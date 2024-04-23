@@ -14,9 +14,9 @@ namespace CarRental.DataAccess.Repositories
     /// </summary>
     public partial class ApplicationRepository : ISomatonRepository
     {
-        public Somaton CreateSomaton(DateTime expirationDate, DateTime expeditionDate, Status status, string number)
+        public Somaton CreateSomaton(DateTime expeditionDate, Status status, string number)
         {
-            Somaton somaton = new Somaton(expirationDate, expeditionDate, status, number);
+            Somaton somaton = new Somaton(expeditionDate, status, number);
             _context.Add(somaton); return somaton;
         }
 
