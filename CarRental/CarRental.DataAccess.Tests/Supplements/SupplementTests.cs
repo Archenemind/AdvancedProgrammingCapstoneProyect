@@ -23,10 +23,10 @@ namespace CarRental.DataAccess.Tests.Supplements
             _supplementRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow(2, "Que cuajoooooooooooooo", 1)]
-        [Priority(4)]
+        [DataRow(2, "Tanque de combustible adicional")]
+        [Priority(10)]
         [TestMethod]
-        public void Can_Create_Supplement(int priceId, string description, int reservationId)
+        public void Can_Create_Supplement(int priceId, string description)
         {
             //Arrange
             _supplementRepository.BeginTransaction();
@@ -35,7 +35,6 @@ namespace CarRental.DataAccess.Tests.Supplements
 
             //Execute
             Supplement supplement = _supplementRepository.CreateSupplement(price, description);
-            supplement.ReservationId = reservationId;
             _supplementRepository.PartialCommit();
             Supplement? loadedSupplement = _supplementRepository.GetSupplement(supplement.Id);
             _supplementRepository.CommitTransaction();
@@ -47,7 +46,7 @@ namespace CarRental.DataAccess.Tests.Supplements
         }
 
         [DataRow(1)]
-        [Priority(5)]
+        [Priority(11)]
         [TestMethod]
         public void Can_Get_Supplement(int id)
         {
@@ -62,8 +61,8 @@ namespace CarRental.DataAccess.Tests.Supplements
             Assert.IsNotNull(loadedSupplement);
         }
 
-        [DataRow(1, "FUCKKKKKK son las 2 AM")]
-        [Priority(5)]
+        [DataRow(1, "Chofer")]
+        [Priority(12)]
         [TestMethod]
         public void Can_Update_Supplement(int id, string description)
         {

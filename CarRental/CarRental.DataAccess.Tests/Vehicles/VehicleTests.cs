@@ -28,8 +28,8 @@ namespace CarRental.DataAccess.Tests.Vehicles
             _vehicleRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("Que suenho", "Jan 1, 2009", 1, 1, 1, 2, 5, 300, true, "green", "red")]
-        [Priority(2)]
+        [DataRow("Lada", "Jan 1, 2009", 1, 1, 1, 2, 5, 300, true, "green", "red")]
+        [Priority(6)]
         [TestMethod]
         public void Can_Create_Vehicle(string brandName, string fabricationDateString, int insuranceId, int somatonId, int circulationId, int priceId, int numberOfVelocities, int maxVelocity, bool hasAirConditioning, string colorString, string color2String)
         {
@@ -67,7 +67,7 @@ namespace CarRental.DataAccess.Tests.Vehicles
         }
 
         [DataRow(1)]
-        [Priority(3)]
+        [Priority(7)]
         [TestMethod]
         public void Can_Get_Vehicle(int id)
         {
@@ -83,7 +83,7 @@ namespace CarRental.DataAccess.Tests.Vehicles
         }
 
         [DataRow(1, false)]
-        [Priority(3)]
+        [Priority(7)]
         [TestMethod]
         public void Can_Update_Vehicle(int id, bool hasAirConditioning)
         {

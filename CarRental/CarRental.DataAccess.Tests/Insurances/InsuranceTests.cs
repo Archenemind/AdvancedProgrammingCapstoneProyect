@@ -25,6 +25,7 @@ namespace CarRental.DataAccess.Tests.Insurances
         }
 
         [DataRow(Statusenum.Enable, "POL1234", "2024-03-16T12:00:00", "2043-03-16T12:00:00")]
+        [Priority(1)]
         [TestMethod]
         public void Can_Create_Insurance(Statusenum status, string policyNumber, string expirationDateString, string expeditionDateString)
         {
@@ -48,7 +49,7 @@ namespace CarRental.DataAccess.Tests.Insurances
         }
 
         [DataRow(1)]
-        [Priority(1)]
+        [Priority(2)]
         [TestMethod]
         public void Can_Get_Insurance(int id)
         {
@@ -64,7 +65,7 @@ namespace CarRental.DataAccess.Tests.Insurances
         }
 
         [DataRow(1, Statusenum.Enable, "2024-03-16T12:00:00")]
-        [Priority(1)]
+        [Priority(2)]
         [TestMethod]
         public void Can_Update_Insurance(int id, Statusenum status, string expirationDateString)
         {

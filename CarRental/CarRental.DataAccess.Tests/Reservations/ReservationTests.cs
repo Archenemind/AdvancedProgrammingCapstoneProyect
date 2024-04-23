@@ -33,7 +33,7 @@ namespace CarRental.DataAccess.Tests.Reservations
         }
 
         [DataRow(1, 1, 1, Status.Cancelled, 1)]
-        [Priority(3)]
+        [Priority(11)]
         [TestMethod]
         public void Can_Create_Reservation(int clientId, int vehicleId, int priceId, Status status, int supplementId)
         {
@@ -63,7 +63,7 @@ namespace CarRental.DataAccess.Tests.Reservations
         }
 
         [DataRow(1)]
-        [Priority(4)]
+        [Priority(12)]
         [TestMethod]
         public void Can_Get_Reservation(int id)
         {

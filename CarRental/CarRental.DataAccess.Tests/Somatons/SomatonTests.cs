@@ -23,6 +23,7 @@ namespace CarRental.DataAccess.Tests.Somatons
         }
 
         [DataRow("2024-03-16T12:00:00", "2020-03-16T12:00:00", Status.Cancelled, "bfuebfebfqfjq")]
+        [Priority(1)]
         [TestMethod]
         public void Can_Create_Somaton(string expirationDateString, string expeditionDateString, Status status, string number)
         {
@@ -47,7 +48,7 @@ namespace CarRental.DataAccess.Tests.Somatons
         }
 
         [DataRow(1)]
-        [Priority(1)]
+        [Priority(2)]
         [TestMethod]
         public void Can_Get_Somaton(int id)
         {
@@ -63,7 +64,7 @@ namespace CarRental.DataAccess.Tests.Somatons
         }
 
         [DataRow(1, Status.Consumed)]
-        [Priority(1)]
+        [Priority(2)]
         [TestMethod]
         public void Can_Update_Somaton(int id, Status status)
         {

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240402154355_initial")]
-    partial class initial
+    [Migration("20240404014857_TestPriority")]
+    partial class TestPriority
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -23,7 +23,8 @@ namespace CarRental.DataAccess.Tests.Persons
             _personRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString()); ;
         }
 
-        [DataRow("Loco quejesto", "Rodriguez", "jwnnwjncwccnk", "Qva", "573277777775")]
+        [DataRow("Leandro", "Rodriguez", "jwnnwjncwccnk", "Qva", "573277777775")]
+        [Priority(1)]
         [TestMethod]
         public void Can_Create_Person(string name, string lastName, string iD, string countryName, string phone)
         {
@@ -47,7 +48,7 @@ namespace CarRental.DataAccess.Tests.Persons
         }
 
         [DataRow(1)]
-        [Priority(1)]
+        [Priority(2)]
         [TestMethod]
         public void Can_Get_Person(int id)
         {
@@ -62,8 +63,8 @@ namespace CarRental.DataAccess.Tests.Persons
             Assert.IsNotNull(loadedPerson);
         }
 
-        [DataRow(1, "suenha")]
-        [Priority(1)]
+        [DataRow(1, "USA")]
+        [Priority(2)]
         [TestMethod]
         public void Can_Update_Person(int id, string countryName)
         {

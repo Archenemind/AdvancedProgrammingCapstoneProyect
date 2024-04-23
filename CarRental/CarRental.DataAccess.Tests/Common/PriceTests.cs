@@ -24,6 +24,7 @@ namespace CarRental.DataAccess.Tests.Common
 
         [DataRow(MoneyType.MN, 50000)]
         [DataRow(MoneyType.Euro, 6000)]
+        [Priority(1)]
         [TestMethod]
         public void Can_Create_Price(MoneyType moneyType, double value)
         {
@@ -43,7 +44,7 @@ namespace CarRental.DataAccess.Tests.Common
         }
 
         [DataRow(1)]
-        [Priority(1)]
+        [Priority(2)]
         [TestMethod]
         public void Can_Get_Price(int id)
         {
@@ -59,7 +60,7 @@ namespace CarRental.DataAccess.Tests.Common
         }
 
         [DataRow(1, MoneyType.USD, 6200)]
-        [Priority(1)]
+        [Priority(2)]
         [TestMethod]
         public void Can_Update_Price(int id, double value, MoneyType moneyType)
         {

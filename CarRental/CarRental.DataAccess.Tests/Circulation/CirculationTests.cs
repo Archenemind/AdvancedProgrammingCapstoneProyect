@@ -26,7 +26,7 @@ namespace CarRental.DataAccess.Tests.Circulation
         }
 
         [DataRow("Peugeot", "jenfwnfwfoiew", "2403295jr9209r2", 1, 1)]
-        [Priority(1)]
+        [Priority(6)]
         [TestMethod]
         public void Can_Create_Circulation(string model, string plate, string motorNumber, int insuranceId, int somatonId)
         {
@@ -53,7 +53,7 @@ namespace CarRental.DataAccess.Tests.Circulation
         }
 
         [DataRow(1)]
-        [Priority(2)]
+        [Priority(7)]
         [TestMethod]
         public void Can_Get_Circulation(int id)
         {
@@ -69,7 +69,7 @@ namespace CarRental.DataAccess.Tests.Circulation
         }
 
         [DataRow(1, "iug98ugf8ti", "2024-03-16T12:00:00")]
-        [Priority(2)]
+        [Priority(7)]
         [TestMethod]
         public void Can_Update_Circulation(int id, string vin, string expirationDateString)
         {
