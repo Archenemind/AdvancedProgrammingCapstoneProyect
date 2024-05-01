@@ -77,9 +77,9 @@ namespace CarRental.DataAccess.Tests.Supplements
             _supplementRepository.UpdateSupplement(loadedSupplement);
 
             //Assert
-            var modifyedSupplement = _supplementRepository.GetSupplement(loadedSupplement.Id);
+            var modifiedSupplement = _supplementRepository.GetSupplement(loadedSupplement.Id);
             _supplementRepository.CommitTransaction();
-            Assert.AreEqual(modifyedSupplement.Description, description);
+            Assert.AreEqual(modifiedSupplement.Description, description);
         }
 
         [DataRow(1)]

@@ -136,6 +136,7 @@ namespace CarRental.DataAccess.Concrete
             modelBuilder.Entity<Vehicle>().HasOne(r => r.Insurance).WithOne(i => i.Vehicle);
             modelBuilder.Entity<Vehicle>().HasOne(r => r.Somaton).WithOne();
             modelBuilder.Entity<Vehicle>().HasOne(r => r.Circulation).WithOne();
+            modelBuilder.Entity<Supplement>().HasOne(r => r.Price).WithOne();
             modelBuilder.Entity<Motorcycle>().ToTable("Motorcycles");
 
             modelBuilder.Entity<Car>().ToTable("Cars");

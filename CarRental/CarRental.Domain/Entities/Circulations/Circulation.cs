@@ -69,7 +69,6 @@ namespace CarRental.Domain.Entities.Circulations
         /// <param name="motorNumber"></param>
         /// <param name="insurance"></param>
         /// <param name="somaton"></param>
-        /// <param name="vin"></param>
         public Circulation(string model, string plate, string motorNumber, Insurance insurance, Somaton somaton)
         {
             Model = model;

@@ -170,7 +170,8 @@ namespace CarRental.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PriceId");
+                    b.HasIndex("PriceId")
+                        .IsUnique();
 
                     b.HasIndex("ReservationId");
 
@@ -263,8 +264,8 @@ namespace CarRental.DataAccess.Migrations
             modelBuilder.Entity("CarRental.Domain.Entities.Supplements.Supplement", b =>
                 {
                     b.HasOne("CarRental.Domain.Entities.Common.Price", "Price")
-                        .WithMany()
-                        .HasForeignKey("PriceId")
+                        .WithOne()
+                        .HasForeignKey("CarRental.Domain.Entities.Supplements.Supplement", "PriceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

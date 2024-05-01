@@ -7,9 +7,8 @@ namespace CarRental.ConsoleApp
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
             Console.WriteLine("Presione una tecla para conectar");
             Console.ReadKey();
 
@@ -41,7 +40,7 @@ namespace CarRental.ConsoleApp
             }
 
             Console.WriteLine("Presione una tecla para obtener el precio");
-            //Console.ReadKey();
+            Console.ReadKey();
             var getResponse = client.GetPrice(new GetRequest() { Id = 1 });
             if (getResponse.Price is null)
             {
@@ -52,7 +51,6 @@ namespace CarRental.ConsoleApp
             else
             {
                 Console.WriteLine($"Obtención exitosa {getResponse.Price.Value} {getResponse.Price.MoneyType.ToString()}");
-
             }
 
             Console.WriteLine("Presione una tecla para modificar el precio");
@@ -76,10 +74,7 @@ namespace CarRental.ConsoleApp
                 Console.WriteLine($"Eliminación exitosa.");
             }
 
-
             channel.Dispose();
-
         }
-
     }
 }

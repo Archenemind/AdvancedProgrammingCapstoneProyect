@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CarRental.DataAccess.Migrations
 {
-    public partial class d : Migration
+    public partial class S : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -253,7 +253,8 @@ namespace CarRental.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Supplements_PriceId",
                 table: "Supplements",
-                column: "PriceId");
+                column: "PriceId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Supplements_ReservationId",

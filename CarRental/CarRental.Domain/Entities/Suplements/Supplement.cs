@@ -10,10 +10,13 @@ namespace CarRental.Domain.Entities.Supplements
     /// </summary>
     public class Supplement : Entity
     {
-        /// <summary>
-        /// Precio del suplemento
-        /// </summary>
+        [NotMapped]
         public Price Price { get; set; }
+
+        /// <summary>
+        /// Identificador del precio
+        /// </summary>
+        public int PriceId { get; set; }
 
         /// <summary>
         /// Reservacion del suplemento

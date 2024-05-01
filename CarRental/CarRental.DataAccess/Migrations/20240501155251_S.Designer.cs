@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRental.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240402154355_initial")]
-    partial class initial
+    [Migration("20240501155251_S")]
+    partial class S
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -172,7 +172,8 @@ namespace CarRental.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PriceId");
+                    b.HasIndex("PriceId")
+                        .IsUnique();
 
                     b.HasIndex("ReservationId");
 
@@ -211,8 +212,6 @@ namespace CarRental.DataAccess.Migrations
                     b.HasIndex("InsuranceId")
                         .IsUnique();
 
-                    b.HasIndex("PriceId");
-
                     b.HasIndex("SomatonId")
                         .IsUnique();
 
@@ -222,9 +221,6 @@ namespace CarRental.DataAccess.Migrations
             modelBuilder.Entity("CarRental.Domain.Entities.Persons.Client", b =>
                 {
                     b.HasBaseType("CarRental.Domain.Entities.Persons.Person");
-
-                    b.Property<int>("Reservation")
-                        .HasColumnType("INTEGER");
 
                     b.ToTable("Clients", (string)null);
                 });
@@ -270,8 +266,8 @@ namespace CarRental.DataAccess.Migrations
             modelBuilder.Entity("CarRental.Domain.Entities.Supplements.Supplement", b =>
                 {
                     b.HasOne("CarRental.Domain.Entities.Common.Price", "Price")
-                        .WithMany()
-                        .HasForeignKey("PriceId")
+                        .WithOne()
+                        .HasForeignKey("CarRental.Domain.Entities.Supplements.Supplement", "PriceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -300,12 +296,6 @@ namespace CarRental.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CarRental.Domain.Entities.Common.Price", "Price")
-                        .WithMany()
-                        .HasForeignKey("PriceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CarRental.Domain.Entities.Somatons.Somaton", "Somaton")
                         .WithOne()
                         .HasForeignKey("CarRental.Domain.Entities.Vehicles.Vehicle", "SomatonId")
@@ -315,8 +305,6 @@ namespace CarRental.DataAccess.Migrations
                     b.Navigation("Circulation");
 
                     b.Navigation("Insurance");
-
-                    b.Navigation("Price");
 
                     b.Navigation("Somaton");
                 });
