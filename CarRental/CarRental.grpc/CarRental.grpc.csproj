@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<Protobuf Include="*.proto" GrpcServices="Both" />
+		<Protobuf Include ="client.proto" GrpcServices ="Both"/>
 	</ItemGroup>
 
 	<ItemGroup>

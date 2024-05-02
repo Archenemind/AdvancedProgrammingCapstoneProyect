@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "CarRental.grpc";
+
+package grpc;
+
+import "common.proto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+
+service Client{
+	rpc CreateClient (CreateClientRequest) returns (ClientDTO);
+	rpc GetClient(GetRequest) returns(NullableClientDTO);
+	rpc UpdateClient(ClientDTO) returns (google.protobuf.Empty);
+  rpc DeleteClient(ClientDTO) returns (google.protobuf.Empty);
+}
+
+message ClientDTO{
+	int32 id = 1;
+	string name = 2;
+	string lastName = 3;
+	string CI = 4;
+	string countryName = 5;
+	string phone = 6;
+}
+
+message NullableClientDTO{
+	oneof kind{
+		google.protobuf.NullValue null = 1;
+		ClientDTO client = 2;
+	}
+}
+
+message CreateClientRequest{
+	string name = 1;
+	string lastName = 2;
+	string CI = 3;
+	string countryName = 4;
+	string phone = 5;
+}

@@ -9,7 +9,6 @@ namespace CarRental.Services.Services
 {
     public class PriceService : Price.PriceBase
     {
-
         private IPriceRepository _priceRepository;
         private IMapper _mapper;
 
@@ -59,6 +58,5 @@ namespace CarRental.Services.Services
 
             return Task.FromResult(new Empty());
         }
-
     }
 }

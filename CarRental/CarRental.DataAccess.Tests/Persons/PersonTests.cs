@@ -20,7 +20,7 @@ namespace CarRental.DataAccess.Tests.Persons
 
         public PersonTests()
         {
-            _personRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString()); ;
+            _personRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
         [DataRow("Carlos", "Garcia", "0102", "Cuba", "573277777775")]
@@ -32,6 +32,8 @@ namespace CarRental.DataAccess.Tests.Persons
 
             // Execute
             var personDB = _personRepository.CreateClient(name, lastName, iD);
+            //personDB.
+
             personDB.CountryName = countryName;
             personDB.Phone = phone;
             _personRepository.PartialCommit();

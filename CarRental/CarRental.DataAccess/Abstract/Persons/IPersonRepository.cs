@@ -31,7 +31,6 @@ namespace CarRental.DataAccess.Abstract.Persons
         /// <param name="lastName">Apellido</param>
         /// <param name="iD">Identificador</param>
         /// <param name="countryName">Nombre del pais</param>
-        /// <param name="role">Rol</param>
         /// <returns></returns>
         Client CreateClient(string name, string lastName, string iD);
 

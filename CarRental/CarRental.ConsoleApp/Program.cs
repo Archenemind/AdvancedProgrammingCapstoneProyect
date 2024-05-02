@@ -16,6 +16,8 @@ namespace CarRental.ConsoleApp
             if (channel is null)
             {
                 Console.WriteLine("Cannot connect");
+                Console.WriteLine("Press a key to continue");
+                Console.ReadKey();
                 channel.Dispose();
                 return;
             }
@@ -24,12 +26,12 @@ namespace CarRental.ConsoleApp
             {
                 Console.Clear();
 
-                Console.WriteLine("Menu:\n\n\n");
+                Console.WriteLine("Menu:\n\n");
                 Console.WriteLine("Press 1 for price options");
                 Console.WriteLine("Press 2 for vehicle options");
-                Console.WriteLine("Press 3 for person options");
+                Console.WriteLine("Press 3 for client options");
                 Console.WriteLine("Press 4 for reservation options");
-                Console.WriteLine("Press 5 to exit");
+                Console.WriteLine("Press 5 to exit\n");
 
                 string? option = Convert.ToString(Console.ReadLine());
 
@@ -38,6 +40,11 @@ namespace CarRental.ConsoleApp
                     case "1":
                         CarRental.grpc.Price.PriceClient client = new CarRental.grpc.Price.PriceClient(channel);
                         PriceMenu(client);
+                        break;
+
+                    case "3":
+                        CarRental.grpc.Client.ClientClient clientClient = new CarRental.grpc.Client.ClientClient(channel);
+                        ClientMenu(clientClient);
                         break;
 
                     case "5":
