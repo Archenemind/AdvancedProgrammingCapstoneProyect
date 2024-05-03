@@ -28,8 +28,8 @@ message ClientDTO{
 
 message NullableClientDTO{
 	oneof kind{
-		google.protobuf.NullValue null = 1;
-		ClientDTO client = 2;
+		ClientDTO client = 1;
+		string name = 2;
 	}
 }
 

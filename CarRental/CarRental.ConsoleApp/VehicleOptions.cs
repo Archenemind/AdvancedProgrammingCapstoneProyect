@@ -1,78 +1,75 @@
-﻿using Google.Protobuf.WellKnownTypes;
+﻿using CarRental.grpc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CarRental.Domain.Entities.Types;
-using Grpc.Net.Client;
-using System.Net;
-using CarRental.grpc;
-using System.Threading.Channels;
 
 namespace CarRental.ConsoleApp
 {
     internal partial class Program
     {
-        internal static void ClientMenu(CarRental.grpc.Client.ClientClient client)
+        internal static void VehicleMenu(CarRental.grpc.Car.CarClient car)
         {
-            ClientDTO? createResponse = null;
+            CarDTO? createResponse = null;
             string? SelectedOption = null;
-            while (SelectedOption != "5")
+            while (SelectedOption != "9")
             {
                 Console.Clear();
 
-                Console.WriteLine("Client Menu:\n\n");
-                Console.WriteLine("Press 1 for creating a client");
-                Console.WriteLine("Press 2 for getting a client");
-                Console.WriteLine("Press 3 for updating a client");
-                Console.WriteLine("Press 4 deleting a client");
-                Console.WriteLine("Press 5 to go back");
+                Console.WriteLine("Vehicle Menu:\n\n");
+                Console.WriteLine("Press 1 for creating a car");
+                Console.WriteLine("Press 2 for getting a car");
+                Console.WriteLine("Press 3 for updating a car");
+                Console.WriteLine("Press 4 deleting a car");
+                Console.WriteLine("Press 5 for creating a motorcycle");
+                Console.WriteLine("Press 6 for getting a motorcycle");
+                Console.WriteLine("Press 7 for updating a motorcycle");
+                Console.WriteLine("Press 8 deleting a motorcycle");
+                Console.WriteLine("Press 9 to go back");
 
                 SelectedOption = Convert.ToString(Console.ReadLine());
 
                 switch (SelectedOption)
                 {
                     case "1":
-                        createResponse = client.CreateClient(new CreateClientRequest() { Name = "Carlos", LastName = "Garcia", CI = "123456789", CountryName = "Cuba", Phone = "12345645676" });
+                        createResponse = car.CreateCar(new CreateCarRequest() { CirculationId = 1, Color = 0, Color2 = 0, InsuranceId = 1, SomatonId = 1, PriceId = 1, HasHairConditioner = 0, BrandName = "chevrolet", FabricationDate = "Jan 1, 2009" });
                         if (createResponse is null)
                         {
-                            Console.WriteLine("Cannot create client");
+                            Console.WriteLine("Cannot create car");
                             return;
                         }
                         else
                         {
-                            Console.WriteLine("\bCreated new client.\b");
+                            Console.WriteLine("\bCreated new car.\b");
                             Console.WriteLine("\nPress a new key to continue");
                             Console.ReadKey();
                         }
                         break;
 
                     case "2":
-                        var getResponse = client.GetClient(new GetRequest() { Id = 1 });
-
-                        if (getResponse.Client is null)
+                        var getResponse = car.GetCar(new GetRequest() { Id = 1 });
+                        if (getResponse.Car is null)
                         {
-                            Console.WriteLine("Cannot get client");
+                            Console.WriteLine("Cannot get car");
                             Console.WriteLine("\nPress a new key to continue");
                             Console.ReadKey();
                             return;
                         }
                         else
                         {
-                            Console.WriteLine($"Client obtained {getResponse.Client.Name} {getResponse.Client.LastName}");
+                            Console.WriteLine("Car obtained");
                             Console.WriteLine("\nPress a new key to continue");
                             Console.ReadKey();
                         }
                         break;
 
                     case "3":
-                        createResponse.CountryName = "USA";
-                        createResponse.Phone = "01";
-                        client.UpdateClient(createResponse);
+                        createResponse.HasHairConditioner = 1;
+                        car.UpdateCar(createResponse);
 
-                        var updatedGetResponse = client.GetClient(new GetRequest() { Id = createResponse.Id });
-                        if (updatedGetResponse is not null && updatedGetResponse.KindCase == NullableClientDTO.KindOneofCase.Client && updatedGetResponse.Client.CountryName == "USA" && updatedGetResponse.Client.Phone == "01")
+                        var updatedGetResponse = car.GetCar(new GetRequest() { Id = createResponse.Id });
+                        if (updatedGetResponse is not null && updatedGetResponse.KindCase == NullableCarDTO.KindOneofCase.Car && updatedGetResponse.Car.HasHairConditioner == 1)
                         {
                             Console.WriteLine("Successfully modified");
                             Console.WriteLine("\nPress a new key to continue");
@@ -87,9 +84,9 @@ namespace CarRental.ConsoleApp
                         break;
 
                     case "4":
-                        client.DeleteClient(createResponse);
-                        var deletedGetResponse = client.GetClient(new GetRequest() { Id = createResponse.Id });
-                        if (deletedGetResponse is null || deletedGetResponse.KindCase != NullableClientDTO.KindOneofCase.Client)
+                        car.DeleteCar(createResponse);
+                        var deletedGetResponse = car.GetCar(new GetRequest() { Id = createResponse.Id });
+                        if (deletedGetResponse is null || deletedGetResponse.KindCase != NullableCarDTO.KindOneofCase.Car)
                         {
                             Console.WriteLine("Successfully deleted");
                             Console.WriteLine("\nPress a new key to continue");
@@ -104,7 +101,7 @@ namespace CarRental.ConsoleApp
 
                         break;
 
-                    case "5":
+                    case "9":
                         break;
 
                     default:

@@ -23,10 +23,6 @@ namespace CarRental.DataAccess.Abstract.Vehicles
         /// <param name="fabricationDate">Fecha de fabricacion</param>
         /// <param name="insurance">Seguro</param>
         /// <param name="somaton">Somaton</param>
-        /// <param name="price">precio</param>
-        /// <param name="numberOfVelocities">\Numero de velocidades</param>
-        /// <param name="maxVelocity">Maxima velocidad</param>
-        /// <param name="hasAirConditioning">Aire acondicianado</param>
         /// <returns></returns>
         Car CreateCar(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton);
 
@@ -35,15 +31,8 @@ namespace CarRental.DataAccess.Abstract.Vehicles
         /// </summary>
         /// <param name="brandName">Nombre de la marca</param>
         /// <param name="fabricationDate">Fecha de fabricacion</param>
-        /// <param name="color">color</param>
         /// <param name="insurance">Seguro</param>
         /// <param name="somaton">Somaton</param>
-        /// <param name="model">modelo</param>
-        /// <param name="passengerCapacity">Capacidad de pasajeros</param>
-        /// <param name="price">precio</param>
-        /// <param name="wheelAmount">numero de ruedas</param>
-        /// <param name="weight">peso</param>
-        /// <param name="hasSideCar">Tiene carrito</param>
         /// <returns></returns>
         Motorcycle CreateMotorcycle(string brandName, DateTime fabricationDate, Insurance insurance, Somaton somaton);
 

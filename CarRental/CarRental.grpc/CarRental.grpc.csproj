@@ -8,7 +8,10 @@
 
 	<ItemGroup>
 		<Protobuf Include="*.proto" GrpcServices="Both" />
-		<Protobuf Include ="client.proto" GrpcServices ="Both"/>
+		<None Remove="car.proto" />
+		<None Remove="motorcycle.proto" />
+		<None Remove="reservation.proto" />
+		<Protobuf Include="client.proto" GrpcServices="Both" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -33,7 +33,7 @@ namespace CarRental.DataAccess.Tests.Persons
             // Execute
             var personDB = _personRepository.CreateClient(name, lastName, iD);
             //personDB.
-
+            Console.WriteLine(personDB.Name);
             personDB.CountryName = countryName;
             personDB.Phone = phone;
             _personRepository.PartialCommit();

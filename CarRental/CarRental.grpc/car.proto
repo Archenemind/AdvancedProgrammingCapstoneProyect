@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option csharp_namespace = "CarRental.grpc";
+
+package grpc;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "common.proto";
+
+service Car {
+  
+  rpc CreateCar (CreateCarRequest) returns (CarDTO);
+  rpc GetCar (GetRequest) returns (NullableCarDTO);
+  rpc UpdateCar(CarDTO) returns (google.protobuf.Empty);
+  rpc DeleteCar(CarDTO) returns (google.protobuf.Empty);
+
+}
+
+message CarDTO{
+	int32 id = 1;
+	int32 circulationId= 2;
+	int32 color= 3;
+	int32 color2 = 4;
+	int32 insuranceId = 5;
+	int32 somatonId = 6;
+	int32 priceId = 7;
+	int32 hasHairConditioner = 8;
+}
+
+message NullableCarDTO{
+	oneof kind{
+		google.protobuf.NullValue null = 1;
+		CarDTO car= 2;
+	}
+}
+
+message CreateCarRequest{
+	int32 circulationId= 1;
+	string brandName = 8;
+	string fabricationDate = 9;
+	int32 color= 2;
+	int32 color2 = 3;
+	int32 insuranceId = 4;
+	int32 somatonId = 5;
+	int32 priceId = 6;
+	int32 hasHairConditioner = 7;
+}

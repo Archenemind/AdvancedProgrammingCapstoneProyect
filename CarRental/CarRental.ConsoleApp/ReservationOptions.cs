@@ -1,32 +1,27 @@
-﻿using Google.Protobuf.WellKnownTypes;
+﻿using CarRental.grpc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CarRental.Domain.Entities.Types;
-using Grpc.Net.Client;
-using System.Net;
-using CarRental.grpc;
-using System.Threading.Channels;
 
 namespace CarRental.ConsoleApp
 {
     internal partial class Program
     {
-        internal static void ClientMenu(CarRental.grpc.Client.ClientClient client)
+        internal static void ReservationMenu(CarRental.grpc.Reservation.ReservationClient reservation)
         {
-            ClientDTO? createResponse = null;
+            ReservationDTO? createResponse = null;
             string? SelectedOption = null;
             while (SelectedOption != "5")
             {
                 Console.Clear();
 
-                Console.WriteLine("Client Menu:\n\n");
-                Console.WriteLine("Press 1 for creating a client");
-                Console.WriteLine("Press 2 for getting a client");
-                Console.WriteLine("Press 3 for updating a client");
-                Console.WriteLine("Press 4 deleting a client");
+                Console.WriteLine("Reservation Menu:\n\n");
+                Console.WriteLine("Press 1 for creating a reservation");
+                Console.WriteLine("Press 2 for getting a reservation");
+                Console.WriteLine("Press 3 for updating a reservation");
+                Console.WriteLine("Press 4 deleting a reservation");
                 Console.WriteLine("Press 5 to go back");
 
                 SelectedOption = Convert.ToString(Console.ReadLine());
@@ -34,45 +29,44 @@ namespace CarRental.ConsoleApp
                 switch (SelectedOption)
                 {
                     case "1":
-                        createResponse = client.CreateClient(new CreateClientRequest() { Name = "Carlos", LastName = "Garcia", CI = "123456789", CountryName = "Cuba", Phone = "12345645676" });
+                        createResponse = reservation.CreateReservation(new CreateReservationRequest() { ClientId = 1, EndDate = "", Status = StatusTypes.Requested });
                         if (createResponse is null)
                         {
-                            Console.WriteLine("Cannot create client");
+                            Console.WriteLine("Cannot create reservation");
                             return;
                         }
                         else
                         {
-                            Console.WriteLine("\bCreated new client.\b");
+                            Console.WriteLine("\bCreated new reservation.\b");
                             Console.WriteLine("\nPress a new key to continue");
                             Console.ReadKey();
                         }
                         break;
 
                     case "2":
-                        var getResponse = client.GetClient(new GetRequest() { Id = 1 });
-
-                        if (getResponse.Client is null)
+                        var getResponse = reservation.GetReservation(new GetRequest() { Id = 1 });
+                        if (getResponse.Reservation is null)
                         {
-                            Console.WriteLine("Cannot get client");
+                            Console.WriteLine("Cannot get reservation");
                             Console.WriteLine("\nPress a new key to continue");
                             Console.ReadKey();
                             return;
                         }
                         else
                         {
-                            Console.WriteLine($"Client obtained {getResponse.Client.Name} {getResponse.Client.LastName}");
+                            Console.WriteLine($"Reservation obtained");
                             Console.WriteLine("\nPress a new key to continue");
                             Console.ReadKey();
                         }
                         break;
 
                     case "3":
-                        createResponse.CountryName = "USA";
-                        createResponse.Phone = "01";
-                        client.UpdateClient(createResponse);
+                        createResponse.EndDate = "USA";
+                        createResponse.Status = StatusTypes.Cancelled;
+                        reservation.UpdateReservation(createResponse);
 
-                        var updatedGetResponse = client.GetClient(new GetRequest() { Id = createResponse.Id });
-                        if (updatedGetResponse is not null && updatedGetResponse.KindCase == NullableClientDTO.KindOneofCase.Client && updatedGetResponse.Client.CountryName == "USA" && updatedGetResponse.Client.Phone == "01")
+                        var updatedGetResponse = reservation.GetReservation(new GetRequest() { Id = createResponse.Id });
+                        if (updatedGetResponse is not null && updatedGetResponse.KindCase == NullableReservationDTO.KindOneofCase.Reservation && updatedGetResponse.Reservation.EndDate == "USA" && updatedGetResponse.Reservation.Status == StatusTypes.Cancelled)
                         {
                             Console.WriteLine("Successfully modified");
                             Console.WriteLine("\nPress a new key to continue");
@@ -87,9 +81,9 @@ namespace CarRental.ConsoleApp
                         break;
 
                     case "4":
-                        client.DeleteClient(createResponse);
-                        var deletedGetResponse = client.GetClient(new GetRequest() { Id = createResponse.Id });
-                        if (deletedGetResponse is null || deletedGetResponse.KindCase != NullableClientDTO.KindOneofCase.Client)
+                        reservation.DeleteReservation(createResponse);
+                        var deletedGetResponse = reservation.GetReservation(new GetRequest() { Id = createResponse.Id });
+                        if (deletedGetResponse is null || deletedGetResponse.KindCase != NullableReservationDTO.KindOneofCase.Reservation)
                         {
                             Console.WriteLine("Successfully deleted");
                             Console.WriteLine("\nPress a new key to continue");

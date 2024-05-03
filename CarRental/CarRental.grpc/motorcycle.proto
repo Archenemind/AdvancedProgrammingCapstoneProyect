@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option csharp_namespace = "CarRental.grpc";
+
+package grpc;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "common.proto";
+
+service Motorcycle {
+  
+  rpc CreateMotorcycle (CreateMotorcycleRequest) returns (MotorcycleDTO);
+  rpc GetMotorcycle (GetRequest) returns (NullableMotorcycleDTO);
+  rpc UpdateMotorcycle(MotorcycleDTO) returns (google.protobuf.Empty);
+  rpc DeleteMotorcycle(MotorcycleDTO) returns (google.protobuf.Empty);
+
+}
+
+message MotorcycleDTO{
+	int32 id = 1;
+	int32 circulationId= 2;
+	int32 color= 3;
+	int32 color2 = 4;
+	int32 insuranceId = 5;
+	int32 somatonId = 6;
+	int32 priceId = 7;
+	int32 hasSideCar = 8;
+}
+
+message NullableMotorcycleDTO{
+	oneof kind{
+		google.protobuf.NullValue null = 1;
+		MotorcycleDTO motorcycle= 2;
+	}
+}
+
+message CreateMotorcycleRequest{
+	int32 circulationId= 1;
+	int32 color= 2;
+	int32 color2 = 3;
+	int32 insuranceId = 4;
+	int32 somatonId = 5;
+	int32 priceId = 6;
+	int32 hasSideCar = 7;
+	string brandName = 8;
+	string fabricationDate = 9;
+}

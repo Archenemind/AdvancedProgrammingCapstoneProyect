@@ -28,7 +28,7 @@ namespace CarRental.Domain.Entities.Reservations
         /// <summary>
         /// Identificador unico del cliente
         /// </summary>
-        private int ClientId { get; set; }
+        public int ClientId { get; set; }
 
         /// <summary>
         /// Vehículo a rentar.

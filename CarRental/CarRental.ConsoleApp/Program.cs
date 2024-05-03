@@ -42,9 +42,20 @@ namespace CarRental.ConsoleApp
                         PriceMenu(client);
                         break;
 
+                    case "2":
+                        CarRental.grpc.Car.CarClient carClient = new CarRental.grpc.Car.CarClient(channel);
+
+                        VehicleMenu(carClient);
+                        break;
+
                     case "3":
                         CarRental.grpc.Client.ClientClient clientClient = new CarRental.grpc.Client.ClientClient(channel);
                         ClientMenu(clientClient);
+                        break;
+
+                    case "4":
+                        CarRental.grpc.Reservation.ReservationClient reservationClient = new CarRental.grpc.Reservation.ReservationClient(channel);
+                        ReservationMenu(reservationClient);
                         break;
 
                     case "5":

@@ -19,7 +19,7 @@ namespace CarRental.Domain.Entities.Vehicles
         /// <summary>
         /// Tiene sidecar
         /// </summary>
-        private bool HasSideCar { get; set; }
+        public bool HasSideCar { get; set; }
 
         /// <summary>
         /// Constructor requerido por EntityFrameworkCore para migraciones

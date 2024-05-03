@@ -7,6 +7,7 @@ using CarRental.DataAccess.Repositories;
 using CarRental.Services.Services;
 
 using CarRental.DataAccess.Abstract.Persons;
+using CarRental.DataAccess.Abstract.Vehicles;
 
 namespace CarRental.Services
 {
@@ -25,6 +26,7 @@ namespace CarRental.Services
             builder.Services.AddSingleton("Data Source=Data.sqlite");
             builder.Services.AddScoped<IPriceRepository, ApplicationRepository>();
             builder.Services.AddScoped<IPersonRepository, ApplicationRepository>();
+            builder.Services.AddScoped<IVehicleRepository, ApplicationRepository>();
 
             var app = builder.Build();
 
@@ -35,6 +37,14 @@ namespace CarRental.Services
             app.MapGrpcService<ClientService>();
             app.MapGet("/client", () => "");
 
+            app.MapGrpcService<CarService>();
+            app.MapGet("/car", () => "");
+
+            app.MapGrpcService<MotorcycleService>();
+            app.MapGet("/motorcycle", () => "");
+
+            app.MapGrpcService<ReservationService>();
+            app.MapGet("/reservation", () => "");
             app.Run();
         }
     }
