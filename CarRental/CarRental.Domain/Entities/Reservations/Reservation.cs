@@ -17,6 +17,8 @@ namespace CarRental.Domain.Entities.Reservations
     /// </summary>
     public class Reservation : Entity
     {
+        private int vehicleId;
+
         #region Properties
 
         /// <summary>
@@ -39,7 +41,7 @@ namespace CarRental.Domain.Entities.Reservations
         /// <summary>
         /// Identificador unico del vehiculo
         /// </summary>
-        private int VehicleId { get; set; }
+        public int VehicleId { get => vehicleId; set => vehicleId = value; }
 
         /// <summary>
         /// Fecha de inicio de la renta.

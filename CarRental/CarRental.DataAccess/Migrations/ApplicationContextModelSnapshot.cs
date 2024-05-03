@@ -93,13 +93,32 @@ namespace CarRental.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Age")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
+
+                    b.Property<string>("CI")
+                    .IsRequired()
+                    .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -112,7 +131,10 @@ namespace CarRental.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ClientId1")
+                    b.Property<int>("ClientId")
+                        .HasColumnType("INTEGER");
+                    
+                    b.Property<int>("VehicleId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("EndDate")
@@ -123,7 +145,7 @@ namespace CarRental.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId1");
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Reservations", (string)null);
                 });
@@ -247,6 +269,9 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.HasBaseType("CarRental.Domain.Entities.Vehicles.Vehicle");
 
+                    b.Property<bool>("HasSideCar")
+                        .HasColumnType("INTEGER");
+
                     b.ToTable("Motorcycles", (string)null);
                 });
 
@@ -254,7 +279,7 @@ namespace CarRental.DataAccess.Migrations
                 {
                     b.HasOne("CarRental.Domain.Entities.Persons.Client", "Client")
                         .WithMany("Reservations")
-                        .HasForeignKey("ClientId1")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -98,7 +98,7 @@ namespace CarRental.DataAccess.Tests.Vehicles
         }
 
         [DataRow(1)]
-        [Priority(30)]
+        [Priority(28)]
         [TestMethod]
         public void Can_Delete_Vehicle(int id)
         {

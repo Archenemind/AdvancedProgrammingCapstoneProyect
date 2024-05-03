@@ -23,7 +23,8 @@ namespace CarRental.DataAccess.Repositories
         public Client CreateClient(string name, string lastName, string iD)
         {
             Client client = new(name, lastName, iD);
-            _context.Add(client); return client;
+            _context.Add(client);
+            return client;
         }
 
         public P? GetPerson<P>(int id) where P : Person
@@ -48,7 +49,7 @@ namespace CarRental.DataAccess.Repositories
 
         public void UpdatePerson(Person person)
         {
-            _context.Update(person);
+            _context.Set<Person>().Update(person);
         }
 
         public void DeletePerson(Person person)

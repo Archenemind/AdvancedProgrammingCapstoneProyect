@@ -83,7 +83,7 @@ namespace CarRental.DataAccess.Tests.Supplements
         }
 
         [DataRow(1)]
-        [Priority(30)]
+        [Priority(6)]
         [TestMethod]
         public void Can_Delete_Supplement(int id)
         {

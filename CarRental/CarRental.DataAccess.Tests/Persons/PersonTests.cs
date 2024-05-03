@@ -3,6 +3,7 @@ using CarRental.DataAccess.Abstract.Persons;
 using CarRental.DataAccess.Repositories;
 using CarRental.DataAccess.Tests.Utilities;
 using CarRental.Domain.Entities.Persons;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System;
@@ -23,9 +24,9 @@ namespace CarRental.DataAccess.Tests.Persons
             _personRepository = new ApplicationRepository(ConnectionStringProvider.GetConnectionString());
         }
 
-        [DataRow("Carlos", "Garcia", "0102", "Cuba", "573277777775")]
+        [DataRow("Carlos", "Garcia", "0102", "Cuba", "573277777775", 22, "algo@gmail.com")]
         [TestMethod]
-        public void Can_Create_Person(string name, string lastName, string iD, string countryName, string phone)
+        public void Can_Create_Person(string name, string lastName, string iD, string countryName, string phone, int age, string email)
         {
             // Arrange
             _personRepository.BeginTransaction();
@@ -33,9 +34,13 @@ namespace CarRental.DataAccess.Tests.Persons
             // Execute
             var personDB = _personRepository.CreateClient(name, lastName, iD);
             //personDB.
-            Console.WriteLine(personDB.Name);
+            personDB.Name = name;
+            personDB.LastName = lastName;
             personDB.CountryName = countryName;
             personDB.Phone = phone;
+            personDB.Age = age;
+            personDB.Email = email;
+
             _personRepository.PartialCommit();
             var loadedPerson = _personRepository.GetPerson<Client>(personDB.Id);
             _personRepository.CommitTransaction();

@@ -48,6 +48,7 @@ namespace CarRental.DataAccess.Tests.Reservations
 
             //Execute
             var reservationDB = _reservationRepository.CreateReservation(client, vehicle);
+            reservationDB.VehicleId = vehicleId;
             _reservationRepository.PartialCommit();
             Reservation? loadedReservation = _reservationRepository.GetReservation(reservationDB.Id);
             _reservationRepository.CommitTransaction();
@@ -60,7 +61,7 @@ namespace CarRental.DataAccess.Tests.Reservations
         }
 
         [DataRow(1)]
-        [Priority(12)]
+        [Priority(4)]
         [TestMethod]
         public void Can_Get_Reservation(int id)
         {
@@ -100,7 +101,7 @@ namespace CarRental.DataAccess.Tests.Reservations
         }
 
         [DataRow(1)]
-        [Priority(30)]
+        [Priority(7)]
         [TestMethod]
         public void Can_Delete_Reservation(int id)
         {

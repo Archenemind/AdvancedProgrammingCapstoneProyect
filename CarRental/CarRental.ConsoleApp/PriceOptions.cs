@@ -66,11 +66,11 @@ namespace CarRental.ConsoleApp
                         break;
 
                     case "3":
-                        createResponse.Value = 20;
+                        createResponse.Value = 20000;
                         client.UpdatePrice(createResponse);
 
                         var updatedGetResponse = client.GetPrice(new GetRequest() { Id = createResponse.Id });
-                        if (updatedGetResponse is not null && updatedGetResponse.KindCase == NullablePriceDTO.KindOneofCase.Price && updatedGetResponse.Price.Value == 20)
+                        if (updatedGetResponse is not null && updatedGetResponse.KindCase == NullablePriceDTO.KindOneofCase.Price && updatedGetResponse.Price.Value == 20000)
                         {
                             Console.WriteLine("Successfully modified");
                             Console.WriteLine("\nPress a new key to continue");

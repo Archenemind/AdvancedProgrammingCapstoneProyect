@@ -93,7 +93,7 @@ namespace CarRental.DataAccess.Tests.Circulation
         }
 
         [DataRow(1)]
-        [Priority(30)]
+        [Priority(29)]
         [TestMethod]
         public void Can_Delete_Circulation(int id)
         {

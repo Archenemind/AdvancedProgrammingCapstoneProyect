@@ -34,7 +34,7 @@ namespace CarRental.ConsoleApp
                 switch (SelectedOption)
                 {
                     case "1":
-                        createResponse = client.CreateClient(new CreateClientRequest() { Name = "Carlos", LastName = "Garcia", CI = "123456789", CountryName = "Cuba", Phone = "12345645676" });
+                        createResponse = client.CreateClient(new CreateClientRequest() { Name = "Carlos", LastName = "Garcia", CI = "123456789", CountryName = "Cuba", Phone = "12345645676", Email = "algo@gmail.com", Age = 22 });
                         if (createResponse is null)
                         {
                             Console.WriteLine("Cannot create client");

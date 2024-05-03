@@ -1,6 +1,7 @@
 using CarRental.Domain.Abstract;
 using CarRental.Domain.Entities.Common;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarRental.Domain.Entities.Persons
 {
@@ -12,29 +13,30 @@ namespace CarRental.Domain.Entities.Persons
         /// <summary>
         /// Nombre de la persona.
         /// </summary>
-        public string Name { get; }
+        [Column]
+        public string Name { get; set; }
 
         /// <summary>
         /// Apellido de la persona
         /// </summary>
-        public string LastName { get; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Edad de la persona.
         /// </summary>
-        public int Age { get; }
+        public int Age { get; set; }
 
         /// <summary>
         /// Identificador de la persona.
         /// </summary>
-        public string CI { get; }
+        public string CI { get; set; }
 
         public string CountryName { get; set; }
 
         /// <summary>
         /// Correo electronico de la persona.
         /// </summary>
-        private string Email { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// Numero de telefono de la persona.

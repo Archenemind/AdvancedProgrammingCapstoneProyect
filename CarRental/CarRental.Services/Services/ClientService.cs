@@ -26,6 +26,8 @@ namespace CarRental.Services.Services
             var client = _clientRepository.CreateClient(request.Name, request.LastName, request.CI);
             client.CountryName = request.CountryName;
             client.Phone = request.Phone;
+            client.Email = request.Email;
+            client.Age = request.Age;
             _clientRepository.CommitTransaction();
             return Task.FromResult(_mapper.Map<ClientDTO>(client));
         }
@@ -45,7 +47,7 @@ namespace CarRental.Services.Services
 
         public override Task<Empty> UpdateClient(ClientDTO request, ServerCallContext context)
         {
-            var modifiedClient = _mapper.Map<CarRental.Domain.Entities.Persons.Client>(request);
+            Domain.Entities.Persons.Client modifiedClient = _mapper.Map<Domain.Entities.Persons.Client>(request);
             _clientRepository.BeginTransaction();
             _clientRepository.UpdatePerson(modifiedClient);
             _clientRepository.CommitTransaction();

@@ -55,7 +55,8 @@ namespace CarRental.ConsoleApp
 
                     case "4":
                         CarRental.grpc.Reservation.ReservationClient reservationClient = new CarRental.grpc.Reservation.ReservationClient(channel);
-                        ReservationMenu(reservationClient);
+                        ReservationMenu
+                            (reservationClient);
                         break;
 
                     case "5":
