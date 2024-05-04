@@ -26,9 +26,10 @@ namespace CarRental.Services.Services
             _reservationRepository.BeginTransaction();
 
             CarRental.Domain.Entities.Persons.Client? client = ((IPersonRepository)_reservationRepository).GetPerson<Domain.Entities.Persons.Client>(request.ClientId);
-            Vehicle? vehicle = ((IVehicleRepository)_reservationRepository).GetVehicle<Domain.Entities.Vehicles.Car>(1);
+            Vehicle? vehicle = ((IVehicleRepository)_reservationRepository).GetVehicle<Domain.Entities.Vehicles.Car>(request.VehicleId);
 
             var reservation = _reservationRepository.CreateReservation(client, vehicle);
+            reservation.VehicleId = request.VehicleId;
             _reservationRepository.CommitTransaction();
             return Task.FromResult(_mapper.Map<ReservationDTO>(reservation));
         }

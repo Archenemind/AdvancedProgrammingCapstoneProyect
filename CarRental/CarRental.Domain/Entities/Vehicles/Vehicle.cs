@@ -34,7 +34,7 @@ namespace CarRental.Domain.Entities.Vehicles
         /// </summary>
         public int CirculationId { get; set; }
 
-        public string BrandName { get; }
+        public string BrandName { get; set; }
 
         public DateTime FabricationDate { get; }
 

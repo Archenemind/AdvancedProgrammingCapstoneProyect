@@ -27,6 +27,7 @@ message MotorcycleDTO{
 	int32 somatonId = 6;
 	int32 priceId = 7;
 	int32 hasSideCar = 8;
+	string brandName = 9;
 }
 
 message NullableMotorcycleDTO{

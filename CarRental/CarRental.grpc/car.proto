@@ -27,6 +27,7 @@ message CarDTO{
 	int32 somatonId = 6;
 	int32 priceId = 7;
 	int32 hasHairConditioner = 8;
+	string brandName = 9;
 }
 
 message NullableCarDTO{

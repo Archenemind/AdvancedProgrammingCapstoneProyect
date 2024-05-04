@@ -45,6 +45,7 @@ namespace CarRental.DataAccess.Tests.Vehicles
 
             // Execute
             var vehicleDB = _vehicleRepository.CreateCar(brandName, fabricationDate, insurance, somaton);
+            vehicleDB.BrandName = brandName;
             vehicleDB.SomatonId = somatonId;
             vehicleDB.InsuranceId = insuranceId;
             vehicleDB.PriceId = priceId;

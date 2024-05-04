@@ -136,6 +136,7 @@ namespace CarRental.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    BrandName = table.Column<string>(type: "TEXT", nullable: false),
                     CirculationId = table.Column<int>(type: "INTEGER", nullable: false),
                     Color = table.Column<int>(type: "INTEGER", nullable: false),
                     Color2 = table.Column<int>(type: "INTEGER", nullable: false),

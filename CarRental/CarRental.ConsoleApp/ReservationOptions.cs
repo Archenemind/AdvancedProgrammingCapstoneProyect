@@ -56,7 +56,7 @@ namespace CarRental.ConsoleApp
                         }
                         else
                         {
-                            Console.WriteLine($"Reservation obtained");
+                            Console.WriteLine($"Reservation obtained:\nClientId - {createResponse.ClientId}\nVehicleId - {createResponse.VehicleId}");
                             Console.WriteLine("\nPress a new key to continue");
                             Console.ReadKey();
                         }

@@ -61,7 +61,7 @@ namespace CarRental.ConsoleApp
                         }
                         else
                         {
-                            Console.WriteLine("Car obtained");
+                            Console.WriteLine($"Car obtained {getResponse.Car.BrandName}");
                             Console.WriteLine("\nPress a new key to continue");
                             Console.ReadKey();
                         }
@@ -132,7 +132,7 @@ namespace CarRental.ConsoleApp
                         }
                         else
                         {
-                            Console.WriteLine("Motorcycle obtained");
+                            Console.WriteLine($"Motorcycle obtained {getMotorcycleResponse.Motorcycle.BrandName}");
                             Console.WriteLine("\nPress a new key to continue");
                             Console.ReadKey();
                         }

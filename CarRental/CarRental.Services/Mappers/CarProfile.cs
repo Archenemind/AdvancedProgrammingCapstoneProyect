@@ -10,6 +10,7 @@ namespace CarRental.Services.Mappers
         {
             CreateMap<CarRental.Domain.Entities.Vehicles.Car, CarDTO>()
                 .ForMember(t => t.Id, o => o.MapFrom(s => s.Id))
+                //.ForMember(t => t., o => o.MapFrom(s => s.BrandName))
                 .ForMember(t => t.CirculationId, o => o.MapFrom(s => s.CirculationId))
                 .ForMember(t => t.Color, o => o.MapFrom(s => s.Color.ToArgb()))
                 .ForMember(t => t.Color2, o => o.MapFrom(s => s.Color2.ToArgb()))
