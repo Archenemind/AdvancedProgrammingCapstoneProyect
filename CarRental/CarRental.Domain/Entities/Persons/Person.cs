@@ -54,12 +54,12 @@ namespace CarRental.Domain.Entities.Persons
         /// </summary>
         /// <param name="name"></param>
         /// <param name="lastName"></param>
-        /// <param name="iD"></param>
-        public Person(string name, string lastName, string iD)
+        /// <param name="ci"></param>
+        public Person(string name, string lastName, string ci)
         {
             Name = name;
             LastName = lastName;
-            CI = iD;
+            CI = ci;
         }
     }
 }

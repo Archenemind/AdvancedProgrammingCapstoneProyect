@@ -8,6 +8,7 @@ using CarRental.Services.Services;
 
 using CarRental.DataAccess.Abstract.Persons;
 using CarRental.DataAccess.Abstract.Vehicles;
+using CarRental.DataAccess.Abstract.Reservations;
 
 namespace CarRental.Services
 {
@@ -27,6 +28,7 @@ namespace CarRental.Services
             builder.Services.AddScoped<IPriceRepository, ApplicationRepository>();
             builder.Services.AddScoped<IPersonRepository, ApplicationRepository>();
             builder.Services.AddScoped<IVehicleRepository, ApplicationRepository>();
+            builder.Services.AddScoped<IReservationRepository, ApplicationRepository>();
 
             var app = builder.Build();
 

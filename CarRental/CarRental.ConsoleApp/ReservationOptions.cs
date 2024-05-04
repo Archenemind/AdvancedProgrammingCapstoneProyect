@@ -28,8 +28,10 @@ namespace CarRental.ConsoleApp
 
                 switch (SelectedOption)
                 {
+                    ///Si se crea otra reservacion 2 reservaciones va a dar error
+                    ///ya que no pueden tener el mismo ClientId y VehicleId
                     case "1":
-                        createResponse = reservation.CreateReservation(new CreateReservationRequest() { ClientId = 1, EndDate = DateTime.Now.ToString(), Status = StatusTypes.Requested });
+                        createResponse = reservation.CreateReservation(new CreateReservationRequest() { ClientId = 1, VehicleId = 1, EndDate = DateTime.Now.ToString(), Status = StatusTypes.Requested });
                         if (createResponse is null)
                         {
                             Console.WriteLine("Cannot create reservation");
@@ -44,7 +46,7 @@ namespace CarRental.ConsoleApp
                         break;
 
                     case "2":
-                        var getResponse = reservation.GetReservation(new GetRequest() { Id = 1 });
+                        var getResponse = reservation.GetReservation(new GetRequest() { Id = createResponse.Id });
                         if (getResponse.Reservation is null)
                         {
                             Console.WriteLine("Cannot get reservation");
@@ -61,12 +63,12 @@ namespace CarRental.ConsoleApp
                         break;
 
                     case "3":
-                        createResponse.EndDate = "USA";
+                        createResponse.EndDate = DateTime.Now.ToString();
                         createResponse.Status = StatusTypes.Cancelled;
                         reservation.UpdateReservation(createResponse);
 
                         var updatedGetResponse = reservation.GetReservation(new GetRequest() { Id = createResponse.Id });
-                        if (updatedGetResponse is not null && updatedGetResponse.KindCase == NullableReservationDTO.KindOneofCase.Reservation && updatedGetResponse.Reservation.EndDate == "USA" && updatedGetResponse.Reservation.Status == StatusTypes.Cancelled)
+                        if (updatedGetResponse is not null && updatedGetResponse.KindCase == NullableReservationDTO.KindOneofCase.Reservation && updatedGetResponse.Reservation.EndDate == createResponse.EndDate && updatedGetResponse.Reservation.Status == StatusTypes.Cancelled)
                         {
                             Console.WriteLine("Successfully modified");
                             Console.WriteLine("\nPress a new key to continue");

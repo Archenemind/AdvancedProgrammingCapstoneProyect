@@ -6,7 +6,7 @@ namespace CarRental.Domain.Entities.Persons
 {
     /// <summary>
     /// Modela la clase usuario que puede ser
-    /// un un admin, un empleado, un proveedor.
+    /// un admin, un empleado, un proveedor.
     /// </summary>
     public class Users : Person
     {
@@ -26,10 +26,9 @@ namespace CarRental.Domain.Entities.Persons
         /// </summary>
         /// <param name="name">Nombre</param>
         /// <param name="lastName">Apellido</param>
-        /// <param name="iD">Identificador</param>
-        /// <param name="countryName">Nombre del pais</param>
+        /// <param name="ci">Identificador</param>
         /// <param name="role">Rol</param>
-        public Users(string name, string lastName, string iD, UserRoleType role) : base(name, lastName, iD)
+        public Users(string name, string lastName, string ci, UserRoleType role) : base(name, lastName, ci)
         {
             Role = role;
         }

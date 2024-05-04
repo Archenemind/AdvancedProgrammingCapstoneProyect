@@ -47,7 +47,7 @@ namespace CarRental.Services.Services
 
         public override Task<Empty> UpdateClient(ClientDTO request, ServerCallContext context)
         {
-            Domain.Entities.Persons.Client modifiedClient = _mapper.Map<Domain.Entities.Persons.Client>(request);
+            var modifiedClient = _mapper.Map<Domain.Entities.Persons.Client>(request);
             _clientRepository.BeginTransaction();
             _clientRepository.UpdatePerson(modifiedClient);
             _clientRepository.CommitTransaction();

@@ -23,8 +23,10 @@ namespace CarRental.Services.Services
 
         public override Task<ReservationDTO> CreateReservation(CreateReservationRequest request, ServerCallContext context)
         {
-            CarRental.Domain.Entities.Persons.Client client = ((IPersonRepository)_reservationRepository).GetPerson<CarRental.Domain.Entities.Persons.Client>(request.ClientId);
-            CarRental.Domain.Entities.Vehicles.Vehicle vehicle = ((IVehicleRepository)_reservationRepository).GetVehicle<CarRental.Domain.Entities.Vehicles.Car>(1);
+            _reservationRepository.BeginTransaction();
+
+            CarRental.Domain.Entities.Persons.Client? client = ((IPersonRepository)_reservationRepository).GetPerson<Domain.Entities.Persons.Client>(request.ClientId);
+            Vehicle? vehicle = ((IVehicleRepository)_reservationRepository).GetVehicle<Domain.Entities.Vehicles.Car>(1);
 
             var reservation = _reservationRepository.CreateReservation(client, vehicle);
             _reservationRepository.CommitTransaction();
