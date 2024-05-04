@@ -29,7 +29,7 @@ namespace CarRental.ConsoleApp
                 switch (SelectedOption)
                 {
                     case "1":
-                        createResponse = reservation.CreateReservation(new CreateReservationRequest() { ClientId = 1, EndDate = "", Status = StatusTypes.Requested });
+                        createResponse = reservation.CreateReservation(new CreateReservationRequest() { ClientId = 1, EndDate = DateTime.Now.ToString(), Status = StatusTypes.Requested });
                         if (createResponse is null)
                         {
                             Console.WriteLine("Cannot create reservation");

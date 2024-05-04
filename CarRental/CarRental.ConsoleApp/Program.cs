@@ -38,14 +38,16 @@ namespace CarRental.ConsoleApp
                 switch (option)
                 {
                     case "1":
-                        CarRental.grpc.Price.PriceClient client = new CarRental.grpc.Price.PriceClient(channel);
-                        PriceMenu(client);
+                        CarRental.grpc.Price.PriceClient priceClient = new CarRental.grpc.Price.PriceClient(channel);
+                        PriceMenu(priceClient);
                         break;
 
                     case "2":
                         CarRental.grpc.Car.CarClient carClient = new CarRental.grpc.Car.CarClient(channel);
 
-                        VehicleMenu(carClient);
+                        CarRental.grpc.Motorcycle.MotorcycleClient motorcycleClient = new CarRental.grpc.Motorcycle.MotorcycleClient(channel);
+
+                        VehicleMenu(carClient, motorcycleClient);
                         break;
 
                     case "3":

@@ -30,9 +30,10 @@ namespace CarRental.Services.Services
             _carRepository.BeginTransaction();
             Insurance? insurance = ((IInsuranceRepository)_carRepository).GetInsurance(request.InsuranceId);
             Somaton? somaton = ((ISomatonRepository)_carRepository).GetSomaton(request.SomatonId);
-            CarRental.Domain.Entities.Common.Price? price = ((IPriceRepository)_carRepository).GetPrice(request.PriceId);
+            Domain.Entities.Common.Price? price = ((IPriceRepository)_carRepository).GetPrice(request.PriceId);
 
             var car = _carRepository.CreateCar(request.BrandName, fabricationDate, insurance, somaton);
+            car.Price = price;
             car.CirculationId = request.CirculationId;
             car.SomatonId = request.SomatonId;
             car.PriceId = request.PriceId;
