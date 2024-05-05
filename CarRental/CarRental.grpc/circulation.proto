@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "CarRental.grpc";
+
+package grpc;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "common.proto";
+
+service Circulation {
+	rpc CreateCirculation (CreateCirculationRequest) returns (CirculationDTO);
+	rpc	GetCirculation (GetRequest) returns (NullableCirculationDTO);
+	rpc	UpdateCirculation (CirculationDTO) returns (google.protobuf.Empty);
+	rpc	DeleteCirculation (CirculationDTO) returns (google.protobuf.Empty);
+}
+
+message CirculationDTO{
+	int32 id = 1;
+	string model = 2;
+	string plate = 3;
+	string motorNumber = 4;
+	int32 insuranceId = 5;
+	int32 somatonId = 6;
+
+}
+
+message NullableCirculationDTO{
+	oneof kind{
+		google.protobuf.NullValue null = 1;
+		CirculationDTO circulation = 2;
+	}
+}
+
+message CreateCirculationRequest{
+	string model = 1;
+	string plate = 2;
+	string motorNumber = 3;
+	int32 insuranceId = 4;
+	int32 somatonId = 5;
+}

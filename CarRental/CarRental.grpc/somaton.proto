@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option csharp_namespace = "CarRental.grpc";
+
+package grpc;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "common.proto";
+
+
+service Somaton {
+	rpc CreateSomaton(CreateSomatonRequest) returns (SomatonDTO);
+	rpc	GetSomaton (GetRequest) returns (NullableSomatonDTO);
+	rpc	UpdateSomaton(SomatonDTO) returns(google.protobuf.Empty);
+	rpc	DeleteSomaton(SomatonDTO) returns(google.protobuf.Empty);
+}
+
+message SomatonDTO {
+	int32 id = 1;
+	string expeditionDate = 2;
+	StatusType status = 3;
+	string number = 4;
+}
+
+message NullableSomatonDTO{
+	oneof kind{
+		google.protobuf.NullValue null = 1;
+		SomatonDTO somaton = 2;
+	}
+}
+
+message CreateSomatonRequest{
+	string expeditionDate = 1;
+	StatusType status = 2;
+	string number = 3;
+}
+enum StatusTypes
+    {
+        Requested = 0;
+        Approved = 1;
+        Payed = 2;
+        Consumed = 3;
+		Cancelled = 4;
+    }

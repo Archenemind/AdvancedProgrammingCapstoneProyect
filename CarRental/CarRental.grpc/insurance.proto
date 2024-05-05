@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "CarRental.grpc";
+
+package grpc;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "common.proto";
+
+service Insurance{
+	rpc CreateInsurance (CreateInsuranceRequest) returns(InsuranceDTO);
+	rpc	GetInsurance (GetRequest) returns(NullableInsuranceDTO);
+	rpc	UpdateInsurance (InsuranceDTO) returns(google.protobuf.Empty);
+	rpc	DeleteInsurance (InsuranceDTO) returns(google.protobuf.Empty);
+}
+
+message InsuranceDTO {
+	int32 id = 1;
+	string policyNumber = 2;
+}
+
+message NullableInsuranceDTO {
+	oneof kind{
+		google.protobuf.NullValue null = 1;
+		InsuranceDTO insurance = 2;
+}
+
+message CreateInsuranceRequest{
+	string policyNumber = 1;
+}
