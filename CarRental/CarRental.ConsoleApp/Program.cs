@@ -43,11 +43,14 @@ namespace CarRental.ConsoleApp
                         break;
 
                     case "2":
+                        CarRental.grpc.Somaton.SomatonClient somatonClient = new CarRental.grpc.Somaton.SomatonClient(channel);
+                        CarRental.grpc.Insurance.InsuranceClient insuranceClint = new CarRental.grpc.Insurance.InsuranceClient(channel);
+                        CarRental.grpc.Circulation.CirculationClient circulationClient = new CarRental.grpc.Circulation.CirculationClient(channel);
                         CarRental.grpc.Car.CarClient carClient = new CarRental.grpc.Car.CarClient(channel);
 
                         CarRental.grpc.Motorcycle.MotorcycleClient motorcycleClient = new CarRental.grpc.Motorcycle.MotorcycleClient(channel);
 
-                        VehicleMenu(carClient, motorcycleClient);
+                        VehicleMenu(carClient, motorcycleClient,somatonClient,insuranceClint,circulationClient);
                         break;
 
                     case "3":

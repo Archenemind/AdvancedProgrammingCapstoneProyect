@@ -28,8 +28,8 @@ namespace CarRental.Services.Services
             DateTime fabricationDate = DateTime.Now;
 
             _carRepository.BeginTransaction();
-            Insurance? insurance = ((IInsuranceRepository)_carRepository).GetInsurance(request.InsuranceId);
-            Somaton? somaton = ((ISomatonRepository)_carRepository).GetSomaton(request.SomatonId);
+            CarRental.Domain.Entities.Insurances.Insurance? insurance = ((IInsuranceRepository)_carRepository).GetInsurance(request.InsuranceId);
+            CarRental.Domain.Entities.Somatons.Somaton? somaton = ((ISomatonRepository)_carRepository).GetSomaton(request.SomatonId);
             Domain.Entities.Common.Price? price = ((IPriceRepository)_carRepository).GetPrice(request.PriceId);
 
             var car = _carRepository.CreateCar(request.BrandName, fabricationDate, insurance, somaton);

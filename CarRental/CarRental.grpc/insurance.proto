@@ -25,6 +25,7 @@ message NullableInsuranceDTO {
 	oneof kind{
 		google.protobuf.NullValue null = 1;
 		InsuranceDTO insurance = 2;
+	}
 }
 
 message CreateInsuranceRequest{

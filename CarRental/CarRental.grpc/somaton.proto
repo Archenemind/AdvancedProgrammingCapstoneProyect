@@ -36,7 +36,7 @@ message CreateSomatonRequest{
 	StatusType status = 2;
 	string number = 3;
 }
-enum StatusTypes
+enum StatusType
     {
         Requested = 0;
         Approved = 1;

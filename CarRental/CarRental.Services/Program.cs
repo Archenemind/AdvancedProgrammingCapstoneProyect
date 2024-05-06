@@ -9,6 +9,9 @@ using CarRental.Services.Services;
 using CarRental.DataAccess.Abstract.Persons;
 using CarRental.DataAccess.Abstract.Vehicles;
 using CarRental.DataAccess.Abstract.Reservations;
+using CarRental.DataAccess.Abstract.Insurances;
+using CarRental.DataAccess.Abstract.Somatons;
+using CarRental.DataAccess.Abstract.Circulations;
 
 namespace CarRental.Services
 {
@@ -29,6 +32,9 @@ namespace CarRental.Services
             builder.Services.AddScoped<IPersonRepository, ApplicationRepository>();
             builder.Services.AddScoped<IVehicleRepository, ApplicationRepository>();
             builder.Services.AddScoped<IReservationRepository, ApplicationRepository>();
+            builder.Services.AddScoped<IInsuranceRepository, ApplicationRepository>();
+            builder.Services.AddScoped<ISomatonRepository, ApplicationRepository>();    
+            builder.Services.AddScoped<ICirculationRepository, ApplicationRepository>();
 
             var app = builder.Build();
 
@@ -47,6 +53,15 @@ namespace CarRental.Services
 
             app.MapGrpcService<ReservationService>();
             app.MapGet("/reservation", () => "");
+
+            app.MapGrpcService<InsuranceService>();
+            app.MapGet("/insurance", () => "");
+
+            app.MapGrpcService<SomatonService>();
+            app.MapGet("/somaton", () => "");
+
+            app.MapGrpcService<CirculationService>();
+            app.MapGet("/circulation", () => "");
             app.Run();
         }
     }

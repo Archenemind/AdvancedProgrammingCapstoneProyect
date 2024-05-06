@@ -27,8 +27,8 @@ namespace CarRental.Services.Services
             DateTime fabricationDate = DateTime.Now;
 
             _motorcycleRepository.BeginTransaction();
-            Insurance? insurance = ((IInsuranceRepository)_motorcycleRepository).GetInsurance(request.InsuranceId);
-            Somaton? somaton = ((ISomatonRepository)_motorcycleRepository).GetSomaton(request.SomatonId);
+            CarRental.Domain.Entities.Insurances.Insurance? insurance = ((IInsuranceRepository)_motorcycleRepository).GetInsurance(request.InsuranceId);
+            CarRental.Domain.Entities.Somatons.Somaton? somaton = ((ISomatonRepository)_motorcycleRepository).GetSomaton(request.SomatonId);
             Domain.Entities.Common.Price? price = ((IPriceRepository)_motorcycleRepository).GetPrice(request.PriceId);
 
             var motorcycle = _motorcycleRepository.CreateMotorcycle(request.BrandName, fabricationDate, insurance, somaton);

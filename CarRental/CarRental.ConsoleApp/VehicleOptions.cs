@@ -1,4 +1,5 @@
 ﻿using CarRental.grpc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,18 @@ namespace CarRental.ConsoleApp
 {
     internal partial class Program
     {
-        internal static void VehicleMenu(CarRental.grpc.Car.CarClient car, CarRental.grpc.Motorcycle.MotorcycleClient motorcycle)
+        internal static void VehicleMenu(
+            CarRental.grpc.Car.CarClient car,
+            CarRental.grpc.Motorcycle.MotorcycleClient motorcycle,
+            CarRental.grpc.Somaton.SomatonClient somaton,
+            CarRental.grpc.Insurance.InsuranceClient insurance,
+            CarRental.grpc.Circulation.CirculationClient circulation
+            )
         {
             CarDTO? createCarResponse = null;
+            SomatonDTO? createSomatonResponse = null;
+            InsuranceDTO? createInsuranceResponse = null;
+            CirculationDTO? createCirculationResponse = null;
             MotorcycleDTO? createMotorcycleResponse = null;
             string? SelectedOption = null;
             while (SelectedOption != "9")
@@ -36,7 +46,20 @@ namespace CarRental.ConsoleApp
                     case "1":
                         ///Esto va a fallar si en la DB ya hay un vehiculo
                         ///con  PriceId, InsuranceId, SomatonId igual a 1
-                        createCarResponse = car.CreateCar(new CreateCarRequest() { CirculationId = 1, Color = 0, Color2 = 0, InsuranceId = 1, SomatonId = 1, PriceId = 1, HasHairConditioner = 0, BrandName = "chevrolet", FabricationDate = "Jan 1, 2009" });
+                        createInsuranceResponse = insurance.CreateInsurance(new CreateInsuranceRequest() { PolicyNumber = "c ioviv394pvpi3pw49e" });
+                        if(createInsuranceResponse is null)
+                        {
+                            Console.WriteLine("Cannot create insurance");
+                            return;
+                        }
+                        createSomatonResponse = somaton.CreateSomaton(new CreateSomatonRequest() { ExpeditionDate = "2020-03-16T12:00:00", Number = "cjnvnvnnvior", Status = StatusType.Requested });
+                        if(createSomatonResponse is null)
+                        {
+                            Console.WriteLine("Cannot create somaton");
+                            return;
+                        }
+                        createCirculationResponse = circulation.CreateCirculation(new CreateCirculationRequest() { Model = "Jawa", Plate = "fjvjjveorion3orif", MotorNumber = "m34if4mc349g", InsuranceId = createInsuranceResponse.Id, SomatonId = createSomatonResponse.Id });
+                        createCarResponse = car.CreateCar(new CreateCarRequest() { CirculationId = createCirculationResponse.Id, Color = 0, Color2 = 0, InsuranceId = createInsuranceResponse.Id, SomatonId = createSomatonResponse.Id, PriceId = 1, HasHairConditioner = 0, BrandName = "chevrolet", FabricationDate = "Jan 1, 2009" });
                         if (createCarResponse is null)
                         {
                             Console.WriteLine("Cannot create car");
@@ -179,7 +202,7 @@ namespace CarRental.ConsoleApp
                         break;
 
                     default:
-                        Console.Write("\nWrong key");
+                        Console.Write("\n Fuck Off you bastard");
                         break;
                 }
             }
