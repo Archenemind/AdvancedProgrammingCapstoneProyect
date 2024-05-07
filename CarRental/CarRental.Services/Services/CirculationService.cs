@@ -22,10 +22,10 @@ namespace CarRental.Services.Services
         }
         public override Task<CirculationDTO> CreateCirculation(CreateCirculationRequest request, ServerCallContext context)
         {
+            _circulationRepository.BeginTransaction();
             CarRental.Domain.Entities.Insurances.Insurance? insurance = ((IInsuranceRepository)_circulationRepository).GetInsurance(request.InsuranceId);
             CarRental.Domain.Entities.Somatons.Somaton? somaton = ((ISomatonRepository)_circulationRepository).GetSomaton(request.SomatonId);
 
-            _circulationRepository.BeginTransaction();
 
             var circulation = _circulationRepository.CreateCirculation(request.Model, request.Plate, request.MotorNumber, insurance, somaton);
             circulation.InsuranceID = request.InsuranceId;
