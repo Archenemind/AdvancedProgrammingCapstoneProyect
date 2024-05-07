@@ -22,6 +22,9 @@ namespace CarRental.ConsoleApp
             SomatonDTO? createSomatonResponse = null;
             InsuranceDTO? createInsuranceResponse = null;
             CirculationDTO? createCirculationResponse = null;
+            SomatonDTO? createSomatonResponse1 = null;
+            InsuranceDTO? createInsuranceResponse1 = null;
+            CirculationDTO? createCirculationResponse1 = null;
             MotorcycleDTO? createMotorcycleResponse = null;
             string? SelectedOption = null;
             while (SelectedOption != "9")
@@ -44,21 +47,19 @@ namespace CarRental.ConsoleApp
                 switch (SelectedOption)
                 {
                     case "1":
-                        ///Esto va a fallar si en la DB ya hay un vehiculo
-                        ///con  PriceId, InsuranceId, SomatonId igual a 1
                         createInsuranceResponse = insurance.CreateInsurance(new CreateInsuranceRequest() { PolicyNumber = "c ioviv394pvpi3pw49e" });
-                        if(createInsuranceResponse is null)
+                        if (createInsuranceResponse is null)
                         {
                             Console.WriteLine("Cannot create insurance");
                             return;
                         }
                         createSomatonResponse = somaton.CreateSomaton(new CreateSomatonRequest() { ExpeditionDate = "2020-03-16T12:00:00", Number = "cjnvnvnnvior", Status = StatusType.Requested });
-                        if(createSomatonResponse is null)
+                        if (createSomatonResponse is null)
                         {
                             Console.WriteLine("Cannot create somaton");
                             return;
                         }
-                        createCirculationResponse = circulation.CreateCirculation(new CreateCirculationRequest() { Model = "Jawa", Plate = "fjvjjveorion3orif", MotorNumber = "m34if4mc349g", InsuranceId = createInsuranceResponse.Id, SomatonId = createSomatonResponse.Id });
+                        createCirculationResponse = circulation.CreateCirculation(new CreateCirculationRequest() { Model = "Jawa", Plate = "B23646754", MotorNumber = "m34if4mc349g", InsuranceId = createInsuranceResponse.Id, SomatonId = createSomatonResponse.Id });
                         createCarResponse = car.CreateCar(new CreateCarRequest() { CirculationId = createCirculationResponse.Id, Color = 0, Color2 = 0, InsuranceId = createInsuranceResponse.Id, SomatonId = createSomatonResponse.Id, PriceId = 1, HasHairConditioner = 0, BrandName = "chevrolet", FabricationDate = "Jan 1, 2009" });
                         if (createCarResponse is null)
                         {
@@ -128,13 +129,27 @@ namespace CarRental.ConsoleApp
                         break;
 
                     case "5":
-                        ///Esto va a fallar si en la DB ya hay un vehiculo
-                        ///con  PriceId, InsuranceId, SomatonId igual a 2
-                        createMotorcycleResponse = motorcycle.CreateMotorcycle(new CreateMotorcycleRequest() { CirculationId = 2, Color = 0, Color2 = 0, InsuranceId = 2, SomatonId = 2, PriceId = 2, HasSideCar = 0, BrandName = "Susuki", FabricationDate = "March 1, 2009" });
+                        createInsuranceResponse1 = insurance.CreateInsurance(new CreateInsuranceRequest() { PolicyNumber = "c ioviv394pvpi3pw49e" });
+                        if (createInsuranceResponse1 is null)
+                        {
+                            Console.WriteLine("Cannot create insurance");
+                            return;
+                        }
+                        createSomatonResponse1 = somaton.CreateSomaton(new CreateSomatonRequest() { ExpeditionDate = "2020-03-16T12:00:00", Number = "cjnvnvnnvior", Status = StatusType.Requested });
+                        if (createSomatonResponse1 is null)
+                        {
+                            Console.WriteLine("Cannot create somaton");
+                            return;
+                        }
+                        createCirculationResponse1 = circulation.CreateCirculation(new CreateCirculationRequest() { Model = "Jawa", Plate = "B23646754", MotorNumber = "m34if4mc349g", InsuranceId = createInsuranceResponse1.Id, SomatonId = createSomatonResponse1.Id });
+
+                        createMotorcycleResponse = motorcycle.CreateMotorcycle(new CreateMotorcycleRequest() { CirculationId = createCirculationResponse1.Id, Color = 0, Color2 = 0, InsuranceId = createInsuranceResponse1.Id, SomatonId = createSomatonResponse1.Id, PriceId = 2, HasSideCar = 0, BrandName = "Susuki", FabricationDate = "March 1, 2009" });
                         if (createMotorcycleResponse is null)
                         {
                             Console.WriteLine("Cannot create motorcycle");
-                            return;
+                            Console.WriteLine("\nPress a new key to continue");
+                            Console.ReadKey();
+                            break;
                         }
                         else
                         {
